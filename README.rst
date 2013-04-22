@@ -12,7 +12,7 @@ About the name
 a german dialect called `Swabian <http://en.wikipedia.org/wiki/Swabian_German>`_
 spoken in parts of South Germany. As I moved into this part of Germany in
 2011 I came in direct contact with this dialect and I am still quite in
-awe about it, but I really like it, so I thought I give my first open source
+awe of it, but I really like it, so I thought I give my first open source
 project a Swabian name :)
 
 Anyway, when I came up with the idea to this project I went to my Yoga class
