@@ -24,3 +24,11 @@ So in the true spirit of **loslassa** I hope this little project
 helps you to let your ideas go in a relaxed and comfortable way.
 
 Nothing fancy.
+
+=======
+License
+=======
+
+I know, this is really important ... so after thinking long and hard and
+consulting squillions of lawyers I decided to put this under the
+`DBAD License <http://www.dbad-license.org>`_ ...
