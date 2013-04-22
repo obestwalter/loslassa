@@ -20,7 +20,7 @@ and my Swabian Yoga teacher always says "loslassa" whenever she wants us to
 relax after some contortion she made us go through - so this is my favorite
 part of the lessons :)
 
-So in the true spirit of **loslassa** I hope this this little project
+So in the true spirit of **loslassa** I hope this little project
 helps you to let your ideas go in a relaxed and comfortable way.
 
 Nothing fancy.
