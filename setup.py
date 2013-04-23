@@ -59,5 +59,5 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
     ],
     #cmdclass={},
-    test_suite='loslassa.testsuite.suite'
+    #test_suite='loslassa.testsuite.suite'
 )
