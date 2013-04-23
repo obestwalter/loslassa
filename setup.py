@@ -32,13 +32,12 @@ from setuptools import Command, setup
 
 setup(
     name='Loslassa',
-    version='0.1-dev',
+    version='0.2-dev',
     url='http://github.com/obestwalter/loslassa/',
     license='DBAD',
     author='Oliver Bestwalter',
     author_email='oliver@bestwalter.de',
-    description='A simple way to generate static web pages with '
-                'Python, reStructuredText, git and love :)',
+    description='Simple static web page generation',
     long_description=__doc__,
     packages=['loslassa', 'loslassa.testsuite'],
     include_package_data=True,
