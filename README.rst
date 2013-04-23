@@ -35,23 +35,6 @@ part of the lessons :)
 So in the true spirit of **Loslassa** I hope this little project let go of your
 preconceptions how static web pages have to be generated and try the Loslassa way :).
 
-=======
-License
-=======
-I know, this is really important ... so after thinking long and hard and
-consulting squillions of lawyers I decided to put this world changing project
-under the `DBAD License <http://www.dbad-license.org>`_.
-
-==========
-Next Steps
-==========
-
-Create the basic project structure
-==================================
-
-Make it pip installable right away: http://guide.python-distribute.org/creation.html
-
-
 ===========
 Basic Ideas
 ===========
@@ -60,17 +43,33 @@ Start locally. Creating a new project initializes a new git repository with the 
 
 Publishing it would clone the repository bare to the web space and set it to be origin from then on.
 
+==========
+Next Steps
+==========
+
+Flesh out the readme with the usage scenarios
+
 ===========
 Inspiration
 ===========
 
-heroku:
+README driven development:
+    * http://tom.preston-werner.com/2010/08/23/readme-driven-development.html
+
+Nice command line usage - heroku:
     * https://devcenter.heroku.com/articles/python
     * https://devcenter.heroku.com/articles/quickstart
 
-git:
-    * Plumbing/porcelain paradigm
+Layering of functionality - git:
+    * plumbing/porcelain paradigm
 
-plumbum:
+Marrying bash/cmd.exe with python - plumbum:
     * http://plumbum.readthedocs.org/en/latest/
     * Might be better to use git bindings
+
+=======
+License
+=======
+I know, this is really important ... so after thinking long and hard and
+consulting squillions of lawyers I decided to put this world changing project
+under the `DBAD License <http://www.dbad-license.org>`_.
