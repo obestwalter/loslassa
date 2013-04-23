@@ -3,7 +3,7 @@ loslassa
 ########
 
 A simple way to generate static web pages with `Python <http://python.org>`_,
-`eStructuredText <http://docutils.sourceforge.net/rst.html>`_,
+`reStructuredText <http://docutils.sourceforge.net/rst.html>`_,
 `git <http://git-scm.com>`_, `love <http://en.wikipedia.org/wiki/Love>`_ :)
 
 Other important ingredients are the documentation generator
