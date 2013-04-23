@@ -10,7 +10,7 @@ A simple way to generate static web pages with `Python <http://python.org>`_,
 
     **This is just a vague concept atm and serves me as a vehicle to play through**
     **the whole process of getting an open source project in the python**
-    **ecosystem on the road - but I reallly this will turn into something useful**
+    **ecosystem on the road - but I reallly hope this will turn into something useful**
 
 
 Other important ingredients are the documentation generator
