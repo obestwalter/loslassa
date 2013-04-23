@@ -32,12 +32,23 @@ and my Swabian Yoga teacher always says "loslassa" whenever she wants us to
 relax after some contortion she made us go through - so this is my favorite
 part of the lessons :)
 
-So in the true spirit of **Loslassa** I hope this little project let go of your
-preconceptions how static web pages have to be generated and try the Loslassa way :).
+So in the true spirit of **Loslassa** I hope this little project helps you let go of your
+preconceptions how static web pages have to be generated and you try the Loslassa way :).
 
 ===========
 Basic Ideas
 ===========
+
+::
+
+    loslassa start <project name>
+
+    in directory:
+        loslassa build
+        loslassa serve (with watcher that rebuilds after cheanges)
+        loslassa push
+        loslassa fetch
+        loslassa build serve
 
 Start locally. Creating a new project initializes a new git repository with the basix structure
 
