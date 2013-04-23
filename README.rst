@@ -2,7 +2,12 @@
 loslassa
 ########
 
-A simple way to generate static web pages with sphinx, git and love :)
+A simple way to generate static web pages with `Python <http://python.org>`_,
+`eStructuredText <http://docutils.sourceforge.net/rst.html>`_,
+`git <http://git-scm.com>`_, `love <http://en.wikipedia.org/wiki/Love>`_ :)
+
+Other important ingredients are the documentation generator
+`sphinx <http://sphinx-doc.org>`_ and some other yet undisclosed tools.
 
 ==============
 About the name
@@ -32,3 +37,25 @@ License
 I know, this is really important ... so after thinking long and hard and
 consulting squillions of lawyers I decided to put this under the
 `DBAD License <http://www.dbad-license.org>`_ ...
+
+==========
+Next Steps
+==========
+
+Create the basic project structure
+==================================
+
+Make it pip installable right away: http://guide.python-distribute.org/creation.html
+
+
+===========
+Basic Ideas
+===========
+
+Start locally. Creating a new project initializes a new git repository with the basix structure
+
+Publishing it would clone the repository bare to the web space and set it to be origin from then on.
+
+Get inspiration from heroku command line: https://devcenter.heroku.com/articles/python
+
+https://devcenter.heroku.com/articles/quickstart
