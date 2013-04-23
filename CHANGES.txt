@@ -3,7 +3,7 @@ Loslassa Changelog
 
 Here you can see the full list of changes between each Loslassa release.
 
-Version 0.1
------------
+Version 0.1 <2013-04-23>
+------------------------
 
 First public preview release.

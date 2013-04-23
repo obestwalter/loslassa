@@ -45,8 +45,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'sphinx',
-        '## some git bindings ##'
+        'Sphinx>=1.1.3',
     ],
     classifiers=[
         'Development Status :: 1 - Planning',
