@@ -2,7 +2,7 @@
 Loslassa
 ########
 
-A simple way to generate static web pages with `Python <http://python.org>`_,
+A simple way to create web pages with `Python <http://python.org>`_,
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_,
 `git <http://git-scm.com>`_ and `love <http://en.wikipedia.org/wiki/Love>`_ :)
 
@@ -13,8 +13,11 @@ A simple way to generate static web pages with `Python <http://python.org>`_,
     **ecosystem on the road - but I reallly hope this will turn into something useful**
 
 
-Other important ingredients are the documentation generator
-`sphinx <http://sphinx-doc.org>`_ and some other yet undisclosed tools.
+Other important ingredients:
+    * `sphinx <http://sphinx-doc.org>`_  the documentation generator
+    * simple reloading development server based on code from
+      `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`
+    * Permissive `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`
 
 ==============
 About the name
@@ -38,6 +41,11 @@ preconceptions how static web pages have to be generated and you try the Loslass
 ===========
 Basic Ideas
 ===========
+
+Start a project.
+
+-
+
 
 ::
 
@@ -77,10 +85,3 @@ Layering of functionality - git:
 Marrying bash/cmd.exe with python - plumbum:
     * http://plumbum.readthedocs.org/en/latest/
     * Might be better to use git bindings
-
-=======
-License
-=======
-I know, this is really important ... so after thinking long and hard and
-consulting squillions of lawyers I decided to put this world changing project
-under the `DBAD License <http://www.dbad-license.org>`_.

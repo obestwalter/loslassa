@@ -32,12 +32,12 @@ from setuptools import Command, setup
 
 setup(
     name='Loslassa',
-    version='0.2-dev',
+    version='0.1-dev-0',
     url='http://github.com/obestwalter/loslassa/',
-    license='DBAD',
+    license='BSD',
     author='Oliver Bestwalter',
     author_email='oliver@bestwalter.de',
-    description='Simple static web page generation',
+    description='Web Site generator based on sphinx and git',
     long_description=__doc__,
     packages=['loslassa', 'loslassa.testsuite'],
     include_package_data=True,
