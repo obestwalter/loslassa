@@ -6,18 +6,67 @@ A simple way to create web pages with `Python <http://python.org>`_,
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_,
 `git <http://git-scm.com>`_ and `love <http://en.wikipedia.org/wiki/Love>`_ :)
 
-**WARNING**
-
-    **This is just a vague concept atm and serves me as a vehicle to play through**
-    **the whole process of getting an open source project in the python**
-    **ecosystem on the road - but I reallly hope this will turn into something useful**
-
-
 Other important ingredients:
     * `sphinx <http://sphinx-doc.org>`_  the documentation generator
     * simple reloading development server based on code from
-      `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`
+      `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`_
+    * `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_ for convenient shell access
     * Permissive `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`_
+
+============
+Check it out
+============
+
+This is early days, so the proper workflow and publishing functionality
+does not actually exist yet ... but you play around with it already:
+    * clone the repository
+    * install the requirements (see ``install_requires`` in setup.py)
+    * run ``loslassa/main.py``
+    * point your browser to http://localhost:8080
+    * edit the rst files or conf.py in ``example_project``
+    * check the changes in the browser
+
+===========
+Basic Ideas
+===========
+
+
+The basic workflow should is inspired by the way how developing a
+`flask <http://flask.pocoo.org/>` app works
+
+Start
+=====
+
+::
+
+    loslassa start */path/to/project*
+
+Creates a new project with a basic structure and configuration
+similar to sphinx-quickstart only simpler and tailored to only HTML output.
+
+Develop
+=======
+Work on the web page with automatic rebuild of the web pages::
+
+    cd */path/to/project*
+    loslassa develop
+
+Starts a localt development reachable on `http://localhost:8080`_. All files in project folder are being watched and if something changes
+
+Basic implementation done - doesn't watch added files yet though ...
+
+Publish
+=======
+This part is a bit vague still but basically it should simply push the
+generated pages to the server, by maintaining them in a git repository
+
+First time publishing would clone the repository bare to the web space and set it to be origin from then on ... or summin like that, didn't think that through yet.
+
+In project directory::
+
+    cd */path/to/project*
+    loslassa loslassa
+
 
 ==============
 About the name
@@ -37,36 +86,6 @@ part of the lessons :)
 
 So in the true spirit of **Loslassa** I hope this little project helps you let go of your
 preconceptions how static web pages have to be generated and you try the Loslassa way :).
-
-===========
-Basic Ideas
-===========
-
-Start a project.
-
--
-
-
-::
-
-    loslassa start <project name>
-
-    in directory:
-        loslassa build
-        loslassa serve (with watcher that rebuilds after cheanges)
-        loslassa push
-        loslassa fetch
-        loslassa build serve
-
-Start locally. Creating a new project initializes a new git repository with the basix structure
-
-Publishing it would clone the repository bare to the web space and set it to be origin from then on.
-
-==========
-Next Steps
-==========
-
-Flesh out the readme with the usage scenarios
 
 ===========
 Inspiration
