@@ -17,7 +17,7 @@ Other important ingredients:
     * `sphinx <http://sphinx-doc.org>`_  the documentation generator
     * simple reloading development server based on code from
       `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`
-    * Permissive `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`
+    * Permissive `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`_
 
 ==============
 About the name
