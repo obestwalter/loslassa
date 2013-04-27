@@ -20,19 +20,14 @@ Check it out
 This is early days, so the proper workflow and publishing functionality
 does not actually exist yet ... but you can play around with it already:
 
-.. sourcecode:: bash
-    $ [sudo] pip install loslassa
+#. ``pip install loslassa``
+#. Manually copy the example_project folder from dist-packages to your home
+#. Change into example_project/source
+#. ``loslassa play``
+#. Point your browser to http://localhost:8080
 
-In an interactive shell:
-
->>> from loslassa.main import main
->>> main()
-
-Point your browser to http://localhost:8080
-
-Edit the rst files or conf.py in ``example_project``
-
-Check the changes in the browser.
+Now you can edit the rst files or conf.py in the example project
+and ckeck the changes in the browser.
 
 ==========
 Basic Idea
@@ -57,6 +52,7 @@ Workflow
 
 Start
 =====
+**not implemented yet**
 
 ::
 
@@ -79,6 +75,8 @@ the project is rebuild.
 
 Publish
 =======
+**not implemented yet**
+
 This part is a bit vague still but basically it should simply push the
 generated pages to the server, by maintaining them in a git repository
 
