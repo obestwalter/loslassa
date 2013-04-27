@@ -64,22 +64,22 @@ Work on the web page with automatic rebuild of the web pages::
     cd */path/to/project*
     loslassa develop
 
-Starts a localt development reachable on `http://localhost:8080`_. All files in project folder are being watched and if something changes
-
-Basic implementation done - doesn't watch added files yet though ...
+Starts a local development server reachable on `http://localhost:8080`_.
+All files in project folder are being watched and if something changes
+the project is rebuild.
 
 Publish
 =======
 This part is a bit vague still but basically it should simply push the
 generated pages to the server, by maintaining them in a git repository
 
-First time publishing would clone the repository bare to the web space and set it to be origin from then on ... or summin like that, didn't think that through yet.
+First time publishing would clone the repository bare to the web space and
+set it to be origin from then on ... or summin like that, didn't think that through yet.
 
 In project directory::
 
     cd */path/to/project*
     loslassa loslassa
-
 
 ==============
 About the name
@@ -98,7 +98,7 @@ relax after some contortion she made us go through - so this is my favorite
 part of the lessons :)
 
 So in the true spirit of **Loslassa** I hope this little project helps you let go of your
-preconceptions how static web pages have to be generated and you try the Loslassa way :).
+preconceptions how web pages have to be created and you try the Loslassa way :).
 
 ===========
 Inspiration
@@ -113,7 +113,3 @@ Nice command line usage - heroku:
 
 Layering of functionality - git:
     * plumbing/porcelain paradigm
-
-Marrying bash/cmd.exe with python - plumbum:
-    * http://plumbum.readthedocs.org/en/latest/
-    * Might be better to use git bindings
