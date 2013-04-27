@@ -64,7 +64,7 @@ Work on the web page with automatic rebuild of the web pages::
     cd */path/to/project*
     loslassa develop
 
-Starts a local development server reachable on `http://localhost:8080`_.
+Starts a local development server reachable on http://localhost:8080.
 All files in project folder are being watched and if something changes
 the project is rebuild.
 
