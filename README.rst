@@ -41,8 +41,8 @@ Basic Idea
 If you want to create a simple web page without having to bother about
 HTML, CSS, Javascript and all that, but don't want to suffer through those
 browserbased website creatorthingies there is an alternative:
-work locally with simple text files and publish the results after creating them
-locally.
+work locally with simple text files, let some clever system (sphinx) generate
+the HTML and Javascript and then push the results online.
 
 The basic workflow is inspired by the way how developing for example a
 `flask <http://flask.pocoo.org/>`_ web application works: a local server runs in the
@@ -65,12 +65,13 @@ Start
 Creates a new project with a basic structure and configuration
 similar to sphinx-quickstart only simpler and tailored to only HTML output.
 
-Develop
-=======
-Work on the web page with automatic rebuild of the web pages::
+Play
+====
+Playing with the source and create your page. Add content and see the
+changes right away thanks to local server with automatic rebuild of the web pages::
 
     cd */path/to/project*
-    loslassa develop
+    loslassa play
 
 Starts a local development server reachable on http://localhost:8080.
 All files in project folder are being watched and if something changes
@@ -82,12 +83,17 @@ This part is a bit vague still but basically it should simply push the
 generated pages to the server, by maintaining them in a git repository
 
 First time publishing would clone the repository bare to the web space and
-set it to be origin from then on ... or summin like that, didn't think that through yet.
-
-In project directory::
+set it to be origin from then on ... or summin like that, didn't think that through yet::
 
     cd */path/to/project*
     loslassa loslassa
+
+Customize
+=========
+
+This is not thought out yet, but I imagine that additional customization
+can be done easily by expanding the settings in the sphinx conf.py and
+do more involved stuff via sphinx extensions.
 
 ==============
 About the name
@@ -97,16 +103,16 @@ About the name
 a german dialect called `Swabian <http://en.wikipedia.org/wiki/Swabian_German>`_
 spoken in parts of South Germany. As I moved into this part of Germany in
 2011 I came in direct contact with this dialect and I am still quite in
-awe of it, but I really like it, so I thought I give my first open source
-project a Swabian name :)
+awe of it, but I really like it ... or at least I am really trying very hard to
+ like it - so I thought I give my first open source project a Swabian name.
 
 Anyway, when I came up with the idea to this project I went to my Yoga class
 and my Swabian Yoga teacher always says "loslassa" whenever she wants us to
 relax after some contortion she made us go through - so this is my favorite
-part of the lessons :)
+part of the lessons.
 
 So in the true spirit of **Loslassa** I hope this little project helps you let go of your
-preconceptions how web pages have to be created and you try the Loslassa way :).
+preconceptions how web pages have to be created and you try the Loslassa way ;).
 
 ===========
 Inspiration
