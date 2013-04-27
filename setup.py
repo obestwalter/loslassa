@@ -13,13 +13,12 @@ setup(
     author_email='oliver@bestwalter.de',
     long_description=open("README.rst").read(),
     packages=['loslassa'],
-    package_data={'loslassa': ["example_project/source/*"]},
     include_package_data=True,
     zip_safe=False,
     platforms='Unix', # todo add windows and Mac Os X
     # todo activate after first throes of cluelessness are over
-    #install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
-    entry_points=dict(console_scripts=['loslassa=loslassa:main']),
+    install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
+    entry_points=dict(console_scripts=['loslassa=loslassa.loslassa:main']),
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Environment :: Console',
