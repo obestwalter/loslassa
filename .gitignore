@@ -35,3 +35,6 @@ nosetests.xml
 .pydevproject
 .idea
 __scratchpad.py
+
+# Generated from __doc__
+README.rst

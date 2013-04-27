@@ -1,7 +1,10 @@
 """See README.rst for description"""
 from setuptools import setup
 
-from loslassa.loslassa import __version__
+from loslassa.loslassa import __doc__, __version__
+
+with open("README.rst", "w") as f:
+    f.write(__doc__)
 
 setup(
     name='Loslassa',
@@ -11,7 +14,8 @@ setup(
     url='http://github.com/obestwalter/loslassa/',
     author='Oliver Bestwalter',
     author_email='oliver@bestwalter.de',
-    long_description=open("README.rst").read(),
+    long_description=__doc__,
+    #keywords='',
     packages=['loslassa'],
     include_package_data=True,
     zip_safe=False,
