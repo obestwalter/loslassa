@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='Loslassa',
-    version='0.1-dev-0',
+    version='0.1-dev-1',
     url='http://github.com/obestwalter/loslassa/',
     license='BSD',
     author='Oliver Bestwalter',
@@ -16,10 +16,10 @@ setup(
     platforms='any',
     install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 2 - Pre-Alpha',
         'Environment :: Console',
         'Intended Audience :: Other Audience',
-        'License :: OSI Approved :: Apache Software License',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',

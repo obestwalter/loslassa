@@ -3,7 +3,10 @@ Loslassa Changelog
 
 Here you can see the full list of changes between each Loslassa release.
 
-Version 0.01 <2013-04-24>
--------------------------
+Version 0.1-dev-1 <2013-04-27>
+------------------------------
 
-Just get the skeleton online to see if it works.
+A local development server and an example project is set up but the script is
+not runnable from the installed location yet.
+
+Run loslassa/main.py directly to try it out.
