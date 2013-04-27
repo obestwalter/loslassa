@@ -19,7 +19,7 @@ setup(
     install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
     entry_points=dict(console_scripts=['loslassa=loslassa.loslassa:main']),
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Other Audience',
         'License :: OSI Approved :: BSD License',
