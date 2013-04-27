@@ -14,17 +14,18 @@ path = os.path.dirname(os.path.abspath(__file__)).rpartition('loslassa')[0]
 if path not in sys.path:
     sys.path.insert(0, path)
 
-from loslassa.devserver import serve_with_reloader
+from devserver import serve_with_reloader
 
 log = logging.getLogger(__name__)
 
 LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
+__version__ = '0.1-dev-4'
 
 class Loslassa(cli.Application):
     PROGNAME = "loslassa"
-    VERSION = "0.1"
+    VERSION = __version__
     verbose = cli.Flag(
         ["v", "verbose"], help = "If given, I will be very talkative")
 
@@ -34,7 +35,7 @@ class Loslassa(cli.Application):
             return 1
 
         if not self.nested_command:
-            print("command missing")
+            print("need a command for the kind of loslassing - try --help")
             return 1
 
         if self.verbose:
@@ -44,7 +45,6 @@ class Loslassa(cli.Application):
 @Loslassa.subcommand("start")
 class LoslassaStart(cli.Application):
     """Starts a new project by creating the initial project structure"""
-
     projectPath = EXAMPLE_PROJECT_PATH
 
     @cli.autoswitch(str)
@@ -79,6 +79,8 @@ class LoslassaPlay(cli.Application):
         log.addHandler(logging.FileHandler(filename))
 
     def main(self):
+        """set the paths according to conventions and start serving them"""
+        print("play loslassing...")
         cwd = os.getcwd()
         sphinxConfPath = LocalPath(os.path.join(cwd, "conf.py"))
         sourcePath = LocalPath(os.path.join(cwd, "source"))
@@ -87,10 +89,8 @@ class LoslassaPlay(cli.Application):
         outputPath = buildPath.join("html")
         self._check_paths(
             [sphinxConfPath, sourcePath, buildPath, doctreesPath, outputPath])
-
         sphinxBuildCommand = sphinx_build[
             "-b", "dirhtml", "-d", doctreesPath, sourcePath, outputPath]
-        print("play loslassing...")
         serve_with_reloader(
             str(outputPath), self.serverPort,
             sphinxBuildCommand,pathToWatch=str(sourcePath))
@@ -103,7 +103,7 @@ class LoslassaPlay(cli.Application):
         :raise: `.LoslassaError`
         """
         for thisPath in pathsToCheck:
-            if not thisPath.exists:
+            if not thisPath.exists():
                 raise LoslassaError(
                     "Expected path %s does not exist" % (thisPath._path))
 
@@ -113,13 +113,22 @@ class LoslassaLoslassa(cli.Application):
     """Practice loslassing by pushing your page into the interwebs"""
 
     def main(self):
-        print("start loslassing...")
+        # todo make a progress bar consisting of loslassa :)
+        print("loslassa loslassa loslassa ...")
 
 
 class LoslassaError(Exception):
     pass
 
 
-if __name__ == "__main__":
+def main():
     logging.basicConfig(level=logging.DEBUG)
     Loslassa.run()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        sys.argv.append("play")
+        sys.argv.append("--project-path")
+        sys.argv.append(EXAMPLE_PROJECT_PATH)
+    sys.exit(main())
