@@ -17,8 +17,8 @@ Other important ingredients:
 Check it out
 ============
 
-This is early days, so the proper workflow and publishing functionality
-does not actually exist yet ... but you can play around with it already:
+This is early days, creation and publishing functionality
+does not actually exist yet ... but play with it already:
 
 #. ``pip install loslassa``
 #. Manually copy the example_project folder from dist-packages to your home
@@ -27,7 +27,7 @@ does not actually exist yet ... but you can play around with it already:
 #. Point your browser to http://localhost:8080
 
 Now you can edit the rst files or conf.py in the example project
-and ckeck the changes in the browser.
+and check the changes in the browser.
 
 ==========
 Basic Idea
