@@ -3,6 +3,18 @@ Loslassa Changelog
 
 Here you can see the full list of changes between each Loslassa release.
 
+Version 0.3 <2013-04-27>
+------------------------
+
+o.k. this is now the first actual version that is somehow usable.
+
+$ cd /path/to/loslassa/project
+$ loslassa play
+
+this starts the reloading server and you can start playing
+
+the other commands are still dummies.
+
 Version 0.1-dev-3 <2013-04-27>
 ------------------------------
 

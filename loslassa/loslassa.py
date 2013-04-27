@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
-__version__ = '0.3-dev-0'
+__version__ = '0.3'
 
 class Loslassa(cli.Application):
     PROGNAME = "loslassa"
