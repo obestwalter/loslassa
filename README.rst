@@ -19,12 +19,20 @@ Check it out
 
 This is early days, so the proper workflow and publishing functionality
 does not actually exist yet ... but you can play around with it already:
-    * clone the repository
-    * install the requirements (see ``install_requires`` in setup.py)
-    * run ``loslassa/main.py``
-    * point your browser to http://localhost:8080
-    * edit the rst files or conf.py in ``example_project``
-    * check the changes in the browser
+
+.. sourcecode:: bash
+    $ [sudo] pip install loslassa
+
+In an interactive shell:
+
+>>> from loslassa.main import main
+>>> main()
+
+Point your browser to http://localhost:8080
+
+Edit the rst files or conf.py in ``example_project``
+
+Check the changes in the browser.
 
 ==========
 Basic Idea

@@ -17,10 +17,12 @@ from loslassa.devserver import serve_with_reloader
 log = logging.getLogger(__name__)
 
 
-if __name__ == "__main__":
+def main():
     logging.basicConfig(level=logging.DEBUG)
-
     htmlBuilder = sphinx_build[
         "-b", "dirhtml", "-d", DOCTREES_PATH, SOURCE_PATH, OUTPUT_PATH]
-
     serve_with_reloader(OUTPUT_PATH, 8080, htmlBuilder,pathToWatch=SOURCE_PATH)
+
+
+if __name__ == "__main__":
+    main()
