@@ -9,11 +9,6 @@ from plumbum import cli
 from plumbum.cmd import sphinx_build
 from plumbum.local_machine import LocalPath
 
-# quick hack for initial dev to not add something to PYTHONPATH
-path = os.path.dirname(os.path.abspath(__file__)).rpartition('loslassa')[0]
-if path not in sys.path:
-    sys.path.insert(0, path)
-
 from devserver import serve_with_reloader
 
 log = logging.getLogger(__name__)
@@ -21,7 +16,7 @@ log = logging.getLogger(__name__)
 LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
-__version__ = '0.1-dev-4'
+__version__ = '0.3-dev-0'
 
 class Loslassa(cli.Application):
     PROGNAME = "loslassa"
@@ -45,7 +40,6 @@ class Loslassa(cli.Application):
 @Loslassa.subcommand("start")
 class LoslassaStart(cli.Application):
     """Starts a new project by creating the initial project structure"""
-    projectPath = EXAMPLE_PROJECT_PATH
 
     @cli.autoswitch(str)
     def log_to_file(self, filename):
@@ -81,10 +75,9 @@ class LoslassaPlay(cli.Application):
     def main(self):
         """set the paths according to conventions and start serving them"""
         print("play loslassing...")
-        cwd = os.getcwd()
-        sphinxConfPath = LocalPath(os.path.join(cwd, "conf.py"))
-        sourcePath = LocalPath(os.path.join(cwd, "source"))
-        buildPath = LocalPath(os.path.join(cwd, "build"))
+        sourcePath = LocalPath(os.path.join(self.pathToProject, "source"))
+        sphinxConfPath = sourcePath.join("conf.py")
+        buildPath = LocalPath(os.path.join(self.pathToProject, "build"))
         doctreesPath = buildPath.join("doctrees")
         outputPath = buildPath.join("html")
         self._check_paths(
@@ -127,8 +120,7 @@ def main():
 
 
 if __name__ == "__main__":
+    # for comfy testing
     if len(sys.argv) == 1:
-        sys.argv.append("play")
-        sys.argv.append("--project-path")
-        sys.argv.append(EXAMPLE_PROJECT_PATH)
+        sys.argv.extend(["play", "--project-path", EXAMPLE_PROJECT_PATH])
     sys.exit(main())

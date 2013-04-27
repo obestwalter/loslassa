@@ -1,6 +1,5 @@
 """See README.rst for description"""
 from setuptools import setup
-import sys
 
 from loslassa.loslassa import __version__
 
@@ -18,7 +17,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     platforms='Unix', # todo add windows and Mac Os X
-    install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
+    # todo activate after first throes of cluelessness are over
+    #install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
     entry_points=dict(console_scripts=['loslassa=loslassa:main']),
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
