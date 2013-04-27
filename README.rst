@@ -17,8 +17,8 @@ Other important ingredients:
 Check it out
 ============
 
-This is early days, creation and publishing functionality
-does not actually exist yet ... but play with it already:
+This is early days: creation and publishing functionality
+does not actually exist yet ... but you can play with it already:
 
 #. ``pip install loslassa``
 #. Manually copy the example_project folder from dist-packages to your home
