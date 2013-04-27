@@ -3,7 +3,8 @@
 To get quick feedback this implements an automatically reloading web server
 to be run locally.
 
-Reloading functionality is taken from the fabulous `Werkzeug WSGI toolkit <http://www.pocoo.org/projects/werkzeug/#werkzeug>`
+Reloading functionality is taken from the fabulous
+`Werkzeug WSGI toolkit <http://www.pocoo.org/projects/werkzeug/#werkzeug>`
 """
 import logging
 import mimetypes
