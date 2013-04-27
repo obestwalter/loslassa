@@ -16,7 +16,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     platforms='Unix', # todo add windows and Mac Os X
-    # todo activate after first throes of cluelessness are over
     install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
     entry_points=dict(console_scripts=['loslassa=loslassa.loslassa:main']),
     classifiers=[
