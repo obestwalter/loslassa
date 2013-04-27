@@ -37,7 +37,7 @@ work locally with simple text files and publish the results after creating them
 locally.
 
 The basic workflow is inspired by the way how developing for example a
-`flask <http://flask.pocoo.org/>` web application works: a local server runs in the
+`flask <http://flask.pocoo.org/>`_ web application works: a local server runs in the
 background while you edit your files and it reloads the changes as soon as they
 happen. This makes it very easy to make quick changes and see the
 results right away. Any errors or problems are logged to the console or are
