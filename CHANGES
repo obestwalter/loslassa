@@ -3,6 +3,17 @@ Loslassa Changelog
 
 Here you can see the full list of changes between each Loslassa release.
 
+Version 0.1-dev-2 <2013-04-27>
+------------------------------
+
+Came up with a less awkward way to play with it:
+
+$ pip install loslassa
+$python
+
+>>> from loslassa.main import main
+>>> main()
+
 Version 0.1-dev-1 <2013-04-27>
 ------------------------------
 

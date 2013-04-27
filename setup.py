@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='Loslassa',
-    version='0.1-dev-1',
+    version='0.1-dev-2',
     url='http://github.com/obestwalter/loslassa/',
     license='BSD',
     author='Oliver Bestwalter',
