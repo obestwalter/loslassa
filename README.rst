@@ -18,7 +18,7 @@ Check it out
 ============
 
 This is early days, so the proper workflow and publishing functionality
-does not actually exist yet ... but you play around with it already:
+does not actually exist yet ... but you can play around with it already:
     * clone the repository
     * install the requirements (see ``install_requires`` in setup.py)
     * run ``loslassa/main.py``
@@ -26,13 +26,26 @@ does not actually exist yet ... but you play around with it already:
     * edit the rst files or conf.py in ``example_project``
     * check the changes in the browser
 
-===========
-Basic Ideas
-===========
+==========
+Basic Idea
+==========
 
+If you want to create a simple web page without having to bother about
+HTML, CSS, Javascript and all that, but don't want to suffer through those
+browserbased website creatorthingies there is an alternative:
+work locally with simple text files and publish the results after creating them
+locally.
 
-The basic workflow should is inspired by the way how developing a
-`flask <http://flask.pocoo.org/>` app works
+The basic workflow is inspired by the way how developing for example a
+`flask <http://flask.pocoo.org/>` web application works: a local server runs in the
+background while you edit your files and it reloads the changes as soon as they
+happen. This makes it very easy to make quick changes and see the
+results right away. Any errors or problems are logged to the console or are
+shown right in the HTML output.
+
+========
+Workflow
+========
 
 Start
 =====
