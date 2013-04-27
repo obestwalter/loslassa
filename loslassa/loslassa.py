@@ -60,7 +60,7 @@ class LoslassaPlay(cli.Application):
     @cli.autoswitch(str)
     def project_path(self, projectPath):
         """Set path instead of using CWD"""
-        self.pathToProject = projectPath
+        self.projectPath = projectPath
 
     @cli.autoswitch(int)
     def serve_on_port(self, port):
@@ -75,9 +75,9 @@ class LoslassaPlay(cli.Application):
     def main(self):
         """set the paths according to conventions and start serving them"""
         print("play loslassing...")
-        sourcePath = LocalPath(os.path.join(self.pathToProject, "source"))
+        sourcePath = LocalPath(os.path.join(self.projectPath, "source"))
         sphinxConfPath = sourcePath.join("conf.py")
-        buildPath = LocalPath(os.path.join(self.pathToProject, "build"))
+        buildPath = LocalPath(os.path.join(self.projectPath, "build"))
         doctreesPath = buildPath.join("doctrees")
         outputPath = buildPath.join("html")
         self._check_paths(
