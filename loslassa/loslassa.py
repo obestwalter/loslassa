@@ -32,7 +32,8 @@ class Loslassa(cli.Application):
             return 1
 
         if not self.nested_command:
-            print("need a command for the kind of loslassing - try --help")
+            print("Which kind of loslassing? "
+                  "Try %s --help"  % (Loslassa.PROGNAME))
             return 1
 
         if self.verbose:
