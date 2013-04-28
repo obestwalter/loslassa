@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 """
-========
-Workflow
+Loslassa
 ========
 
+Workflow
+--------
+
 Start
-=====
+'''''
 **not implemented yet**
 
 ::
@@ -16,7 +18,7 @@ Creates a new project with a basic structure and configuration
 similar to sphinx-quickstart only simpler and tailored to only HTML output.
 
 Play
-====
+''''
 Playing with the source and create your page. Add content and see the
 changes right away thanks to local server with automatic
 rebuild of the web pages::
@@ -29,7 +31,7 @@ All files in project folder are being watched and if something changes
 the project is rebuild.
 
 Publish
-=======
+'''''''
 **not implemented yet**
 
 This part is a bit vague still but basically it should simply push the
@@ -43,8 +45,7 @@ set it to be origin from then on
     loslassa loslassa
 
 Customize
-=========
-
+'''''''''
 This is not thought out yet, but I imagine that additional customization
 can be done easily by expanding the settings in the sphinx conf.py and
 do more involved stuff via sphinx extensions.
@@ -70,7 +71,7 @@ LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
 
-__version__ = '0.3.1-dev'
+__version__ = '0.3.1'
 
 
 class LoslassaProject(object):
