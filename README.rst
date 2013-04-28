@@ -76,7 +76,7 @@ The server simply watches the **Loslassa Project Directory (TM)** for file chang
 
 Friendly command line interface
 '''''''''''''''''''''''''''''''
-My current experience with programming lies mainly in the backend. In my day job I develop a distributed system for a german Antivirus company and we don't bother with fancy GUIs - we have extensive APIs and simple web interfaces (thanks to `Flask <http://flask.pocoo.org/>`_) where sensible - Desktop GUI is just not on my map at the moment. But everybody loves the command line, don't they ;)
+My current experience with programming lies mainly in the backend. In my day job I develop a distributed system for a german Antivirus company and we don't bother with fancy GUIs - we have extensive APIs and simple web interfaces (thanks to `Flask <http://www.pocoo.org/projects/flask/#flask>`_) where sensible - Desktop GUI is just not on my map at the moment. But everybody loves the command line, don't they ;)
 
 Anyway ... a way to write CLIs in a pythonic way is `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_ which I just started playing with and I don't think I will ever go back to argparse.
 
