@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 
 def init_logging(level, filePath):
-    """Intialize logging. If set to debug output extra info"""
+    """Initialize logging. If set to debug output extra info"""
     dateFmt = '%Y-%m-%d-%H:%M:%S'
     if level in ["DEBUG", 10]:
         fmt = ('%(asctime)s %(name)s %(funcName)s [%(lineno)s] %(levelname)s: '
