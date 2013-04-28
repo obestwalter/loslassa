@@ -1,97 +1,76 @@
 # -*- coding: utf-8 -*-
-import sphinx_bootstrap_theme
 
+# Replace the text between the quotes with your settings
 _my_website_name = "Loslassa Example Page"
+_my_short_title = "Loslassa"
+_my_copyright_message = "2013, Loslassa Project"
 
-# noinspection PyShadowingBuiltins
-copyright = '2013, Loslassa Project'
-html_title = _my_website_name
-html_short_title = "Loslassa"
+# Replace the theme name between the quotes with one of the themes from below
+_my_theme = "haiku"
+# possible values for _my_theme
+bootstrap_themes = [
+    "bootstrap", "amelia", "cerulean", "cosmo", "cyborg",
+    "journal", "readable", "simplex", "slate", "spacelab",
+    "spruce", "superhero", "united"]
+# check them out here: http://bootswatch.com/
+
+sphinx_themes = [
+    "default", "sphinxdoc", "scrolls", "agogo", "nature", "pyramid",
+    "haiku", "traditional", "epub"]
+# check them out here http://sphinx-doc.org/theming.html#builtin-themes
 
 ###############################################################################
+################### You can ignore everything below here ######################
+###############################################################################
+
+html_short_title = _my_short_title
+html_title = _my_website_name
+# noinspection PyShadowingBuiltins
+copyright = _my_website_name
 language = "en"
 extensions = []
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
 project = _my_website_name
-#html_theme_options = {}
 keep_warnings = True
-
-html_theme = 'bootstrap' # 'haiku'
-#html_theme_path = []
-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
-
-# (Optional) Logo. Should be exactly 24x24 px to fit the nav. bar.
-# Path should be relative to the static files directory.
-html_logo = "logo.png"
-
-if html_theme == "bootstrap":
-    html_theme_options = {
-        # Navigation bar title. (Default: ``project`` value)
-        'navbar_title': _my_website_name,
-        # Global TOC depth for "site" navbar tab. (Default: 1)
-        # Switching to -1 shows all levels.
-        'globaltoc_depth': 2,
-
-        # Include hidden TOCs in Site navbar?
-        #
-        # Note: If this is "false", you cannot have mixed ``:hidden:`` and
-        # non-hidden ``toctree`` directives in the same page, or else the build
-        # will break.
-        #
-        # Values: "true" (default) or "false"
-        'globaltoc_includehidden': "true",
-
-        # HTML navbar class (Default: "navbar") to attach to <div> element.
-        # For black navbar, do "navbar navbar-inverse"
-        'navbar_class': "navbar navbar-inverse",
-
-        # Fix navigation bar to top of page?
-        # Values: "true" (default) or "false"
-        'navbar_fixed_top': "true",
-
-        # Location of link to source.
-        # Options are "nav" (default), "footer" or anything else to exclude.
-        'source_link_position': "footer",
-
-        # Bootswatch (http://bootswatch.com/) theme.
-        #
-        # Options are nothing with "" (default) or the name of a valid theme
-        # such as "amelia" or "cosmo".
-        #
-        # Note that this is served off CDN, so won't be available offline.
-        'bootswatch_theme': "amelia",
-    }
-
-# The name of an image file (within the static path) to use as favicon of the
-# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
-# pixels large.
-#html_favicon = None
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 #html_last_updated_fmt = '%b %d, %Y'
 html_use_smartypants = True
-# Custom sidebar templates, maps document names to template names.
-#html_sidebars = {}
-
-# Additional templates that should be rendered to pages, maps page names to
-# template names.
-#html_additional_pages = {}
-
 html_domain_indices = False
 html_use_index = False
 html_show_sourcelink = True
 html_show_sphinx = True
 html_show_copyright = True
+html_theme = _my_theme
 
-# If true, an OpenSearch description file will be output, and all pages will
-# contain a <link> tag referring to it.  The value of this option must be the
-# base URL from which the finished HTML is served.
-#html_use_opensearch = ''
+if _my_theme == "haiku":
+    html_theme_options = {}
+    html_theme_path = []
 
-# This is the file name suffix for HTML files (e.g. ".xhtml").
-#html_file_suffix = None
+elif _my_theme in bootstrap_themes:
+    import sphinx_bootstrap_theme
+
+    # (Optional) Logo. Should be exactly 24x24 px to fit the nav. bar.
+    # Path should be relative to the static files directory.
+    html_logo = "logo.png"
+    html_theme = 'bootstrap'  # 'haiku'
+    html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+    html_theme_options = {
+        'navbar_title': _my_website_name,
+        'globaltoc_depth': 2,
+        # Note: If this is "false", you cannot have mixed ``:hidden:`` and
+        # Values: "true" (default) or "false"
+        'globaltoc_includehidden': "true",
+        # "navbar" or "navbar navbar-inverse"
+        'navbar_class': "navbar",
+        # Values: "true" (default) or "false"
+        'navbar_fixed_top': "true",
+        # "nav" or, "footer" or anything else to exclude.
+        'source_link_position': "footer",
+        # Bootswatch (http://bootswatch.com/) theme.
+        # Options are nothing with "" (default) or the name of a valid theme
+        # such as "amelia" or "cosmo".
+        # Note that this is served off CDN, so won't be available offline.
+        'bootswatch_theme': _my_theme,
+    }
