@@ -65,7 +65,7 @@ def reloader_loop(pathToWatch, interval=1):
     """When this function is run from the main thread, it will force other
     threads to exit when any files passed in here change..
 
-    Copyright notice.  This function is based on ``_reloader_stat_loop()``
+    Copyright notice: this function is based on ``_reloader_stat_loop()``
     from Werkzeug which is based on autoreload.py
     from CherryPy trac which originated from WSGIKit which is now dead.
 
