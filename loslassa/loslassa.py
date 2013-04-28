@@ -83,10 +83,9 @@ class LoslassaProject(object):
         self.outputPath = self.buildPath.join("html")
         self.allPaths = [getattr(self, p) for p in self.__dict__
                          if p.endswith("Path")]
-        self._check_project()
 
     def __str__(self):
-        return utils.obj_attr(self)
+        return utils.obj_attr(self, excludeNames=["allPaths"])
 
     @property
     def buildCommand(self):
@@ -110,15 +109,21 @@ class LoslassaCliApplication(cli.Application):
     PROGNAME = "loslassa"
     VERSION = __version__
     USAGE = "loslassa [start|play|loslassa] [OPTIONS]"
+    projectPath = None
     logLevel = logging.DEBUG
     logFilePath = None
 
     def __str__(self):
-        return utils.obj_attr(self, excludeNames=["parent"])
+        return utils.obj_attr(self, excludeNames=["parent", "nested_command"])
+
+    @cli.autoswitch(str)
+    def project_name(self, projectName):
+        """Set name (can be a relative or absolute path as well"""
+        self.projectPath = projectName
 
     @cli.autoswitch(str)
     def verbosity(self, level):
-        """Adjust the talkativeness of loslassing activities
+        """Adjust the talkativeness of loslassing activities.
 
         :param str level: log level (one of the accepted logging values)
         Levels from very chatty to almost silent: debug, info, warning, error
@@ -134,6 +139,9 @@ class LoslassaCliApplication(cli.Application):
         self.logFilePath = filePath
 
     def _init(self):
+        log.info("path is: %s" % (self.projectPath))
+        self.project = LoslassaProject(self.projectPath)
+        log.debug("project path: %s" % (self.projectPath))
         try:
             utils.init_logging(
                 level=self.logLevel, filePath=self.logFilePath)
@@ -160,26 +168,22 @@ class Loslassa(LoslassaCliApplication):
 class LoslassaStart(LoslassaCliApplication):
     """Starts a new project by creating the initial project structure"""
 
-    @cli.autoswitch(str)
-    def log_to_file(self, filePath):
-        """Sets the file into which logs will be emitted"""
-        log.addHandler(logging.FileHandler(filePath))
-
     def main(self):
+        log.info("start loslassing ...")
+        if not self.projectPath:
+            raise LoslassaError("You need to provide a name for the project")
+
+        if os.path.exists(self.projectPath):
+            raise LoslassaError("project path must not exist yet")
+
         self._init()
-        log.info("start loslassing...")
+        # todo copy contents of example to project position
 
 
 @Loslassa.subcommand("play")
 class LoslassaPlay(LoslassaCliApplication):
     """Start playing with the source and create your page"""
-    projectPath = os.getcwd()
     serverPort = 8080
-
-    @cli.autoswitch(str)
-    def project_path(self, projectPath):
-        """Set path instead of using current working directory"""
-        self.projectPath = projectPath
 
     @cli.autoswitch(int)
     def serve_on_port(self, serverPort):
@@ -190,19 +194,17 @@ class LoslassaPlay(LoslassaCliApplication):
         """Create the project representation and start serving"""
         self._init()
         log.info("play loslassing...")
-        project = LoslassaProject(self.projectPath)
-        log.debug("work with %s" % (project))
+        log.debug("work with %s" % (self.project))
         devserver.serve_with_reloader(
-            serveFromPath=str(project.outputPath),
+            serveFromPath=str(self.project.outputPath),
             port=self.serverPort,
-            changedCallback=project.buildCommand,
-            pathToWatch=str(project.sourcePath))
+            changedCallback=self.project.buildCommand,
+            pathToWatch=str(self.project.sourcePath))
 
 
 @Loslassa.subcommand("loslassa")
 class LoslassaLoslassa(LoslassaCliApplication):
     """Practice loslassing by pushing your page into the interwebs"""
-
     def main(self):
         self._init()
         # todo make a progress bar consisting of loslassa :)
@@ -222,5 +224,5 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         sys.argv.extend(["play",
                          "--verbosity", "DEBUG",
-                         "--project-path", EXAMPLE_PROJECT_PATH])
+                         "--project-name", EXAMPLE_PROJECT_PATH])
     sys.exit(main())
