@@ -1,38 +1,5 @@
 #!/usr/bin/env python
 """
-########
-Loslassa
-########
-
-A simple way to create web pages with `Python <http://python.org>`_,
-`reStructuredText <http://docutils.sourceforge.net/rst.html>`_,
-`git <http://git-scm.com>`_ and `love <http://en.wikipedia.org/wiki/Love>`_ :)
-
-Other important ingredients:
-    * `sphinx <http://sphinx-doc.org>`_  the documentation generator
-    * simple reloading development server based on code from
-      `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`_
-    * `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_
-      for convenient shell access
-    * Permissive `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`_
-
-==========
-Basic Idea
-==========
-
-If you want to create a simple web page without having to bother about
-HTML, CSS, Javascript and all that, but don't want to suffer through those
-browserbased website creatorthingies there is an alternative:
-work locally with simple text files, let some clever system (sphinx) generate
-the HTML and Javascript and then push the results online.
-
-The basic workflow is inspired by the way how developing for example a
-`flask <http://flask.pocoo.org/>`_ web application works: a local
-server runs in the background while you edit your files and it reloads
-the changes as soon as they happen.
-This makes it very easy to make quick changes and see the
-results right away. Any errors or problems are logged to the console or are
-shown right in the HTML output.
 
 ========
 Workflow
