@@ -82,7 +82,7 @@ Anyway ... a way to write CLIs in a pythonic way is `Plumbum <http://plumbum.rea
 
 Extension of Love
 '''''''''''''''''
-My life would be much poorer without open source software, if you want to use this or parts of it, go ahead it uses the `BSD License <https://en.wikipedia.org/wiki/BSD_licenses>`_.
+My life would be much poorer without open source software, so even if you're not a member of my family: if you want to use this or parts of it, go ahead - it's `BSD Licensed <https://en.wikipedia.org/wiki/BSD_licenses>`_.
 
 About the name
 ==============
