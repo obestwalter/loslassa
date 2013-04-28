@@ -68,21 +68,17 @@ Development Server
 ''''''''''''''''''
 I understand the attraction of all these colorful `WYSIWYG <https://en.wikipedia.org/wiki/WYSIWYG>`_ interfaces that make you feel that creating a nice web page is really easy and just a few clicks away. But you might as well be left with something that is not really what you wanted, hard to maintain and hard to get away from.
 
-So I hope I can get my folks to adopt the Loslassa way - only problem is: Loslassa is definitely **not** WYSIWYG but rather WYGIWYWIYWTLSN (What You Get Is What You Want If You're Willing To Learn Something New) so I need something to lure the potential users into believing that this might be usable.
+So I hope I can get my folks to adopt the Loslassa way - only problem is: Loslassa is definitely **not** WYSIWYG but rather WYGIWYWIYWTLSN (What You Get Is What You Want If You're Willing To Learn Something New) so I need something to lure them into believing that this might be usable.
 
 As seeing **is** believing an integral part of Loslassa is a simple reloading development server based on code from `Werkzeug  <http://www.pocoo.org/projects/werkzeug/#werkzeug>`_. This makes sure, that a fresh version (as in: the current state of the project files on the hard disk) of the web page you're working on is displayed in the web browser.
 
-The server simply watches the **Loslassa Project Directory (TM)** for file changes, rebuilds the pages and reloads itself.
-
-.. note::
-
-    In a later version this server will also be taking care of the version control side of things, by keeping the git repo up to date. Publishing the page will then be a simple git push to the web space.
+The server simply watches the **Loslassa Project Directory (TM)** for file changes, rebuilds the pages and reloads itself. In a later version this server will also be taking care of the version control side of things, by keeping the git repo up to date. Publishing the page will then be a simple git push to the web space.
 
 Friendly command line interface
 '''''''''''''''''''''''''''''''
-My current experience with programming lies mainly in the backend. In my day job I develop a distributed system for a german Antivirus company and we don't bother with fancy GUIs - we have extensive APIs and simple web interfaces (thanks to `Flask <http://flask.pocoo.org/>`_) where sensible, but Desktop GUI is just not on my map at the moment. But everybody loves the command line, don't they ;)
+My current experience with programming lies mainly in the backend. In my day job I develop a distributed system for a german Antivirus company and we don't bother with fancy GUIs - we have extensive APIs and simple web interfaces (thanks to `Flask <http://flask.pocoo.org/>`_) where sensible - Desktop GUI is just not on my map at the moment. But everybody loves the command line, don't they ;)
 
-Anyway ... a nice way to write CLIs in a pythonic way is `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_ which I just started playing with and I don't think I will ever go back to argparse.
+Anyway ... a way to write CLIs in a pythonic way is `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_ which I just started playing with and I don't think I will ever go back to argparse.
 
 Extension of Love
 '''''''''''''''''
