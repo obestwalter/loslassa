@@ -9,8 +9,6 @@ Reloading functionality is taken from the fabulous
 import logging
 import mimetypes
 import os
-# noinspection PyUnresolvedReferences
-from plumbum.cmd import find
 import subprocess
 import sys
 import time
@@ -67,17 +65,24 @@ def reloader_loop(pathToWatch, interval=1):
     """When this function is run from the main thread, it will force other
     threads to exit when any files passed in here change..
 
-    Copyright notice.  This function is a simplified version of the
-     _reloader_stat_loop from Werkzeug which is based on autoreload.py
-     from CherryPy trac which originated from WSGIKit which is now dead.
+    Copyright notice.  This function is based on ``_reloader_stat_loop()``
+    from Werkzeug which is based on autoreload.py
+    from CherryPy trac which originated from WSGIKit which is now dead.
 
     :param pathToWatch: path of the directory to be watched.
     """
+    def get_watched_file_paths():
+        filePaths = []
+        for rootPath, _, fileNames in os.walk(pathToWatch):
+            for fileName in fileNames:
+                filePaths.append(os.path.join(rootPath, fileName))
+        return filePaths
+
     pathTimeMap = {}
     while True:
-        allPaths = find(pathToWatch).splitlines()
-        paths = [p for p in allPaths if os.path.isfile(p)]
-        log.info("check %s" % (paths))
+        paths = get_watched_file_paths()
+        shortNames = [p.rpartition(pathToWatch)[-1][1:] for p in paths]
+        log.debug("check for changes: %s" % (", ".join(shortNames)))
         for filePath in paths:
             try:
                 mtime = os.stat(filePath).st_mtime
@@ -125,7 +130,8 @@ def serve_with_reloader(serveFromPath, port, changedCallback, pathToWatch):
         log.info("call %s" % (changedCallback))
         changedCallback()
         server = make_server(serveFromPath, port)
-        log.info("serve %s on port %s, control-C to stop" % (serveFromPath, port))
+        log.info("serve %s on port %s, control-C to stop" %
+                 (serveFromPath, port))
         server.serve_forever()
 
     log.info("Serve while watching folder %s" % (pathToWatch))
