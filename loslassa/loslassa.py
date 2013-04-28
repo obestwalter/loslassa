@@ -123,7 +123,6 @@ class LoslassaCliApplication(cli.Application):
         :param str level: log level (one of the accepted logging values)
         Levels from very chatty to almost silent: debug, info, warning, error
         """
-        # looks confusing? check out :data:`logging._levelNames`
         if level.isdigit():
             self.logLevel = logging.getLevelName(int(level))
         else:
