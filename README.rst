@@ -107,7 +107,7 @@ called `Swabian <http://en.wikipedia.org/wiki/Swabian_German>`_
 spoken in parts of South Germany. As I moved into this part of Germany in
 2011 I came in direct contact with this dialect and I am still quite in
 awe of it, but I really like it ... or at least I am really trying very hard to
- like it - so I thought I give my first open source project a Swabian name.
+like it - so I thought I give my first open source project a Swabian name.
 
 Anyway, when I came up with the idea to this project I went to my Yoga class
 and my Swabian Yoga teacher always says "loslassa" whenever she wants us to
