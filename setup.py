@@ -6,7 +6,8 @@ from loslassa.loslassa import __doc__, __version__
 
 setup(
     name='Loslassa',
-    description='Web Site generator based on sphinx and git',
+    description=('A simple way to interactively develop web pages with '
+                 'Python, reStructuredText, git and love :)'),
     version=__version__,
     license='BSD',
     url='http://github.com/obestwalter/loslassa/',
