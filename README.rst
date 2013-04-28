@@ -46,7 +46,7 @@ From the `reStructuredText homepage <http://docutils.sourceforge.net/rst.html>`_
 
         reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. reStructuredText is designed for extensibility for specific application domains.
 
-As the description says: useful for simple web pages - if it gets more involved you need a bit more, which in this case provides by the `sphinx <http://sphinx-doc.org>`_ documentation generator.
+As the description says: useful for simple web pages - if it gets more involved you need a bit more, which in this case will be provided by the `sphinx <http://sphinx-doc.org>`_ documentation generator.
 
 Sphinx Porcelain
 ''''''''''''''''
