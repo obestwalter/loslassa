@@ -71,7 +71,7 @@ LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
 
-__version__ = '0.3.1'
+__version__ = '0.3.2-dev'
 
 
 class LoslassaProject(object):
