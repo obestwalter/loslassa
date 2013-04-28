@@ -3,8 +3,6 @@ from setuptools import setup
 
 from loslassa.loslassa import __doc__, __version__
 
-with open("README.rst", "w") as f:
-    f.write(__doc__)
 
 setup(
     name='Loslassa',
@@ -14,7 +12,7 @@ setup(
     url='http://github.com/obestwalter/loslassa/',
     author='Oliver Bestwalter',
     author_email='oliver@bestwalter.de',
-    long_description=__doc__,
+    long_description=open("README.rst", "w").read(),
     #keywords='',
     packages=['loslassa'],
     include_package_data=True,
