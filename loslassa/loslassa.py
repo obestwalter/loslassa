@@ -143,110 +143,155 @@ from plumbum import cli
 from plumbum.cmd import sphinx_build
 from plumbum.local_machine import LocalPath
 
-from devserver import serve_with_reloader
+import devserver
+import utils
 
 
-log = logging.getLogger(__name__)
+log = logging.getLogger("loslassa")
 
 
 LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
 EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
 
 
-__version__ = '0.4-dev'
+__version__ = '0.3.1-dev'
 
 
-class Loslassa(cli.Application):
+class LoslassaProject(object):
+    def __init__(self, projectPath):
+        self.projectPath = LocalPath(projectPath)
+        self.sourcePath = self.projectPath.join("source")
+        self.sphinxConfPath = self.sourcePath.join("conf.py")
+        self.buildPath = self.projectPath.join("build")
+        self.doctreesPath = self.buildPath.join("doctrees")
+        self.outputPath = self.buildPath.join("html")
+        self.allPaths = [getattr(self, p) for p in self.__dict__
+                         if p.endswith("Path")]
+        self._check_project()
+
+    def __str__(self):
+        return utils.obj_attr(self)
+
+    @property
+    def buildCommand(self):
+        return sphinx_build[
+            "-b", "dirhtml", "-d", str(self.doctreesPath),
+            str(self.sourcePath), str(self.outputPath)]
+
+    def _check_project(self):
+        """Make sure we have a valid seeming sphinx project to work with
+
+        :raise: `.LoslassaError`
+        """
+        for thisPath in self.allPaths:
+            log.debug("check %s" % (thisPath))
+            if not thisPath.exists():
+                raise LoslassaError(
+                    "Expected path %s does not exist" % (thisPath._path))
+
+
+class LoslassaCliApplication(cli.Application):
     PROGNAME = "loslassa"
     VERSION = __version__
-    verbose = cli.Flag(
-        ["v", "verbose"], help = "If given, I will be very talkative")
+    USAGE = "loslassa [start|play|loslassa] [OPTIONS]"
+    logLevel = logging.DEBUG
+    logFilePath = None
 
+    def __str__(self):
+        return utils.obj_attr(self, excludeNames=["parent"])
+
+    @cli.autoswitch(str)
+    def verbosity(self, level):
+        """Adjust the talkativeness of loslassing activities
+
+        :param str level: log level (one of the accepted logging values)
+        Levels from very chatty to almost silent: debug, info, warning, error
+        """
+        # looks confusing? check out :data:`logging._levelNames`
+        if level.isdigit():
+            self.logLevel = logging.getLevelName(int(level))
+        else:
+            self.logLevel = level.upper()
+
+    @cli.autoswitch(str)
+    def log_to_file(self, filePath):
+        """Log to a file instead of the console"""
+        self.logFilePath = filePath
+
+    def _init(self):
+        try:
+            utils.init_logging(
+                level=self.logLevel, filePath=self.logFilePath)
+        except ValueError:
+            print ("unknown verbosity level: %s use one of %s" %
+                  (self.logLevel, sorted(logging._levelNames.keys())))
+        log.debug("working with %s" % (self))
+
+
+class Loslassa(LoslassaCliApplication):
     def main(self, *args):
+        log.debug("executing command %s" % str(self.nested_command))
         if args:
             print("unknown command %r" % (args[0]))
             return 1
 
         if not self.nested_command:
             print("Which kind of loslassing? "
-                  "Try %s --help"  % (Loslassa.PROGNAME))
+                  "Try %s --help" % (Loslassa.PROGNAME))
             return 1
-
-        if self.verbose:
-            print "executing command %s" % str(self.nested_command)
 
 
 @Loslassa.subcommand("start")
-class LoslassaStart(cli.Application):
+class LoslassaStart(LoslassaCliApplication):
     """Starts a new project by creating the initial project structure"""
 
     @cli.autoswitch(str)
-    def log_to_file(self, filename):
+    def log_to_file(self, filePath):
         """Sets the file into which logs will be emitted"""
-        log.addHandler(logging.FileHandler(filename))
-
+        log.addHandler(logging.FileHandler(filePath))
 
     def main(self):
-        print("start loslassing...")
+        self._init()
+        log.info("start loslassing...")
 
 
 @Loslassa.subcommand("play")
-class LoslassaPlay(cli.Application):
+class LoslassaPlay(LoslassaCliApplication):
     """Start playing with the source and create your page"""
-    serverPort = 8080
     projectPath = os.getcwd()
+    serverPort = 8080
 
     @cli.autoswitch(str)
     def project_path(self, projectPath):
-        """Set path instead of using CWD"""
+        """Set path instead of using current working directory"""
         self.projectPath = projectPath
 
     @cli.autoswitch(int)
-    def serve_on_port(self, port):
-        """Sets the file into which logs will be emitted"""
-        self.serverPort = port
-
-    @cli.autoswitch(str)
-    def log_to_file(self, filename):
-        """Sets the file into which logs will be emitted"""
-        log.addHandler(logging.FileHandler(filename))
+    def serve_on_port(self, serverPort):
+        """Set port manually"""
+        self.serverPort = serverPort
 
     def main(self):
-        """set the paths according to conventions and start serving them"""
-        print("play loslassing...")
-        sourcePath = LocalPath(os.path.join(self.projectPath, "source"))
-        sphinxConfPath = sourcePath.join("conf.py")
-        buildPath = LocalPath(os.path.join(self.projectPath, "build"))
-        doctreesPath = buildPath.join("doctrees")
-        outputPath = buildPath.join("html")
-        self._check_paths(
-            [sphinxConfPath, sourcePath, buildPath, doctreesPath, outputPath])
-        sphinxBuildCommand = sphinx_build[
-            "-b", "dirhtml", "-d", doctreesPath, sourcePath, outputPath]
-        serve_with_reloader(
-            str(outputPath), self.serverPort,
-            sphinxBuildCommand,pathToWatch=str(sourcePath))
-
-    def _check_paths(self, pathsToCheck):
-        """Make sure we have a valid seeming sphinx project to work with
-
-        :param pathsToCheck: to be checked for existence
-        :type pathsToCheck: list of LocalPath
-        :raise: `.LoslassaError`
-        """
-        for thisPath in pathsToCheck:
-            if not thisPath.exists():
-                raise LoslassaError(
-                    "Expected path %s does not exist" % (thisPath._path))
+        """Create the project representation and start serving"""
+        self._init()
+        log.info("play loslassing...")
+        project = LoslassaProject(self.projectPath)
+        log.debug("work with %s" % (project))
+        devserver.serve_with_reloader(
+            serveFromPath=str(project.outputPath),
+            port=self.serverPort,
+            changedCallback=project.buildCommand,
+            pathToWatch=str(project.sourcePath))
 
 
 @Loslassa.subcommand("loslassa")
-class LoslassaLoslassa(cli.Application):
+class LoslassaLoslassa(LoslassaCliApplication):
     """Practice loslassing by pushing your page into the interwebs"""
 
     def main(self):
+        self._init()
         # todo make a progress bar consisting of loslassa :)
-        print("loslassa loslassa loslassa ...")
+        log.info("loslassa loslassa loslassa ...")
 
 
 class LoslassaError(Exception):
@@ -254,12 +299,13 @@ class LoslassaError(Exception):
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
     Loslassa.run()
 
 
 if __name__ == "__main__":
     # for comfy testing
     if len(sys.argv) == 1:
-        sys.argv.extend(["play", "--project-path", EXAMPLE_PROJECT_PATH])
+        sys.argv.extend(["play",
+                         "--verbosity", "DEBUG",
+                         "--project-path", EXAMPLE_PROJECT_PATH])
     sys.exit(main())

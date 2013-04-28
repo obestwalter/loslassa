@@ -113,19 +113,19 @@ def make_server(path, port):
     return simple_server.make_server('', port, minimal_wsgi_app)
 
 
-def serve_with_reloader(path, port, func, pathToWatch):
+def serve_with_reloader(serveFromPath, port, changedCallback, pathToWatch):
     """
-    :param path: path to the folder to be served
-    :param port: port to be served ond
+    :param serveFromPath: path to the folder to be served
     :param pathToWatch: path to watch recursively for changed files
-    :param func: function to be called if a monitored file changes
+    :param port: port to be served ond
+    :param changedCallback: function to be called if a monitored file changes
     """
     def call_func_then_serve():
         """Calls the passed in function and then starts the server"""
-        log.info("call %s" % (func))
-        func()
-        server = make_server(path, port)
-        log.info("serve %s on port %s, control-C to stop" % (path, port))
+        log.info("call %s" % (changedCallback))
+        changedCallback()
+        server = make_server(serveFromPath, port)
+        log.info("serve %s on port %s, control-C to stop" % (serveFromPath, port))
         server.serve_forever()
 
     log.info("Serve while watching folder %s" % (pathToWatch))
