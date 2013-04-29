@@ -1,5 +1,4 @@
 import logging
-import os
 
 
 log = logging.getLogger(__name__)
@@ -27,19 +26,15 @@ def simple_dbg(obj, excludeNames=None):
     :rtype: str
     """
     excludeNames = excludeNames or []
-    ret = ["repr: %s" % repr(obj)]
+    lines = ["%s" % repr(obj)]
     for name in sorted([n for n in dir(obj) if n not in excludeNames]):
         try:
             attr = getattr(obj, name)
             content = str(attr).replace("\n", "\n|    ")
-            ret.append("%s %s: %s" % (name, type(attr), content))
+            lines.append("%s %s: %s" % (name, type(attr), content))
         except Exception as e:
-            msg = "%s [EXC] %s '%s'" % (name, e.__class__, e.message)
-            ret.append(msg)
-
-    output = []
-    for line in ret:
-        if line and 'method' not in line and not line.startswith('_'):
-            print line
-            output.append(line)
-    return os.linesep.join(output)
+            msg = "[EXC]%s: %s: %s" % (name, e.__class__.__name__, e.message)
+            lines.append(msg)
+    return "\n".join(
+        [line for line in lines
+         if line and 'method' not in line and not line.startswith('_')])
