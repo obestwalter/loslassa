@@ -86,7 +86,7 @@ class LoslassaProject(object):
                          if p.endswith("Path")]
 
     def __str__(self):
-        return utils.obj_attr(self, excludeNames=["allPaths"])
+        return utils.simple_dbg(self, excludeNames=["allPaths"])
 
     @property
     def buildCommand(self):
@@ -115,7 +115,8 @@ class LoslassaCliApplication(cli.Application):
     logFilePath = None
 
     def __str__(self):
-        return utils.obj_attr(self, excludeNames=["parent", "nested_command"])
+        return utils.simple_dbg(
+            self, excludeNames=["parent", "nested_command"])
 
     @cli.autoswitch(str)
     def project_name(self, projectName):
@@ -147,8 +148,8 @@ class LoslassaCliApplication(cli.Application):
             utils.init_logging(
                 level=self.logLevel, filePath=self.logFilePath)
         except ValueError:
-            print ("unknown verbosity level: %s use one of %s" %
-                  (self.logLevel, sorted(logging._levelNames.keys())))
+            log.error("unknown verbosity level: %s use one of %s" %
+                      (self.logLevel, sorted(logging._levelNames.keys())))
         log.debug("working with %s" % (self))
 
 
@@ -156,12 +157,12 @@ class Loslassa(LoslassaCliApplication):
     def main(self, *args):
         log.debug("executing command %s" % str(self.nested_command))
         if args:
-            print("unknown command %r" % (args[0]))
+            log.error("unknown command %r" % (args[0]))
             return 1
 
         if not self.nested_command:
-            print("Which kind of loslassing? "
-                  "Try %s --help" % (Loslassa.PROGNAME))
+            log.error("Which kind of loslassing? "
+                      "Try %s --help" % (Loslassa.PROGNAME))
             return 1
 
 
@@ -223,7 +224,7 @@ def main():
 if __name__ == "__main__":
     # for comfy testing
     if len(sys.argv) == 1:
-        sys.argv.extend(["play",
+        sys.argv.extend(["loslassa",
                          "--verbosity", "DEBUG",
                          "--project-name", EXAMPLE_PROJECT_PATH])
     sys.exit(main())
