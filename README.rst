@@ -58,7 +58,7 @@ What is important for me: the actual content is cleanly separated from the layou
 
 Why porcelain?
 ~~~~~~~~~~~~~~
-Sphinx is very powerful and provides the possibility to generate your documentation as PDF, HTML, Man-Page and whatnot. Even creating a new sphinx project with sphinx-quickstart, would leave a novice with a lot of stuff to cope with. I can't see my people to suffer through this without several nervous breakdowns. So the first idea is to just add some `porcelain <http://git-scm.com/book/ch9-1.html>`_ to the plumbing of sphinx and create
+Sphinx is very powerful and provides the possibility to generate your documentation as PDF, HTML, Man-Page and whatnot. Even creating a new sphinx project with sphinx-quickstart, would leave a novice with a lot of stuff to cope with. I can't see my people suffer through this without several nervous breakdowns. So the first idea is to just add some `porcelain <http://git-scm.com/book/ch9-1.html>`_ to the plumbing of sphinx and create
 a simple example project to get them going.
 
 Git porcelain porcelain
