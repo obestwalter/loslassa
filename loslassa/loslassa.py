@@ -50,14 +50,11 @@ This is not thought out yet, but I imagine that additional customization
 can be done easily by expanding the settings in the sphinx conf.py and
 do more involved stuff via sphinx extensions.
 """
-
 import logging
 import os
 import sys
 
-from plumbum import cli
-# noinspection PyUnresolvedReferences
-from plumbum.cmd import sphinx_build
+from plumbum import cli, cmd
 from plumbum.local_machine import LocalPath
 
 import devserver
@@ -90,7 +87,7 @@ class LoslassaProject(object):
 
     @property
     def buildCommand(self):
-        return sphinx_build[
+        return cmd.sphinx_build[
             "-b", "dirhtml", "-d", str(self.doctreesPath),
             str(self.sourcePath), str(self.outputPath)]
 
