@@ -3,7 +3,7 @@ Loslassa
 
 This project started with a problem, bad solutions and a question.
 
-**Problem** Several members of my family who know how to use a computer but don't speak HTML, CSS and such needed a "a website".
+**Problem** Several members of my family who know how to use a computer but don't speak HTML, CSS and such needed "a website".
 
 **Bad solutions** (in my opinion) are the gazillions of WebSiteCreatorThingies (TM) that are trying to abstract away the actual generation of the web pages in ways that it gives you the illusion of power and freedom long enough to be too committed to switch to something better when you find out that it simply not does what you want it to do ... especially because your data is hidden away or has a format that makes it hard to use something else.
 
