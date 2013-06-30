@@ -15,3 +15,7 @@ class TestLoslassaProject(object):
         assert len(lp.allPaths) > 0
         for p in lp.allPaths:
             assert type(p) == LocalPath
+
+    @pytest.mark.usefixtures("work_in_example_project")
+    def test_check_sanity(self):
+        lp = LoslassaProject(".")

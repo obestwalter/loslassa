@@ -1,11 +1,12 @@
 from __future__ import print_function
-from plumbum.local_machine import LocalPath
 
+from plumbum.local_machine import LocalPath
 import pytest
 
+from conftest import params
 from loslassa.loslassa import LoslassaProject
 from loslassa.utils import find_file, UtilsError
-from conftest import params
+from testsuite.conftest import generate_dummy_projects
 
 
 @pytest.mark.usefixtures("work_in_empty_tmpdir")
@@ -31,10 +32,7 @@ def test_conf_file_not_found_raises(tmpdir):
 
 def test_too_many_conf_files_found_raises(tmpdir):
     tmpdir = LocalPath(tmpdir)
-    for d in ["d1", "d2"]:
-        d = tmpdir / d
-        d.mkdir()
-        (d / LoslassaProject.CONF_FILE_NAME).write("")
+    generate_dummy_projects(tmpdir, 2)
     with pytest.raises(UtilsError) as excInfo:
         find_file(tmpdir, LoslassaProject.CONF_FILE_NAME)
     assert "too many" in excInfo.exconly()

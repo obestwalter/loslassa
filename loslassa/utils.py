@@ -1,3 +1,4 @@
+import functools
 import logging
 import traceback
 
@@ -71,6 +72,21 @@ def friendly_exception_handler(exception_type, exception, tb):
     log.error(
         "What follows might not say much to you, but somebody who knows "
         "Python will be able to figure out what went wrong:\n%s" % (rbString))
+
+
+class cached_property(object):
+    """read-only property that's only evaluated once (filched from Werkzeug)"""
+    def __init__(self, fget, doc=None):
+        self.fget = fget
+        self.__doc__ = doc or fget.__doc__
+        self.__name__ = fget.__name__
+
+    def __get__(self, obj, _):
+        if obj is None:
+            return self
+
+        obj.__dict__[self.__name__] = result = self.fget(obj)
+        return result
 
 
 class LoslassaError(Exception):

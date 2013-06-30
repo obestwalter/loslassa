@@ -76,18 +76,18 @@ class LoslassaProject(object):
     BUILDS_DIR_NAME = "build"
     HTML_BUILD_DIR_NAME = "html"
     DOCTREES_DIR_NAME = "doctrees"
-    EXAMPLE_PROJECT_PATH = LocalPath(__file__).dirname / "example_project"
+    EXAMPLE_PROJECT_PATH = LocalPath(__file__).dirname/"example_project"
 
     def __init__(self, projectPath):
         if not projectPath:
             raise utils.LoslassaError("No project path set")
 
         self.projectPath = LocalPath(projectPath)
-        self.sourcePath = self.projectPath / self.SOURCE_DIR_NAME
-        self.sphinxConfPath = self.sourcePath / self.CONF_FILE_NAME
-        self.buildPath = self.projectPath / self.BUILDS_DIR_NAME
-        self.doctreesPath = self.buildPath / self.DOCTREES_DIR_NAME
-        self.outputPath = self.buildPath / self.HTML_BUILD_DIR_NAME
+        self.sourcePath = self.projectPath/self.SOURCE_DIR_NAME
+        self.sphinxConfFilePath = self.sourcePath/self.CONF_FILE_NAME
+        self.buildPath = self.projectPath/self.BUILDS_DIR_NAME
+        self.doctreesPath = self.buildPath/self.DOCTREES_DIR_NAME
+        self.outputPath = self.buildPath/self.HTML_BUILD_DIR_NAME
 
     def __str__(self):
         return utils.simple_dbg(self, excludeNames=["allPaths"])
@@ -103,14 +103,23 @@ class LoslassaProject(object):
 
     def check_sanity(self):
         """Make sure we have a valid seeming sphinx project to work with"""
-        for thisPath in self.allPaths:
-            log.debug("check %s" % (thisPath))
-            if not thisPath.exists():
-                raise utils.LoslassaError(
-                    "Expected path %s does not exist in %s" %
-                    (thisPath, self.projectPath))
+        badPaths = [path for path in self.neededPaths if not path.exists()]
+        if badPaths:
+            raise utils.LoslassaError("missing paths: %s" % (badPaths))
 
-    @property
+    @utils.cached_property
+    def neededPaths(self):
+        return self.neededDirPaths + self.neededFilePaths
+
+    @utils.cached_property
+    def neededDirPaths(self):
+        return [self.projectPath, self.sourcePath]
+
+    @utils.cached_property
+    def neededFilePaths(self):
+        return [self.sphinxConfFilePath]
+
+    @utils.cached_property
     def allPaths(self):
         return [getattr(self, p) for p in self.__dict__ if p.endswith("Path")]
 
@@ -237,7 +246,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         print("no args ... using test config instead")
         sys.argv.extend(
-            ["pl",
-             "--verbosity", "DEBUG",
+            ['play', "--verbosity", "DEBUG",
              "--project-name", str(LoslassaProject.EXAMPLE_PROJECT_PATH)])
     sys.exit(main())

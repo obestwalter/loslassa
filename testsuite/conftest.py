@@ -16,6 +16,7 @@ def work_in_example_project(request):
     request.addfinalizer(lambda: workDir.chdir(oldWorkDirStr))
     return type("", (), {"oldWorkDirStr": oldWorkDirStr})
 
+
 @pytest.fixture
 def work_in_empty_tmpdir(request, tmpdir):
     """change into an empty tmpdir"""
@@ -34,6 +35,24 @@ def params(funcarglist):
 
     return wrapper
 
+
 def pytest_generate_tests(metafunc):
     for funcargs in getattr(metafunc.function, 'funcarglist', ()):
         metafunc.addcall(funcargs=funcargs)
+
+
+def generate_dummy_projects(path, numProjects=1):
+    assert path.exists()
+    assert not list(path.walk())
+    projectPaths = []
+    for idx in range(numProjects):
+        name = "dummy_project_%s" % (idx)
+        root = path/name
+        root.mkdir()
+        dummyProject = LoslassaProject(root)
+        for thisPath in dummyProject.neededDirPaths:
+            thisPath.mkdir()
+        for thisPath in dummyProject.neededFilePaths:
+            thisPath.write("")
+        dummyProject.check_sanity()
+    return projectPaths
