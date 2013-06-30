@@ -17,8 +17,13 @@ setup(
     packages=['loslassa'],
     include_package_data=True,
     zip_safe=False,
-    platforms='Unix', # todo add windows and Mac Os X
-    install_requires=['Sphinx>=1.1.3', 'plumbum', 'sphinx_bootstrap_theme'],
+    platforms='Unix',  # todo add windows and Mac Os X
+    install_requires=[
+        'Sphinx>=1.1.3',
+        'plumbum>=1.0',
+        'sphinx_bootstrap_theme',
+        'pytest>=2.3'
+    ],
     entry_points=dict(console_scripts=['loslassa=loslassa.loslassa:main']),
     classifiers=[
         'Development Status :: 3 - Alpha',

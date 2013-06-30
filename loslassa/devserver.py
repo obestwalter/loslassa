@@ -69,23 +69,18 @@ def reloader_loop(pathToWatch, interval=1):
     from Werkzeug which is based on autoreload.py
     from CherryPy trac which originated from WSGIKit which is now dead.
 
-    :param pathToWatch: path of the directory to be watched.
+    :param LocalPath pathToWatch: path of the directory to be watched.
     """
-    def get_watched_file_paths():
-        filePaths = []
-        for rootPath, _, fileNames in os.walk(pathToWatch):
-            for fileName in fileNames:
-                filePaths.append(os.path.join(rootPath, fileName))
-        return filePaths
-
     pathTimeMap = {}
     while True:
-        paths = get_watched_file_paths()
-        shortNames = [p.rpartition(pathToWatch)[-1][1:] for p in paths]
+        paths = [p for p in pathToWatch.walk()]
+        print(paths)
+        shortNames = [str(p).rpartition(str(pathToWatch))[-1][1:]
+                      for p in paths]
         log.debug("check for changes: %s" % (", ".join(shortNames)))
         for filePath in paths:
             try:
-                mtime = os.stat(filePath).st_mtime
+                mtime = filePath.stat().st_mtime
             except OSError:
                 continue
 

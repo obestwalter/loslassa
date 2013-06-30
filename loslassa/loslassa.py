@@ -50,63 +50,75 @@ This is not thought out yet, but I imagine that additional customization
 can be done easily by expanding the settings in the sphinx conf.py and
 do more involved stuff via sphinx extensions.
 """
+from __future__ import print_function
+
 import logging
 import os
 import sys
 
-from plumbum import cli, cmd
+from plumbum import cli, cmd, local
 from plumbum.local_machine import LocalPath
 
 import devserver
 import utils
 
 
-log = logging.getLogger("loslassa")
-
-
-LOSLASSA_ROOT = os.path.abspath(os.path.dirname(__file__))
-EXAMPLE_PROJECT_PATH = os.path.join(LOSLASSA_ROOT, "example_project")
-
-
+LOSLASSA = "loslassa"
 __version__ = '0.3.2-dev'
 
 
+log = logging.getLogger()
+
+
 class LoslassaProject(object):
+    SOURCE_DIR_NAME = "source"
+    CONF_FILE_NAME = "conf.py"
+    BUILDS_DIR_NAME = "build"
+    HTML_BUILD_DIR_NAME = "html"
+    DOCTREES_DIR_NAME = "doctrees"
+    EXAMPLE_PROJECT_PATH = LocalPath(__file__).dirname / "example_project"
+
     def __init__(self, projectPath):
+        if not projectPath:
+            raise utils.LoslassaError("No project path set")
+
         self.projectPath = LocalPath(projectPath)
-        self.sourcePath = self.projectPath.join("source")
-        self.sphinxConfPath = self.sourcePath.join("conf.py")
-        self.buildPath = self.projectPath.join("build")
-        self.doctreesPath = self.buildPath.join("doctrees")
-        self.outputPath = self.buildPath.join("html")
-        self.allPaths = [getattr(self, p) for p in self.__dict__
-                         if p.endswith("Path")]
+        self.sourcePath = self.projectPath / self.SOURCE_DIR_NAME
+        self.sphinxConfPath = self.sourcePath / self.CONF_FILE_NAME
+        self.buildPath = self.projectPath / self.BUILDS_DIR_NAME
+        self.doctreesPath = self.buildPath / self.DOCTREES_DIR_NAME
+        self.outputPath = self.buildPath / self.HTML_BUILD_DIR_NAME
 
     def __str__(self):
         return utils.simple_dbg(self, excludeNames=["allPaths"])
 
+    def __repr__(self):
+        return "<%s at %s>" % (self.__class__.__name__, self.projectPath)
+
     @property
     def buildCommand(self):
         return cmd.sphinx_build[
-            "-b", "dirhtml", "-d", str(self.doctreesPath),
-            str(self.sourcePath), str(self.outputPath)]
+            "-b", "dirhtml", "-d", self.doctreesPath._path,
+            self.sourcePath._path, self.outputPath._path]
 
-    def _check_project(self):
-        """Make sure we have a valid seeming sphinx project to work with
-
-        :raise: `.LoslassaError`
-        """
+    def check_sanity(self):
+        """Make sure we have a valid seeming sphinx project to work with"""
         for thisPath in self.allPaths:
             log.debug("check %s" % (thisPath))
             if not thisPath.exists():
-                raise LoslassaError(
-                    "Expected path %s does not exist" % (thisPath._path))
+                raise utils.LoslassaError(
+                    "Expected path %s does not exist in %s" %
+                    (thisPath, self.projectPath))
+
+    @property
+    def allPaths(self):
+        return [getattr(self, p) for p in self.__dict__ if p.endswith("Path")]
 
 
 class LoslassaCliApplication(cli.Application):
-    PROGNAME = "loslassa"
+    PROGNAME = LOSLASSA
     VERSION = __version__
-    USAGE = "loslassa [start|play|loslassa] [OPTIONS]"
+    USAGE = LOSLASSA + " [start|play|loslassa] [OPTIONS]"
     projectPath = None
     logLevel = logging.DEBUG
     logFilePath = None
@@ -138,11 +150,15 @@ class LoslassaCliApplication(cli.Application):
         self.logFilePath = filePath
 
     def _init(self):
-        log.info("path is: %s" % (self.projectPath))
+        if not self.projectPath:
+            confPath = utils.find_file(
+                local.cwd, LoslassaProject.CONF_FILE_NAME)
+            self.projectPath = confPath.dirname.up()
         self.project = LoslassaProject(self.projectPath)
-        log.debug("project path: %s" % (self.projectPath))
+        log.info("check project path: %s" % (self.projectPath))
+        self.project.check_sanity()
         try:
-            utils.init_logging(
+            utils.adjust_log_formatter(
                 level=self.logLevel, filePath=self.logFilePath)
         except ValueError:
             log.error("unknown verbosity level: %s use one of %s" %
@@ -166,14 +182,14 @@ class Loslassa(LoslassaCliApplication):
 @Loslassa.subcommand("start")
 class LoslassaStart(LoslassaCliApplication):
     """Starts a new project by creating the initial project structure"""
-
     def main(self):
         log.info("start loslassing ...")
-        if not self.projectPath:
-            raise LoslassaError("You need to provide a name for the project")
+        # if not self.projectPath:
+        #     raise utils.LoslassaError(
+        # "Please  provide a name for the project")
 
         if os.path.exists(self.projectPath):
-            raise LoslassaError("project path must not exist yet")
+            raise utils.LoslassaError("project path must not exist yet")
 
         self._init()
         # todo copy contents of example to project position
@@ -198,10 +214,10 @@ class LoslassaPlay(LoslassaCliApplication):
             serveFromPath=str(self.project.outputPath),
             port=self.serverPort,
             changedCallback=self.project.buildCommand,
-            pathToWatch=str(self.project.sourcePath))
+            pathToWatch=self.project.sourcePath)
 
 
-@Loslassa.subcommand("loslassa")
+@Loslassa.subcommand(LOSLASSA)
 class LoslassaLoslassa(LoslassaCliApplication):
     """Practice loslassing by pushing your page into the interwebs"""
     def main(self):
@@ -210,18 +226,18 @@ class LoslassaLoslassa(LoslassaCliApplication):
         log.info("loslassa loslassa loslassa ...")
 
 
-class LoslassaError(Exception):
-    pass
-
-
 def main():
     Loslassa.run()
 
 
 if __name__ == "__main__":
-    # for comfy testing
+    logging.basicConfig(level=logging.ERROR, format='%(message)s')
+    # fixme activate
+    #sys.excepthook = utils.friendly_exception_handler
     if len(sys.argv) == 1:
-        sys.argv.extend(["loslassa",
-                         "--verbosity", "DEBUG",
-                         "--project-name", EXAMPLE_PROJECT_PATH])
+        print("no args ... using test config instead")
+        sys.argv.extend(
+            ["pl",
+             "--verbosity", "DEBUG",
+             "--project-name", str(LoslassaProject.EXAMPLE_PROJECT_PATH)])
     sys.exit(main())

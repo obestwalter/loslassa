@@ -1,19 +1,27 @@
 import logging
+import traceback
+
+from plumbum.local_machine import LocalPath, local
 
 
-log = logging.getLogger(__name__)
+log = logging.getLogger()
 
 
-def init_logging(level, filePath):
-    """Initialize logging. If set to debug output extra info"""
+def adjust_log_formatter(level, filePath):
+    """Add file handler to logging. If set to debug output extra info
+
+    :param level: log level (one of the logging level constants)
+    :param filePath: path to where the logfile should be written to
+    """
+    fmt = '%(message)s'
     dateFmt = '%Y-%m-%d-%H:%M:%S'
     if level in ["DEBUG", 10]:
-        fmt = ('%(asctime)s %(name)s %(funcName)s [%(lineno)s] %(levelname)s: '
-               '%(message)s')
-    else:
-        fmt = '%(message)s'
-    logging.basicConfig(level=level, filename=filePath,
-                        format=fmt, datefmt=dateFmt)
+        fmt = ('%(asctime)s %(funcName)s [%(lineno)s] %(levelname)s: ' + fmt)
+    formatter = logging.Formatter(fmt=fmt, datefmt=dateFmt)
+    if filePath:
+        log.addHandler(logging.FileHandler(filePath))
+    for handler in log.handlers:
+        handler.setFormatter(formatter)
 
 
 def simple_dbg(obj, excludeNames=None):
@@ -38,3 +46,36 @@ def simple_dbg(obj, excludeNames=None):
     return "\n".join(
         [line for line in lines
          if line and 'method' not in line and not line.startswith('_')])
+
+
+def find_file(searchPath, wantedName):
+    with local.cwd(searchPath):
+        matches = [p for p in local.cwd.walk() if p.basename == wantedName]
+    if len(matches) == 1:
+        return matches[0]
+
+    if not matches:
+        raise UtilsError("project not found in %s" % (searchPath))
+
+    raise UtilsError(
+        "too many projects found in %s: %s" % (searchPath, matches))
+
+
+def friendly_exception_handler(exception_type, exception, tb):
+    msg = (
+        "Whoops that was uncalled for ... sorry about that. An error of "
+        "%s occurred. The error message was '%s'"
+        % (exception_type, exception))
+    log.error(msg)
+    rbString = ''.join(traceback.format_tb(tb))
+    log.error(
+        "What follows might not say much to you, but somebody who knows "
+        "Python will be able to figure out what went wrong:\n%s" % (rbString))
+
+
+class LoslassaError(Exception):
+    pass
+
+
+class UtilsError(LoslassaError):
+    pass
