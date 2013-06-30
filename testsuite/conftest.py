@@ -25,17 +25,15 @@ def create_dummy_projects(path, numProjects=1):
     :returns: paths of the created projects
     """
     assert path.exists()
-    assert not list(path.walk())
+    with pytest.raises(StopIteration):
+        next(path.walk())
     projectPaths = []
     for idx in range(numProjects):
         name = "dummy_project_%s" % (idx)
         root = path/name
         root.mkdir()
         dummyProject = LoslassaProject(root)
-        for thisPath in dummyProject.neededDirPaths:
-            thisPath.mkdir()
-        for thisPath in dummyProject.neededFilePaths:
-            thisPath.write("")
+        dummyProject.create_empty_project()
         dummyProject.check_sanity()
     return projectPaths
 

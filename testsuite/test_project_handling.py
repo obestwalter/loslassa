@@ -4,13 +4,13 @@ from plumbum import LocalPath, local
 import pytest
 
 from loslassa.loslassa import LoslassaProject, LoslassaStart
-from loslassa import utils
+from loslassa.utils import *
 from conftest import assert_exc_contains
 
 
 class TestLoslassaProject(object):
     def test_empty_path_raises_error(self):
-        with pytest.raises(utils.LoslassaError):
+        with pytest.raises(AssertionError):
             LoslassaProject(None)
 
     def test_project_paths_are_initialized(self):
@@ -27,7 +27,7 @@ class TestLoslassaProject(object):
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     def test_check_sanity_in_empty_dir_raises(self,):
         lp = LoslassaProject(".")
-        with pytest.raises(utils.LoslassaError):
+        with pytest.raises(LoslassaError):
             lp.check_sanity()
 
 
@@ -36,12 +36,19 @@ class TestLoslassaStart(object):
     def test_start_in_existing_dir_raises(self):
         ls = LoslassaStart("dummy_executable")
         ls.projectPath = local.cwd
-        with pytest.raises(utils.LoslassaError) as excInfo:
+        with assert_exc_contains(LoslassaError, "exists already"):
             ls.main()
-        assert "exists already" in excInfo.exconly()
 
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     def test_start_without_name_raises(self):
         ls = LoslassaStart("dummy_executable")
-        with assert_exc_contains(utils.LoslassaError, "provide a name"):
+        with assert_exc_contains(LoslassaError, "provide a name"):
             ls.main()
+
+    @pytest.mark.usefixtures("work_in_empty_tmpdir")
+    def test_start_with_good_name_creates_project(self):
+        ls = LoslassaStart("dummy_executable")
+        ls.projectPath = local.cwd/"new_project"
+        ls.main()
+        ls.project.check_sanity()
+        assert ls.project.projectName == "new_project"

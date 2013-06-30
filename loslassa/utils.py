@@ -3,11 +3,20 @@ import traceback
 
 from plumbum.local_machine import local
 
+__all__ = [
+    "adjust_log",
+    "cached_property",
+    "find_file",
+    "friendly_exception_handler",
+    "LoslassaError",
+    "simple_dbg",
+    "UtilsError",
+]
 
 log = logging.getLogger()
 
 
-def adjust_log_formatter(level, filePath):
+def adjust_log(level, filePath=None):
     """Add file handler to logging. If set to debug output extra info
 
     :param level: log level (one of the logging level constants)
@@ -15,6 +24,12 @@ def adjust_log_formatter(level, filePath):
     """
     fmt = '%(message)s'
     dateFmt = '%Y-%m-%d-%H:%M:%S'
+    if level not in logging._levelNames.keys():
+        raise UtilsError(
+            "unknown verbosity level: %s use one of %s" %
+            (level, sorted(logging._levelNames.keys())))
+
+    log.setLevel(level)
     if log.getEffectiveLevel() <= logging.DEBUG:
         fmt = ('%(asctime)s %(funcName)s [%(lineno)s] %(levelname)s: ' + fmt)
     formatter = logging.Formatter(fmt=fmt, datefmt=dateFmt)
