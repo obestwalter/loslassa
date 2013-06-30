@@ -1,4 +1,5 @@
 from __future__ import print_function
+from contextlib import contextmanager
 
 from plumbum import local
 import pytest
@@ -8,40 +9,21 @@ from loslassa.loslassa import LoslassaProject
 
 @pytest.fixture
 def work_in_example_project(request):
-    """change into the example project folder"""
-    oldWorkDirStr = str(local.cwd)
-    workDir = local.cwd
-    workDir.chdir(LoslassaProject.EXAMPLE_PROJECT_PATH)
-    print("switched from", oldWorkDirStr, "to", workDir)
-    request.addfinalizer(lambda: workDir.chdir(oldWorkDirStr))
-    return type("", (), {"oldWorkDirStr": oldWorkDirStr})
+    """Change into example project and back on exit"""
+    return chdir_in_and_out(request, LoslassaProject.EXAMPLE_PROJECT_PATH)
 
 
 @pytest.fixture
 def work_in_empty_tmpdir(request, tmpdir):
-    """change into an empty tmpdir"""
-    oldWorkDirStr = str(local.cwd)
-    workDir = local.cwd
-    workDir.chdir(tmpdir)
-    print("switched from", oldWorkDirStr, "to", workDir)
-    request.addfinalizer(lambda: workDir.chdir(oldWorkDirStr))
-    return type("", (), {"oldWorkDirStr": oldWorkDirStr})
+    """Change into empty tmpdir and back on exit"""
+    return chdir_in_and_out(request, tmpdir)
 
 
-def params(funcarglist):
-    def wrapper(function):
-        function.funcarglist = funcarglist
-        return function
+def create_dummy_projects(path, numProjects=1):
+    """create minimal projects with generic names
 
-    return wrapper
-
-
-def pytest_generate_tests(metafunc):
-    for funcargs in getattr(metafunc.function, 'funcarglist', ()):
-        metafunc.addcall(funcargs=funcargs)
-
-
-def generate_dummy_projects(path, numProjects=1):
+    :returns: paths of the created projects
+    """
     assert path.exists()
     assert not list(path.walk())
     projectPaths = []
@@ -56,3 +38,31 @@ def generate_dummy_projects(path, numProjects=1):
             thisPath.write("")
         dummyProject.check_sanity()
     return projectPaths
+
+
+@contextmanager
+def assert_exc_contains(exc, content):
+    """check if exception of type `exc` is raised with content
+
+    :param Exception exc: Exception type
+    :param content: content that should be part of the exception message
+    :type content: basestring or list of basestring
+    """
+    try:
+        yield
+    except Exception as e:
+        assert type(e) == exc
+        if isinstance(content, basestring):
+            assert content in e.message
+        else:
+            assert all(m in e.message for m in content)
+
+
+def chdir_in_and_out(request, path):
+    """change into path and change back on exit"""
+    oldWorkDirStr = str(local.cwd)
+    workDir = local.cwd
+    workDir.chdir(path)
+    print("switched from", oldWorkDirStr, "to", workDir)
+    request.addfinalizer(lambda: workDir.chdir(oldWorkDirStr))
+    return type("", (), {"oldWorkDirStr": oldWorkDirStr})

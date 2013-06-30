@@ -1,8 +1,7 @@
-import functools
 import logging
 import traceback
 
-from plumbum.local_machine import LocalPath, local
+from plumbum.local_machine import local
 
 
 log = logging.getLogger()
@@ -16,7 +15,7 @@ def adjust_log_formatter(level, filePath):
     """
     fmt = '%(message)s'
     dateFmt = '%Y-%m-%d-%H:%M:%S'
-    if level in ["DEBUG", 10]:
+    if log.getEffectiveLevel() <= logging.DEBUG:
         fmt = ('%(asctime)s %(funcName)s [%(lineno)s] %(levelname)s: ' + fmt)
     formatter = logging.Formatter(fmt=fmt, datefmt=dateFmt)
     if filePath:
@@ -56,22 +55,25 @@ def find_file(searchPath, wantedName):
         return matches[0]
 
     if not matches:
-        raise UtilsError("project not found in %s" % (searchPath))
+        raise UtilsError("%s not found in %s" % (wantedName, searchPath))
 
     raise UtilsError(
         "too many projects found in %s: %s" % (searchPath, matches))
 
 
 def friendly_exception_handler(exception_type, exception, tb):
-    msg = (
-        "Whoops that was uncalled for ... sorry about that. An error of "
-        "%s occurred. The error message was '%s'"
-        % (exception_type, exception))
-    log.error(msg)
+    if isinstance(exception_type, LoslassaError):
+        msg = exception.message
+    else:
+        msg = (
+            "Whoops that was uncalled for ... sorry about that :(\n"
+            "An error of %s occurred.\n"
+            "The error message was '%s'" % (exception_type, exception))
     rbString = ''.join(traceback.format_tb(tb))
-    log.error(
+    msg += (
         "What follows might not say much to you, but somebody who knows "
         "Python will be able to figure out what went wrong:\n%s" % (rbString))
+    log.error(msg)
 
 
 class cached_property(object):

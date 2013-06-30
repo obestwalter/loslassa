@@ -76,7 +76,8 @@ class LoslassaProject(object):
     BUILDS_DIR_NAME = "build"
     HTML_BUILD_DIR_NAME = "html"
     DOCTREES_DIR_NAME = "doctrees"
-    EXAMPLE_PROJECT_PATH = LocalPath(__file__).dirname/"example_project"
+    EXAMPLE_PROJECT_NAME = "example_project"
+    EXAMPLE_PROJECT_PATH = LocalPath(__file__).dirname/EXAMPLE_PROJECT_NAME
 
     def __init__(self, projectPath):
         if not projectPath:
@@ -139,7 +140,7 @@ class LoslassaCliApplication(cli.Application):
     @cli.autoswitch(str)
     def project_name(self, projectName):
         """Set name (can be a relative or absolute path as well"""
-        self.projectPath = projectName
+        self.projectPath = LocalPath(projectName)
 
     @cli.autoswitch(str)
     def verbosity(self, level):
@@ -148,9 +149,9 @@ class LoslassaCliApplication(cli.Application):
         :param str level: log level (one of the accepted logging values)
         Levels from very chatty to almost silent: debug, info, warning, error
         """
-        if level.isdigit():
+        try:
             self.logLevel = logging.getLevelName(int(level))
-        else:
+        except ValueError:
             self.logLevel = level.upper()
 
     @cli.autoswitch(str)
@@ -173,6 +174,8 @@ class LoslassaCliApplication(cli.Application):
             log.error("unknown verbosity level: %s use one of %s" %
                       (self.logLevel, sorted(logging._levelNames.keys())))
         log.debug("working with %s" % (self))
+        if log.getEffectiveLevel() > logging.DEBUG:
+            sys.excepthook = utils.friendly_exception_handler
 
 
 class Loslassa(LoslassaCliApplication):
@@ -193,15 +196,19 @@ class LoslassaStart(LoslassaCliApplication):
     """Starts a new project by creating the initial project structure"""
     def main(self):
         log.info("start loslassing ...")
-        # if not self.projectPath:
-        #     raise utils.LoslassaError(
-        # "Please  provide a name for the project")
+        if not self.projectPath:
+            raise utils.LoslassaError("please provide a name for the project")
 
-        if os.path.exists(self.projectPath):
-            raise utils.LoslassaError("project path must not exist yet")
+        if self.projectPath.exists():
+            # fixme Workdir.dirname as in local.cwd.dirname crashes
+            # using._path in the meantime
+            # see https://github.com/tomerfiliba/plumbum/issues/78
+            raise utils.LoslassaError(
+                "'%s' exists already in %s, try a different name." %
+                (self.projectPath.basename, self.projectPath._path))
 
         self._init()
-        # todo copy contents of example to project position
+        # todo generate empty project
 
 
 @Loslassa.subcommand("play")
@@ -233,19 +240,22 @@ class LoslassaLoslassa(LoslassaCliApplication):
         self._init()
         # todo make a progress bar consisting of loslassa :)
         log.info("loslassa loslassa loslassa ...")
+        raise utils.LoslassaError("coming soon...")
 
 
 def main():
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+    if len(sys.argv) == 1:
+        log.info("no args ... using test config instead")
+        startargs = [
+            "start", "--verbosity", "DEBUG",
+            "--project-name", str(LoslassaProject.EXAMPLE_PROJECT_PATH)]
+        playargs = [
+            "play", "--verbosity", "DEBUG",
+            "--project-name", "new"]
+        sys.argv.extend(playargs)
     Loslassa.run()
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.ERROR, format='%(message)s')
-    # fixme activate
-    #sys.excepthook = utils.friendly_exception_handler
-    if len(sys.argv) == 1:
-        print("no args ... using test config instead")
-        sys.argv.extend(
-            ['play', "--verbosity", "DEBUG",
-             "--project-name", str(LoslassaProject.EXAMPLE_PROJECT_PATH)])
     sys.exit(main())

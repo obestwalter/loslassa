@@ -3,18 +3,9 @@ from __future__ import print_function
 from plumbum.local_machine import LocalPath
 import pytest
 
-from conftest import params
 from loslassa.loslassa import LoslassaProject
-from loslassa.utils import find_file, UtilsError
-from testsuite.conftest import generate_dummy_projects
-
-
-@pytest.mark.usefixtures("work_in_empty_tmpdir")
-@params([dict(path="."), dict(path=LocalPath("."))])
-def test_different_path_types(path):
-    with pytest.raises(UtilsError) as excInfo:
-        find_file(path, "dontcare")
-    assert "not found" in excInfo.exconly()
+from loslassa.utils import *
+from conftest import *
 
 
 @pytest.mark.usefixtures("work_in_example_project")
@@ -23,16 +14,21 @@ def test_conf_file_found_in_example_project():
     assert foundFile.basename == LoslassaProject.CONF_FILE_NAME
 
 
-def test_conf_file_not_found_raises(tmpdir):
-    wantedFileName = LoslassaProject.CONF_FILE_NAME
-    with pytest.raises(UtilsError) as excInfo:
-        find_file(tmpdir, wantedFileName)
-    assert "not found" in excInfo.exconly()
+# fixme why is this executed 4 times (I would expect twice ...)
+@pytest.mark.usefixtures("work_in_empty_tmpdir")
+@pytest.mark.parametrize("path", (".", LocalPath(".")))
+def test_different_path_types_are_accepted(path):
+    with assert_exc_contains(UtilsError, ["not found", "x"]):
+        find_file(path, "x")
 
 
-def test_too_many_conf_files_found_raises(tmpdir):
+def test_file_not_found_raises(tmpdir):
+    with assert_exc_contains(UtilsError, ["not found", "x"]):
+        find_file(tmpdir, "x")
+
+
+def test_too_many_files_found_raises(tmpdir):
     tmpdir = LocalPath(tmpdir)
-    generate_dummy_projects(tmpdir, 2)
-    with pytest.raises(UtilsError) as excInfo:
+    paths = create_dummy_projects(tmpdir, 3)
+    with assert_exc_contains(UtilsError, ["too many"] + paths):
         find_file(tmpdir, LoslassaProject.CONF_FILE_NAME)
-    assert "too many" in excInfo.exconly()
