@@ -27,7 +27,7 @@ def restart_with_reloader():
     but running the reloader thread.
     """
     while True:
-        log.info(' * Restarting with reloader')
+        log.info("***restarting with reloader***")
         args = [sys.executable] + sys.argv
         new_environ = os.environ.copy()
         new_environ[RUN_MAIN_ENV_KEY] = 'true'
@@ -74,14 +74,11 @@ def reloader_loop(pathToWatch, interval=1):
     pathTimeMap = {}
     while True:
         paths = [p for p in pathToWatch.walk()]
-        print(paths)
-        shortNames = [str(p).rpartition(str(pathToWatch))[-1][1:]
-                      for p in paths]
-        log.debug("check for changes: %s" % (", ".join(shortNames)))
         for filePath in paths:
             try:
                 mtime = filePath.stat().st_mtime
             except OSError:
+                log.warning("problem with %s" % (filePath), exc_info=True)
                 continue
 
             oldTime = pathTimeMap.get(filePath)
@@ -90,7 +87,7 @@ def reloader_loop(pathToWatch, interval=1):
                 continue
 
             elif mtime > oldTime:
-                log.info(' * Detected change in %r, reloading' % filePath)
+                log.info("detected change in %s: reloading" % (filePath))
                 sys.exit(3)
 
         time.sleep(interval)
