@@ -122,7 +122,7 @@ def serve_with_reloader(serveFromPath, port, changedCallback, pathToWatch):
         log.info("call %s" % (changedCallback))
         changedCallback()
         server = make_server(serveFromPath, port)
-        log.info("serve %s on port %s, control-C to stop" %
+        log.info("serve %s on http://localhost:%s, control-C to stop" %
                  (serveFromPath, port))
         server.serve_forever()
 

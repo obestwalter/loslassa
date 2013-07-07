@@ -3,7 +3,7 @@
 # Replace the text between the quotes with your settings
 _my_website_name = "Loslassa Skeleton Page"
 _my_short_title = "Loslassa Skeleton"
-_my_copyright_message = "2013, Loslassa Project"
+_my_copyright_message = '2013, Oliver Bestwalter'
 
 # Replace the theme name between the quotes with one of the themes from below
 _my_theme = "bootstrap"
@@ -26,10 +26,10 @@ sphinx_themes = [
 ################### You can ignore everything below here ######################
 ###############################################################################
 
-html_short_title = _my_short_title
 html_title = _my_website_name
+html_short_title = _my_short_title
 # noinspection PyShadowingBuiltins
-copyright = _my_website_name
+copyright = _my_copyright_message
 language = "en"
 extensions = []
 templates_path = ['_templates']
@@ -43,7 +43,7 @@ html_use_smartypants = True
 html_domain_indices = False
 html_use_index = False
 html_show_sourcelink = True
-html_show_sphinx = True
+html_show_sphinx = False
 html_show_copyright = True
 html_theme = _my_theme
 

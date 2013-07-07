@@ -13,22 +13,12 @@ class TestLoslassaProject(object):
         with pytest.raises(AssertionError):
             LoslassaProject(None)
 
-    def test_project_paths_are_initialized(self):
-        lp = LoslassaProject(".")
-        assert len(lp.allPaths) > 0
-        for p in lp.allPaths:
-            assert type(p) == LocalPath
-
-    @pytest.mark.usefixtures("work_in_example_project")
-    def test_check_sanity_in_project_dir_is_ok(self):
-        lp = LoslassaProject(".")
-        lp.check_sanity()
-
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
-    def test_check_sanity_in_empty_dir_raises(self,):
-        lp = LoslassaProject(".")
-        with pytest.raises(LoslassaError):
-            lp.check_sanity()
+    def test_normal_project(self):
+        lp = LoslassaProject("test")
+        print(local.cwd)
+        print(lp)
+        assert 0
 
 
 class TestLoslassaStart(object):
@@ -50,5 +40,4 @@ class TestLoslassaStart(object):
         ls = LoslassaStart("dummy_executable")
         ls.projectPath = local.cwd/"new_project"
         ls.main()
-        ls.project.check_sanity()
         assert ls.project.projectName == "new_project"

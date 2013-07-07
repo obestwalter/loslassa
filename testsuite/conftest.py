@@ -10,7 +10,7 @@ from loslassa.loslassa import LoslassaProject
 @pytest.fixture
 def work_in_example_project(request):
     """Change into example project and back on exit"""
-    return chdir_in_and_out(request, LoslassaProject.EXAMPLE_PROJECT_PATH)
+    return chdir_in_and_out(request, LoslassaProject.EXAMPLE_PROJECT)
 
 
 @pytest.fixture
@@ -33,8 +33,7 @@ def create_dummy_projects(path, numProjects=1):
         root = path/name
         root.mkdir()
         dummyProject = LoslassaProject(root)
-        dummyProject.create_empty_project()
-        dummyProject.check_sanity()
+        dummyProject.create_project()
     return projectPaths
 
 

@@ -25,10 +25,8 @@ def adjust_log(level, filePath=None):
     fmt = '%(message)s'
     dateFmt = '%Y-%m-%d-%H:%M:%S'
     if level not in logging._levelNames.keys():
-        raise UtilsError(
-            "unknown verbosity level: %s use one of %s" %
-            (level, sorted(logging._levelNames.keys())))
-
+        log.warning("Don't know level '%s' use INFO instead" % (level))
+        level = logging.INFO
     log.setLevel(level)
     if log.getEffectiveLevel() <= logging.DEBUG:
         fmt = ('%(asctime)s %(funcName)s [%(lineno)s] %(levelname)s: ' + fmt)
