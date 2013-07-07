@@ -23,6 +23,8 @@ Playing with the source and create your page. Add content and see the
 changes right away thanks to local server with automatic
 rebuild of the web pages::
 
+::
+
     cd */path/to/project*
     loslassa play
 
@@ -221,7 +223,7 @@ class LoslassaPlay(LoslassaCliApplication):
         """Create the project representation and start serving"""
         self._init()
         log.info("play loslassing...")
-        log.debug("work with %s" % (self.project))
+        # fixme reloader reloads main method instead just the server!?
         serve_with_reloader(
             serveFromPath=str(self.project.outputPath),
             port=self.serverPort,
@@ -241,6 +243,15 @@ class LoslassaLoslassa(LoslassaCliApplication):
 
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
+    if len(sys.argv) == 1:
+        log.info("no args ... using test config instead")
+        # startArgs = [
+        #     "start", "--verbosity", "DEBUG",
+        #     "--project-name", "new"]
+        playArgs = [
+            "play", "--verbosity", "DEBUG",
+            "--project-name", str(LoslassaProject.EXAMPLE_PROJECT_PATH)]
+        sys.argv.extend(playArgs)
     Loslassa.run()
 
 
