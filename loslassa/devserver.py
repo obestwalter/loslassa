@@ -43,7 +43,7 @@ def restart_with_reloader():
             return exit_code
 
 
-def run_with_reloader(main_func, pathToWatch, interval=1):
+def run_with_reloader(main_func, pathToWatch, pathToIgnore):
     """Run the given function in an independent python interpreter."""
     import signal
 
@@ -51,7 +51,7 @@ def run_with_reloader(main_func, pathToWatch, interval=1):
     if os.environ.get(RUN_MAIN_ENV_KEY) == 'true':
         thread.start_new_thread(main_func, ())
         try:
-            reloader_loop(pathToWatch, interval)
+            reloader_loop(pathToWatch, pathToIgnore)
         except KeyboardInterrupt:
             return
 
@@ -61,7 +61,7 @@ def run_with_reloader(main_func, pathToWatch, interval=1):
         pass
 
 
-def reloader_loop(pathToWatch, interval=1):
+def reloader_loop(pathToWatch, pathToIgnore, interval=0.1):
     """When this function is run from the main thread, it will force other
     threads to exit when any files passed in here change..
 
@@ -71,9 +71,12 @@ def reloader_loop(pathToWatch, interval=1):
 
     :param LocalPath pathToWatch: path of the directory to be watched.
     """
+    excludes = [pathToIgnore._path, ".git", ".idea"]
     pathTimeMap = {}
     while True:
-        paths = [p for p in pathToWatch.walk()]
+        paths = [p for p in pathToWatch.walk()
+                 if not any(excl in p._path for excl in excludes)]
+        #log.debug("checking %s\n" % (paths))
         for filePath in paths:
             try:
                 mtime = filePath.stat().st_mtime
@@ -110,7 +113,8 @@ def make_server(path, port):
     return simple_server.make_server('', port, minimal_wsgi_app)
 
 
-def serve_with_reloader(serveFromPath, port, changedCallback, pathToWatch):
+def serve_with_reloader(
+        serveFromPath, port, changedCallback, pathToWatch, pathToIgnore):
     """
     :param serveFromPath: path to the folder to be served
     :param pathToWatch: path to watch recursively for changed files
@@ -127,4 +131,4 @@ def serve_with_reloader(serveFromPath, port, changedCallback, pathToWatch):
         server.serve_forever()
 
     log.info("Serve while watching folder %s" % (pathToWatch))
-    run_with_reloader(call_func_then_serve, pathToWatch)
+    run_with_reloader(call_func_then_serve, pathToWatch, pathToIgnore)

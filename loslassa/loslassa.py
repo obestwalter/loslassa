@@ -56,7 +56,6 @@ from __future__ import print_function
 
 import logging
 import sys
-import tempfile
 
 from plumbum import cli, cmd, local, LocalPath
 import plumbum.utils as plumbum_utils
@@ -83,9 +82,8 @@ class LoslassaProject(object):
         assert projectPath, "No project path set"
         self.inputContainer = LocalPath(local.cwd/projectPath)
         self.projectName = self.inputContainer.basename
-        self.outputContainer = LocalPath(tempfile.gettempdir())
         self.sphinxConfig = self.inputContainer/self.SPHINX_CONFIG
-        self.buildPath = self.outputContainer/"loslassa"/self.projectName
+        self.buildPath = LocalPath(self.inputContainer/"__build")
         self.doctreesPath = self.buildPath/"doctrees"
         self.outputPath = self.buildPath/"html"
         log.info(
@@ -96,7 +94,7 @@ class LoslassaProject(object):
         return simple_dbg(self)
 
     def __repr__(self):
-        return "<%s at %s>" % (self.__class__.__name__, self.inputContainer)
+        return "%s(%s)" % (self.__class__.__name__, self.inputContainer)
 
     def create_project(self):
         plumbum_utils.copy(self.SKELETON_PROJECT, self.inputContainer)
@@ -175,12 +173,9 @@ class LoslassaStart(LoslassaCliApplication):
             raise LoslassaError("please provide a name for the project")
 
         if self.projectPath.exists():
-            # fixme Workdir.dirname as in local.cwd.dirname crashes
-            # using._path in the meantime
-            # see https://github.com/tomerfiliba/plumbum/issues/78
             raise LoslassaError(
-                "'%s' exists already in %s, try a different name." %
-                (self.projectPath.basename, self.projectPath._path))
+                "'%s' already exists (try a different name?)." %
+                (self.projectPath.basename))
 
         self._init(create=True)
         log.info("Created project '%s' at %s" %
@@ -209,7 +204,8 @@ class LoslassaPlay(LoslassaCliApplication):
             serveFromPath=str(self.project.outputPath),
             port=self.serverPort,
             changedCallback=self.project.sphinxInvocation,
-            pathToWatch=self.project.inputContainer)
+            pathToWatch=self.project.inputContainer,
+            pathToIgnore=self.project.buildPath)
 
 
 @Loslassa.subcommand(LOSLASSA)
@@ -226,11 +222,14 @@ def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     if len(sys.argv) == 1:
         log.info("no args ... using test config instead")
-        name = "new"
-        import shutil
-        shutil.rmtree(name, ignore_errors=True)
-        lp = LoslassaProject(name)
-        lp.create_project()
+        name = "/home/obestwalter/projects/bilderwerkstatt_ravensburg.de"
+        #name = "new"
+        ##import shutil
+        #shutil.rmtree(name, ignore_errors=True)
+        if not LocalPath(name).exists():
+            raise Exception("boo")
+            #lp = LoslassaProject(name)
+            #lp.create_project()
         args = ["play", "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)
     Loslassa.run()
