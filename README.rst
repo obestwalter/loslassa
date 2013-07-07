@@ -114,3 +114,6 @@ Nice command line usage - heroku:
 
 Layering of functionality - git:
     * plumbing/porcelain paradigm
+
+Deployment with git:
+    * http://joemaller.com/990/a-web-focused-git-workflow/
