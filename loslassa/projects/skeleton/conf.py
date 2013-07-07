@@ -8,6 +8,7 @@ _my_copyright_message = '2013, Oliver Bestwalter'
 # Replace the theme name between the quotes with one of the themes from below
 _my_theme = "bootstrap"
 
+_my_copyright_message = "%s (%s theme)" % (_my_copyright_message, _my_theme)
 ############# AVAILABLE THEMES - DON'T CHANGE ANYTHING BELOW HERE #############
 
 # possible values for _my_theme
