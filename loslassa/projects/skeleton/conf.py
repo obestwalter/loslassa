@@ -8,10 +8,8 @@ _my_copyright_message = '2013, Oliver Bestwalter'
 # Replace the theme name between the quotes with one of the themes from below
 _my_theme = "bootstrap"
 
-_my_copyright_message = "%s (%s theme)" % (_my_copyright_message, _my_theme)
-############# AVAILABLE THEMES - DON'T CHANGE ANYTHING BELOW HERE #############
+############# available themes (don't change anything below here) #############
 
-# possible values for _my_theme
 bootstrap_themes = [
     "bootstrap", "amelia", "cerulean", "cosmo", "cyborg",
     "journal", "readable", "simplex", "slate", "spacelab",
@@ -26,11 +24,12 @@ sphinx_themes = [
 ###############################################################################
 ################### You can ignore everything below here ######################
 ###############################################################################
+_copyright = "%s (%s theme)" % (_my_copyright_message, _my_theme)
 
 html_title = _my_website_name
 html_short_title = _my_short_title
 # noinspection PyShadowingBuiltins
-copyright = _my_copyright_message
+copyright = _copyright
 language = "en"
 extensions = []
 templates_path = ['_templates']
