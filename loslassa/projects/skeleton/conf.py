@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
 # Replace the text between the quotes with your settings
-_my_website_name = "Loslassa Example Page"
-_my_short_title = "Loslassa"
+_my_website_name = "Loslassa Skeleton Page"
+_my_short_title = "Loslassa Skeleton"
 _my_copyright_message = "2013, Loslassa Project"
 
 # Replace the theme name between the quotes with one of the themes from below
-_my_theme = "haiku"
+_my_theme = "bootstrap"
+
+############# AVAILABLE THEMES - DON'T CHANGE ANYTHING BELOW HERE #############
+
 # possible values for _my_theme
 bootstrap_themes = [
     "bootstrap", "amelia", "cerulean", "cosmo", "cyborg",
