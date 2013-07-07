@@ -17,7 +17,7 @@ class TestFindFile(object):
 
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     @pytest.mark.parametrize("path", (".", LocalPath(".")))
-    def test_different_path_types_are_accepted(self,path):
+    def test_different_path_types_are_accepted(self, path):
         with assert_exc_contains(UtilsError, ["not found", "x"]):
             find_file(path, "x")
 
