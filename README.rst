@@ -69,7 +69,7 @@ Problem is, that even the git porcelain isn't anything I can let members of my f
 
 Love
 ----
-I `love <http://en.wikipedia.org/wiki/Love>`_ my family and open source software, so this is the perfect excuse for me to combine both and create an orgy of love that gives something back to the OSS-community, helps my family to do their thing and helps me not having to figure out whatever terrible tools they might be using to create their websites with, when they run into problems - I rather help them **loslassing** :)
+I `love <https://en.wikipedia.org/wiki/Category:Love>`_ my family and open source software, so this is the perfect excuse for me to combine both and create an orgy of love that gives something back to the OSS-community, helps my family to do their thing and helps me not having to figure out whatever terrible tools they might be using to create their websites with, when they run into problems - I rather help them **loslassing** :)
 
 My expressions of love might differ from other people, but in relation to Loslassa they are as described below ...
 
