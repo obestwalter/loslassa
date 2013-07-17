@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from plumbum import LocalPath, local
+from plumbum import local
 import pytest
 
 from loslassa.loslassa import LoslassaProject, LoslassaStart
