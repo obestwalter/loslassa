@@ -57,7 +57,7 @@ from __future__ import print_function
 import logging
 import sys
 
-from plumbum import cli, cmd, local, LocalPath
+from plumbum import cli, cmd, local
 import plumbum.utils as plumbum_utils
 
 from devserver import serve_with_reloader
@@ -73,17 +73,17 @@ log = logging.getLogger()
 
 class LoslassaProject(object):
     SPHINX_CONFIG = "conf.py"
-    HERE = LocalPath(__file__).dirname
+    HERE = local.path(__file__).dirname
     PROJECTS = HERE/"projects"
     EXAMPLE_PROJECT = PROJECTS/"example"
     SKELETON_PROJECT = PROJECTS/"skeleton"
 
     def __init__(self, projectPath):
         assert projectPath, "No project path set"
-        self.inputContainer = LocalPath(local.cwd/projectPath)
+        self.inputContainer = local.path(local.cwd/projectPath)
         self.projectName = self.inputContainer.basename
         self.sphinxConfig = self.inputContainer/self.SPHINX_CONFIG
-        self.buildPath = LocalPath(self.inputContainer/"__build")
+        self.buildPath = local.path(self.inputContainer/"__build")
         self.doctreesPath = self.buildPath/"doctrees"
         self.outputPath = self.buildPath/"html"
         log.info(
@@ -121,7 +121,7 @@ class LoslassaCliApplication(cli.Application):
     @cli.autoswitch(str)
     def project_name(self, projectName):
         """Set name (can be a relative or absolute path as well"""
-        self.projectPath = LocalPath(projectName)
+        self.projectPath = local.path(projectName)
 
     @cli.autoswitch(str)
     def verbosity(self, level):
@@ -226,7 +226,7 @@ def main():
         #name = "new"
         ##import shutil
         #shutil.rmtree(name, ignore_errors=True)
-        if not LocalPath(name).exists():
+        if not local.path(name).exists():
             raise Exception("boo")
             #lp = LoslassaProject(name)
             #lp.create_project()

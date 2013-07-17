@@ -16,9 +16,8 @@ class TestLoslassaProject(object):
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     def test_normal_project(self):
         lp = LoslassaProject("test")
-        print(local.cwd)
-        print(lp)
-        assert 0
+        lp.create_project()
+        assert lp.sphinxConfig.exists()
 
 
 class TestLoslassaStart(object):
@@ -26,7 +25,7 @@ class TestLoslassaStart(object):
     def test_start_in_existing_dir_raises(self):
         ls = LoslassaStart("dummy_executable")
         ls.projectPath = local.cwd
-        with assert_exc_contains(LoslassaError, "exists already"):
+        with assert_exc_contains(LoslassaError, "already exists"):
             ls.main()
 
     @pytest.mark.usefixtures("work_in_empty_tmpdir")

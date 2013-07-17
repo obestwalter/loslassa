@@ -12,8 +12,8 @@ from conftest import *
 class TestFindFile(object):
     @pytest.mark.usefixtures("work_in_example_project")
     def test_conf_file_found_in_example_project(self):
-        foundFile = find_file(".", LoslassaProject.CONF_FILE_NAME)
-        assert foundFile.basename == LoslassaProject.CONF_FILE_NAME
+        foundFile = find_file(".", LoslassaProject.SPHINX_CONFIG)
+        assert foundFile.basename == LoslassaProject.SPHINX_CONFIG
 
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     @pytest.mark.parametrize("path", (".", LocalPath(".")))
@@ -29,7 +29,7 @@ class TestFindFile(object):
         tmpdir = LocalPath(tmpdir)
         paths = create_dummy_projects(tmpdir, 3)
         with assert_exc_contains(UtilsError, ["too many"] + paths):
-            find_file(tmpdir, LoslassaProject.CONF_FILE_NAME)
+            find_file(tmpdir, LoslassaProject.SPHINX_CONFIG)
 
 
 class TestAdjustLog(object):

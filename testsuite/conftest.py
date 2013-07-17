@@ -31,7 +31,6 @@ def create_dummy_projects(path, numProjects=1):
     for idx in range(numProjects):
         name = "dummy_project_%s" % (idx)
         root = path/name
-        root.mkdir()
         dummyProject = LoslassaProject(root)
         dummyProject.create_project()
     return projectPaths
