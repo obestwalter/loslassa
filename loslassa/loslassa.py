@@ -56,6 +56,7 @@ from __future__ import print_function
 
 import logging
 import sys
+import imp
 
 from plumbum import cli, cmd, local
 import plumbum.utils as plumbum_utils
@@ -86,9 +87,8 @@ class LoslassaProject(object):
         self.buildPath = local.path(self.inputContainer/"__build")
         self.doctreesPath = self.buildPath/"doctrees"
         self.outputPath = self.buildPath/"html"
-        log.info(
-            "initialized paths: input from %s - html generated in %s" %
-            (self.inputContainer, self.outputPath))
+        log.info("[PROJECT INFO]: input from %s - html generated in %s" %
+                 (self.inputContainer, self.outputPath))
 
     def __str__(self):
         return simple_dbg(self)
@@ -98,12 +98,134 @@ class LoslassaProject(object):
 
     def create_project(self):
         plumbum_utils.copy(self.SKELETON_PROJECT, self.inputContainer)
+        log.info("created project at %s" % (self.inputContainer))
+
+    @property
+    def isProject(self):
+        return self.sphinxConfig.exists()
 
     @property
     def sphinxInvocation(self):
         return cmd.sphinx_build[
             "-b", "dirhtml", "-d", self.doctreesPath._path,
             self.inputContainer._path, self.outputPath._path]
+
+
+class LoslassaConfig(object):
+    """Access to Loslassa settings in configuration file"""
+    def __init__(self, projectPath, configName="conf"):
+        configPath = local.path(projectPath, configName + ".py")
+        assert configPath.exists(), configPath
+        fp, path, suffixes = imp.find_module(configName, [projectPath._path])
+        try:
+            self.conf = imp.load_module(configName, fp, path, suffixes)
+        finally:
+            fp.close()
+        self.settings = self.conf.LoslassaSettings
+
+    def __str__(self):
+        return simple_dbg(self)
+
+    def __getattr__(self, item):
+        return getattr(self.settings, item)
+
+
+class GitPorcelainPorcelain(object):
+    def __init__(self, projectPath):
+        self.projectPath = projectPath
+        self.projectName = projectPath.basename._path
+        self.settings = LoslassaConfig(projectPath)
+        self.gitPath = self.projectPath/".git"
+
+    def create_repo(self):
+        with local.cwd(self.projectPath):
+            log.info(cmd.git("init"))
+            log.info(cmd.git("add", "."))
+            log.info(cmd.git("commit", "-m", "initial commit"))
+
+    def connect_project(self):
+        """
+        http://mikeeverhart.net/git/using-git-to-deploy-code/
+
+        local
+        -----
+        prepare local project:
+            cd into projectPath
+            git remote add www ssh://<sshUser>@<remoteFqdn>/<bareclonepath>
+
+        prepare remote bare repo:
+            git clone --bare <proj> <proj>.git
+            cd into bare clone repo
+                $ cat > hooks/post-receive
+                #!/bin/sh
+                GIT_WORK_TREE=<remote bare clones path> git checkout -f
+            chmod +x hooks/post-receive
+
+        to remote:
+            rsync -avx
+                <proj>.git bestuebe@best-uebersetzungen.de: ./projects/<proj>/
+
+        remote
+        ------
+        git clone ~/projects/<proj>.git ~/www_content/<proj>
+        ln -s
+            ~/www_content/bilderwerkstatt_ravensburg .de/__build/html
+            <dir containing web content>
+
+        initial push
+        ------------
+        git push www +master:refs/heads/master
+
+        all other pushes
+        ----------------
+        git push www master
+        """
+        # todo
+        # todo look into plumbum remote path
+        # ... or use posixpath
+        import posixpath as pp
+
+        # fixme just a sketch check these paths - very likely wrong
+        self.bareCLoneName = self.projectName + ".git"
+        self.bareCLonePath = self.projectPath + ".git"
+        remHomePath = "/home/%s" % (self.sshUser)
+        remoteBareClonesContainer = pp.join(remHomePath, "projects")
+        remoteBareClonePath = pp.join(
+            remoteBareClonesContainer, self.bareCLoneName)
+        remoteContentsContainer = pp.join(remHomePath, "www_content")
+        remoteContentsPath = pp.join(remHomePath, "www_content")
+
+    @property
+    def isRepo(self):
+        return self.gitPath.exists()
+
+    @property
+    def sshOptions(self):
+        return (
+            ["-i", self.settings.privateKeyPath,
+             "%s@%s" % (self.settings.sshUser, self.settings.remoteFqdn)])
+
+    @property
+    def sshUser(self):
+        return self.settings.sshUser
+
+    @property
+    def remoteFqdn(self):
+        return self.settings.remoteFqdn
+
+    @property
+    def privateKeyPath(self):
+        return self.settings.privateKeyPath
+
+    @property
+    def sshIsOk(self):
+        try:
+            cmd.ssh(self.sshOptions + ["id"])
+            return True
+
+        except:
+            log.warning("ssh connection failed", exc_info=True)
+            return False
 
 
 class LoslassaCliApplication(cli.Application):
@@ -223,13 +345,6 @@ def main():
     if len(sys.argv) == 1:
         log.info("no args ... using test config instead")
         name = "/home/obestwalter/projects/bilderwerkstatt_ravensburg.de"
-        #name = "new"
-        ##import shutil
-        #shutil.rmtree(name, ignore_errors=True)
-        if not local.path(name).exists():
-            raise Exception("boo")
-            #lp = LoslassaProject(name)
-            #lp.create_project()
         args = ["play", "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)
     Loslassa.run()

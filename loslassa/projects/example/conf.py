@@ -19,6 +19,13 @@ sphinx_themes = [
     "haiku", "traditional", "epub"]
 # check them out here http://sphinx-doc.org/theming.html#builtin-themes
 
+
+class LoslassaConfig(object):
+    sshUser = ""
+    remoteFqdn = ""
+    privateKeyPath = ""
+
+
 ###############################################################################
 ################### You can ignore everything below here ######################
 ###############################################################################

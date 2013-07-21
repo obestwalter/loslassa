@@ -8,6 +8,14 @@ _my_copyright_message = '2013, Oliver Bestwalter'
 # Replace the theme name between the quotes with one of the themes from below
 _my_theme = "bootstrap"
 
+
+class LoslassaSettings(object):
+    """Fill in your ssh details here for deployment on the webserver"""
+    sshUser = "user_here"
+    remoteFqdn = "fqdn_here"
+    privateKeyPath = "key_here"
+
+
 ############# available themes (don't change anything below here) #############
 
 bootstrap_themes = [

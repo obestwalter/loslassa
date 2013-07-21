@@ -59,6 +59,5 @@ def chdir_in_and_out(request, path):
     oldWorkDirStr = str(local.cwd)
     workDir = local.cwd
     workDir.chdir(path)
-    print("switched from", oldWorkDirStr, "to", workDir)
     request.addfinalizer(lambda: workDir.chdir(oldWorkDirStr))
     return type("", (), {"oldWorkDirStr": oldWorkDirStr})

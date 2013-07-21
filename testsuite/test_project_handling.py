@@ -18,6 +18,7 @@ class TestLoslassaProject(object):
         lp = LoslassaProject("test")
         lp.create_project()
         assert lp.sphinxConfig.exists()
+        assert lp.isProject
 
 
 class TestLoslassaStart(object):
