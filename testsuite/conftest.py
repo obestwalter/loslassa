@@ -52,6 +52,8 @@ def assert_exc_contains(exc, content):
             assert content in e.message
         else:
             assert all(m in e.message for m in content)
+    else:
+        raise Exception("Did not raise %s with %s" % (exc, content))
 
 
 def chdir_in_and_out(request, path):
