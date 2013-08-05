@@ -12,7 +12,7 @@ class TestGitIntegration(object):
         assert gpp.isRepo
 
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
-    def test_ssh_seetings_project(self):
+    def test_ssh_settings_project(self):
         lp = LoslassaProject("test")
         lp.create_project()
         gpp = GitPorcelainPorcelain(lp.inputContainer)
