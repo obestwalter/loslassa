@@ -133,7 +133,7 @@ class LoslassaConfig(object):
 class GitPorcelainPorcelain(object):
     def __init__(self, projectPath):
         self.projectPath = projectPath
-        self.projectName = projectPath.basename._path
+        self.projectName = projectPath.basename
         self.settings = LoslassaConfig(projectPath)
         self.gitPath = self.projectPath/".git"
 
