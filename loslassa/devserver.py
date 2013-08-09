@@ -16,8 +16,8 @@ import thread
 from wsgiref import simple_server, util
 
 
-# noinspection PyUnresolvedReferences
-from plumbum.cmd import git
+from plumbum import cmd
+from plumbum.commands import ProcessExecutionError
 
 log = logging.getLogger(__name__)
 
@@ -113,8 +113,12 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
                 log.info("cleaning necessary in %s" % (cleanPaths))
                 for path in cleanPaths:
                     log.info("cleaning %s" % (path))
-                    git("rm", path._path)
-                    git("commit", "-m", "removed %s" % (path._path))
+                    try:
+                        log.info(cmd.git("rm", path._path))
+                    except ProcessExecutionError:
+                        path.delete()
+                        log.info(cmd.git("add", "."))
+                    cmd.git("commit", "-m", "removed %s" % (path._path))
             log.info("reloading ...")
             sys.exit(3)
 

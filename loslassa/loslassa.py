@@ -59,6 +59,7 @@ import sys
 import imp
 
 from plumbum import cli, cmd, local
+from plumbum.commands import ProcessExecutionError
 import plumbum.utils as plumbum_utils
 
 from devserver import serve_with_reloader
@@ -132,7 +133,11 @@ class LoslassaProject(object):
     def buildCommand(self):
         self.sphinxInvocation()
         self.gitAddInvocation()
-        self.gitCommitInvocation()
+        try:
+            self.gitCommitInvocation()
+        except ProcessExecutionError as e:
+            if "nothing to commit" not in e.stdout:
+                raise
 
 
 class LoslassaConfig(object):
