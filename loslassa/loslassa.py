@@ -82,6 +82,7 @@ class LoslassaProject(object):
 
     def __init__(self, projectPath):
         assert projectPath, "No project path set"
+        self.projectPath = projectPath
         self.inputContainer = local.path(local.cwd/projectPath)
         self.projectName = self.inputContainer.basename
         self.sphinxConfig = self.inputContainer/self.SPHINX_CONFIG
@@ -113,11 +114,15 @@ class LoslassaProject(object):
 
     @property
     def gitAddInvocation(self):
-        return cmd.git["add", "."]
+        # fixme use GitPorcelainPorcelain
+        with local.cwd(self.projectPath):
+            return cmd.git["add", "--all", "."]
 
     @property
     def gitCommitInvocation(self):
-        return cmd.git["commit", "-m", "new build"]
+        # fixme use GitPorcelainPorcelain
+        with local.cwd(self.projectPath):
+            return cmd.git["commit", "-m", "new build"]
 
     def buildCommand(self):
         self.sphinxInvocation()
