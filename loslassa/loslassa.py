@@ -55,6 +55,7 @@ do more involved stuff via sphinx extensions.
 from __future__ import print_function
 
 import logging
+import shutil
 import sys
 import imp
 
@@ -109,6 +110,19 @@ class LoslassaProject(object):
         return cmd.sphinx_build[
             "-b", "dirhtml", "-d", self.doctreesPath._path,
             self.inputContainer._path, self.outputPath._path]
+
+    @property
+    def gitAddInvocation(self):
+        return cmd.git["add", "."]
+
+    @property
+    def gitCommitInvocation(self):
+        return cmd.git["commit", "-m", "new build"]
+
+    def buildCommand(self):
+        self.sphinxInvocation()
+        self.gitAddInvocation()
+        self.gitCommitInvocation()
 
 
 class LoslassaConfig(object):
@@ -323,11 +337,15 @@ class LoslassaPlay(LoslassaCliApplication):
             raise LoslassaError(
                 "no config found at %s" % (self.project.sphinxConfig))
         serve_with_reloader(
-            serveFromPath=str(self.project.outputPath),
+            serveFromPath=self.project.outputPath,
             port=self.serverPort,
-            changedCallback=self.project.sphinxInvocation,
+            changedCallback=self.project.buildCommand,
             pathToWatch=self.project.inputContainer,
-            pathToIgnore=self.project.buildPath)
+            pathToIgnore=self.project.buildPath,
+            # cleanFileNames=["conf", "index", "linda_bestwalter"],
+            cleanFileNames="ALL",
+            cleanPaths=[self.project.outputPath, self.project.doctreesPath],
+        )
 
 
 @Loslassa.subcommand(LOSLASSA)

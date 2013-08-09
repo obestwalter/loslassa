@@ -16,10 +16,17 @@ import thread
 from wsgiref import simple_server, util
 
 
+# noinspection PyUnresolvedReferences
+from plumbum.cmd import git
+
 log = logging.getLogger(__name__)
 
 
 RUN_MAIN_ENV_KEY = 'RUN_MAIN_ENV_KEY'
+
+
+# todo refactor into generalized class
+# todo use local.path object throughout
 
 
 def restart_with_reloader():
@@ -43,7 +50,8 @@ def restart_with_reloader():
             return exit_code
 
 
-def run_with_reloader(main_func, pathToWatch, pathToIgnore):
+def run_with_reloader(main_func, pathToWatch, pathToIgnore,
+                      cleanFileNames, cleanPaths):
     """Run the given function in an independent python interpreter."""
     import signal
 
@@ -51,7 +59,8 @@ def run_with_reloader(main_func, pathToWatch, pathToIgnore):
     if os.environ.get(RUN_MAIN_ENV_KEY) == 'true':
         thread.start_new_thread(main_func, ())
         try:
-            reloader_loop(pathToWatch, pathToIgnore)
+            reloader_loop(pathToWatch, pathToIgnore,
+                          cleanFileNames, cleanPaths)
         except KeyboardInterrupt:
             return
 
@@ -61,7 +70,8 @@ def run_with_reloader(main_func, pathToWatch, pathToIgnore):
         pass
 
 
-def reloader_loop(pathToWatch, pathToIgnore, interval=0.1):
+def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
+                  interval=0.5):
     """When this function is run from the main thread, it will force other
     threads to exit when any files passed in here change..
 
@@ -76,7 +86,7 @@ def reloader_loop(pathToWatch, pathToIgnore, interval=0.1):
     while True:
         paths = [p for p in pathToWatch.walk()
                  if not any(excl in p._path for excl in excludes)]
-        #log.debug("checking %s\n" % (paths))
+        changedPaths = []
         for filePath in paths:
             try:
                 mtime = filePath.stat().st_mtime
@@ -90,8 +100,23 @@ def reloader_loop(pathToWatch, pathToIgnore, interval=0.1):
                 continue
 
             elif mtime > oldTime:
-                log.info("detected change in %s: reloading" % (filePath))
-                sys.exit(3)
+                changedPaths.append(filePath.basename)
+                if cleanFileNames == "ALL":
+                    break
+
+        if changedPaths:
+            # fixme handle changes in build dir intelligently (query git)
+            log.info("detected changes in %s: reloading" % (changedPaths))
+            if (cleanFileNames == "ALL" or
+                    any(n in [b.basename for b in changedPaths]
+                        for n in cleanFileNames)):
+                log.info("cleaning necessary in %s" % (cleanPaths))
+                for path in cleanPaths:
+                    log.info("cleaning %s" % (path))
+                    git("rm", path._path)
+                    git("commit", "-m", "removed %s" % (path._path))
+            log.info("reloading ...")
+            sys.exit(3)
 
         time.sleep(interval)
 
@@ -114,21 +139,27 @@ def make_server(path, port):
 
 
 def serve_with_reloader(
-        serveFromPath, port, changedCallback, pathToWatch, pathToIgnore):
+        serveFromPath, port, changedCallback, pathToWatch, pathToIgnore,
+        cleanFileNames=None, cleanPaths=None):
     """
+
     :param serveFromPath: path to the folder to be served
     :param pathToWatch: path to watch recursively for changed files
     :param port: port to be served ond
     :param changedCallback: function to be called if a monitored file changes
+    :param pathToIgnore: don't watch this path for changes
+    :param cleanFileNames: list of filenames that should trigger a full clean
+    :param cleanPaths: paths to delete on a full clean
     """
     def call_func_then_serve():
         """Calls the passed in function and then starts the server"""
-        log.info("call %s" % (changedCallback))
-        changedCallback()
-        server = make_server(serveFromPath, port)
+        result = changedCallback()
+        log.info("call %s -> %s" % (changedCallback.__name__, result))
+        server = make_server(serveFromPath._path, port)
         log.info("serve %s on http://localhost:%s, control-C to stop" %
                  (serveFromPath, port))
         server.serve_forever()
 
     log.info("Serve while watching folder %s" % (pathToWatch))
-    run_with_reloader(call_func_then_serve, pathToWatch, pathToIgnore)
+    run_with_reloader(call_func_then_serve, pathToWatch, pathToIgnore,
+                      cleanFileNames or [], cleanPaths or [])
