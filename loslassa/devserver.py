@@ -16,9 +16,6 @@ import thread
 from wsgiref import simple_server, util
 
 
-from plumbum import cmd
-from plumbum.commands import ProcessExecutionError
-
 log = logging.getLogger(__name__)
 
 
@@ -113,12 +110,7 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
                 log.info("cleaning necessary in %s" % (cleanPaths))
                 for path in cleanPaths:
                     log.info("cleaning %s" % (path))
-                    try:
-                        log.info(cmd.git("rm", path._path))
-                    except ProcessExecutionError:
-                        path.delete()
-                        log.info(cmd.git("add", "."))
-                    cmd.git("commit", "-m", "removed %s" % (path._path))
+                    path.delete()
             log.info("reloading ...")
             sys.exit(3)
 
