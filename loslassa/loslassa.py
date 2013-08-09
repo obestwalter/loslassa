@@ -55,7 +55,6 @@ do more involved stuff via sphinx extensions.
 from __future__ import print_function
 
 import logging
-import shutil
 import sys
 import imp
 
@@ -115,14 +114,20 @@ class LoslassaProject(object):
     @property
     def gitAddInvocation(self):
         # fixme use GitPorcelainPorcelain
-        with local.cwd(self.projectPath):
-            return cmd.git["add", "--all", "."]
+        def fn():
+            with local.cwd(self.projectPath):
+                return cmd.git("add", "--all", ".")
+
+        return fn
 
     @property
     def gitCommitInvocation(self):
         # fixme use GitPorcelainPorcelain
-        with local.cwd(self.projectPath):
-            return cmd.git["commit", "-m", "new build"]
+        def fn():
+            with local.cwd(self.projectPath):
+                return cmd.git("commit", "-m", "new build")
+
+        return fn
 
     def buildCommand(self):
         self.sphinxInvocation()
@@ -202,17 +207,17 @@ class GitPorcelainPorcelain(object):
         # todo
         # todo look into plumbum remote path
         # ... or use posixpath
-        import posixpath as pp
+        # import posixpath as pp
 
         # fixme just a sketch check these paths - very likely wrong
-        self.bareCLoneName = self.projectName + ".git"
-        self.bareCLonePath = self.projectPath + ".git"
-        remHomePath = "/home/%s" % (self.sshUser)
-        remoteBareClonesContainer = pp.join(remHomePath, "projects")
-        remoteBareClonePath = pp.join(
-            remoteBareClonesContainer, self.bareCLoneName)
-        remoteContentsContainer = pp.join(remHomePath, "www_content")
-        remoteContentsPath = pp.join(remHomePath, "www_content")
+        # self.bareCLoneName = self.projectName + ".git"
+        # self.bareCLonePath = self.projectPath + ".git"
+        # remHomePath = "/home/%s" % (self.sshUser)
+        # remoteBareClonesContainer = pp.join(remHomePath, "projects")
+        # remoteBareClonePath = pp.join(
+        #     remoteBareClonesContainer, self.bareCLoneName)
+        # remoteContentsContainer = pp.join(remHomePath, "www_content")
+        # remoteContentsPath = pp.join(remHomePath, "www_content")
 
     @property
     def isRepo(self):
