@@ -36,6 +36,12 @@ def create_dummy_projects(path, numProjects=1):
     return projectPaths
 
 
+# noinspection PyUnusedLocal
+@pytest.fixture
+def work_in_dummy_project(work_in_empty_tmpdir):
+    return create_dummy_projects(local.cwd)
+
+
 @contextmanager
 def assert_exc_contains(exc, content):
     """check if exception of type `exc` is raised with content

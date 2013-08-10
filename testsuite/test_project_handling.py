@@ -3,7 +3,7 @@ from __future__ import print_function
 from plumbum import local
 import pytest
 
-from loslassa.loslassa import LoslassaProject, LoslassaStart
+from loslassa.loslassa import LoslassaProject, LoslassaStart, LoslassaPlay
 from loslassa.utils import *
 from conftest import assert_exc_contains
 
@@ -41,3 +41,11 @@ class TestLoslassaStart(object):
         ls.projectPath = local.cwd/"new_project"
         ls.main()
         assert ls.project.projectName == "new_project"
+
+
+class TestLoslassaPlay(object):
+    @pytest.mark.usefixtures("work_in_dummy_project")
+    def test_play_in_dir_with_conf_works(self):
+        lp = LoslassaPlay("dummy_executable")
+        print(lp)
+        lp._init()

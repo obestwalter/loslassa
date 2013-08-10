@@ -136,7 +136,10 @@ class LoslassaProject(object):
 
         return fn
 
-    def buildCommand(self):
+    def buildOnly(self):
+        self.sphinxInvocation()
+
+    def buildAndAutocommit(self):
         self.sphinxInvocation()
         self.gitAddInvocation()
         try:
@@ -298,7 +301,7 @@ class LoslassaCliApplication(cli.Application):
         if not self.projectPath:
             log.warning("no conf.py here ... searching (press CTRL-C to stop)")
             confPath = find_file(local.cwd, LoslassaProject.SPHINX_CONFIG)
-            self.projectPath = confPath.dirname.up()
+            self.projectPath = local.path(confPath.dirname)
         self.project = LoslassaProject(self.projectPath)
         if create:
             self.project.create_project()
@@ -343,27 +346,38 @@ class LoslassaStart(LoslassaCliApplication):
 class LoslassaPlay(LoslassaCliApplication):
     """Start playing with the source and create your page"""
     serverPort = 8080
+    autocommit = True
+
+    @cli.autoswitch()
+    def no_autocommit(self):
+        """switch off automatic commits to the repository"""
+        self.autocommit = False
 
     @cli.autoswitch(int)
     def serve_on_port(self, serverPort):
         """Set port manually"""
         self.serverPort = serverPort
 
-    def main(self):
-        """Create the project representation and start serving"""
-        self._init()
-        log.info("play loslassing...")
+    def _init(self, create=False):
+        super(LoslassaPlay, self)._init(create)
         # fixme reloader reloads main method instead just the server!?
         if not self.project.sphinxConfig.exists():
             raise LoslassaError(
                 "no config found at %s" % (self.project.sphinxConfig))
+
+    def main(self):
+        """Create the project representation and start serving"""
+        log.info("play loslassing...")
+        self._init()
+        buildCommand = (self.project.buildAndAutocommit() if self.autocommit
+                        else self.project.buildOnly)
         serve_with_reloader(
             serveFromPath=self.project.outputPath,
             port=self.serverPort,
-            changedCallback=self.project.buildCommand,
+            changedCallback=buildCommand,
             pathToWatch=self.project.inputContainer,
             pathToIgnore=self.project.buildPath,
-            # cleanFileNames=["conf", "index", "linda_bestwalter"],
+            # cleanFileNames=["conf", "index"],
             cleanFileNames="ALL",
             cleanPaths=[self.project.outputPath, self.project.doctreesPath],
         )
