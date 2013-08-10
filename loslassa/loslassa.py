@@ -108,16 +108,21 @@ class LoslassaProject(object):
 
     @property
     def sphinxInvocation(self):
-        return cmd.sphinx_build[
-            "-b", "dirhtml", "-d", self.doctreesPath._path,
-            self.inputContainer._path, self.outputPath._path]
+        def fn():
+            log.info(cmd.sphinx_build(
+                "-b", "dirhtml", "-d", self.doctreesPath._path,
+                self.inputContainer._path, self.outputPath._path))
+            return
+
+        return fn
 
     @property
     def gitAddInvocation(self):
         # fixme use GitPorcelainPorcelain
         def fn():
             with local.cwd(self.projectPath):
-                return cmd.git("add", "--all", ".")
+                log.info(cmd.git("add", "--all", "."))
+                return
 
         return fn
 
@@ -126,7 +131,8 @@ class LoslassaProject(object):
         # fixme use GitPorcelainPorcelain
         def fn():
             with local.cwd(self.projectPath):
-                return cmd.git("commit", "-m", "new build")
+                log.info(cmd.git("commit", "-m", "new build"))
+                return
 
         return fn
 
