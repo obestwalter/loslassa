@@ -106,47 +106,35 @@ class LoslassaProject(object):
     def isProject(self):
         return self.sphinxConfig.exists()
 
-    @property
-    def sphinxInvocation(self):
-        def fn():
-            log.info(cmd.sphinx_build(
-                "-b", "dirhtml", "-d", self.doctreesPath._path,
-                self.inputContainer._path, self.outputPath._path))
-            return
+    def generate_html(self):
+        log.info(cmd.sphinx_build(
+            "-b", "dirhtml", "-d", self.doctreesPath._path,
+            self.inputContainer._path, self.outputPath._path))
 
-        return fn
-
-    @property
-    def gitAddInvocation(self):
+    def add_new_files(self):
         # fixme use GitPorcelainPorcelain
-        def fn():
-            with local.cwd(self.projectPath):
-                log.info(cmd.git("add", "--all", "."))
-                return
+        with local.cwd(self.projectPath):
+            log.info(cmd.git("add", "--all", "."))
 
-        return fn
-
-    @property
-    def gitCommitInvocation(self):
+    def commit_files(self):
         # fixme use GitPorcelainPorcelain
-        def fn():
-            with local.cwd(self.projectPath):
-                log.info(cmd.git("commit", "-m", "new build"))
-                return
+        with local.cwd(self.projectPath):
+            log.info(cmd.git("commit", "-m", "new build"))
 
-        return fn
-
-    def buildOnly(self):
-        self.sphinxInvocation()
-
-    def buildAndAutocommit(self):
-        self.sphinxInvocation()
-        self.gitAddInvocation()
+    def commit_all(self):
+        self.add_new_files()
         try:
-            self.gitCommitInvocation()
+            self.commit_files()
         except ProcessExecutionError as e:
             if "nothing to commit" not in e.stdout:
                 raise
+
+    def build_generate_only(self):
+        self.generate_html()
+
+    def build_and_autocommit(self):
+        self.generate_html()
+        self.commit_all()
 
 
 class LoslassaConfig(object):
@@ -369,8 +357,8 @@ class LoslassaPlay(LoslassaCliApplication):
         """Create the project representation and start serving"""
         log.info("play loslassing...")
         self._init()
-        buildCommand = (self.project.buildAndAutocommit() if self.autocommit
-                        else self.project.buildOnly)
+        buildCommand = (self.project.build_and_autocommit if self.autocommit
+                        else self.project.build_generate_only)
         serve_with_reloader(
             serveFromPath=self.project.outputPath,
             port=self.serverPort,
