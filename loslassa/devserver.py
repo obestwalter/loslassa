@@ -78,11 +78,13 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
 
     :param LocalPath pathToWatch: path of the directory to be watched.
     """
-    excludes = [pathToIgnore._path, ".git", ".idea"]
     pathTimeMap = {}
     while True:
-        paths = [p for p in pathToWatch.walk()
-                 if not any(excl in p._path for excl in excludes)]
+        paths = [p for p in pathToWatch.walk(
+            filter=lambda p: "\\." not in p._path and "/." not in p._path)
+            if not p._path.startswith(pathToIgnore._path) and
+            "\\." not in p._path and "/." not in p._path and not
+            p.isdir()]
         changedPaths = []
         for filePath in paths:
             try:
