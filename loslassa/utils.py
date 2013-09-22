@@ -1,7 +1,7 @@
 import logging
 import traceback
+from plumbum.machines.local import local
 
-from plumbum.local_machine import local
 
 __all__ = [
     "adjust_log",
