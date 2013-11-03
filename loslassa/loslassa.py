@@ -367,8 +367,7 @@ class LoslassaPlay(LoslassaCliApplication):
             pathToIgnore=self.project.buildPath,
             # cleanFileNames=["conf", "index"],
             cleanFileNames="ALL",
-            cleanPaths=[self.project.outputPath, self.project.doctreesPath],
-        )
+            cleanPaths=[self.project.outputPath, self.project.doctreesPath])
 
 
 @Loslassa.subcommand(LOSLASSA)
