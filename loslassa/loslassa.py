@@ -107,9 +107,11 @@ class LoslassaProject(object):
         return self.sphinxConfig.exists()
 
     def generate_html(self):
-        log.info(cmd.sphinx_build(
-            "-b", "dirhtml", "-d", self.doctreesPath._path,
-            self.inputContainer._path, self.outputPath._path))
+        args = ["-b", "dirhtml", "-d", self.doctreesPath._path,
+                self.inputContainer._path, self.outputPath._path]
+        log.debug("sphinx-build %s" % (" ".join(args)))
+        output = cmd.sphinx_build(*args)
+        log.info("sphinx output...\n%s" % (output))
 
     def add_new_files(self):
         # fixme use GitPorcelainPorcelain
