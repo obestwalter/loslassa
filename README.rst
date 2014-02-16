@@ -1,4 +1,4 @@
-|TravisBadge|_
+|TravisBadge|_  |CoverallBadge|_
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
