@@ -1,6 +1,9 @@
 language: python
 python:
   - "2.7"
+before_install:
+  - "git config --global user.email 'nobody@loslassa.com'"
+  - "git config --global user.name 'Loslassa Tester'"
 install:
   - "pip install -r requirements.txt --use-mirrors"
 script: pytest
