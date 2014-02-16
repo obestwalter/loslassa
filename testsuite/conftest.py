@@ -46,7 +46,7 @@ def work_in_dummy_project(work_in_empty_tmpdir):
 def assert_exc_contains(exc, content):
     """check if exception of type `exc` is raised with content
 
-    :param Exception exc: Exception type
+    :param exc: Exception type
     :param content: content that should be part of the exception message
     :type content: basestring or list of basestring
     """

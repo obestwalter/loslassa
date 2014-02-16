@@ -1,10 +1,8 @@
 from __future__ import print_function
 import logging
 
-from plumbum.local_machine import LocalPath
-import pytest
+from plumbum import LocalPath
 
-from loslassa.loslassa import LoslassaProject
 from loslassa.utils import *
 from conftest import *
 
@@ -34,8 +32,9 @@ class TestFindFile(object):
 
 class TestAdjustLog(object):
     def test_bogus_level_raises(self):
-        with assert_exc_contains(UtilsError, "unknown verbosity level"):
-            adjust_log("bogus_level")
+        log = logging.getLogger(__name__)
+        adjust_log("bogus_level")
+        assert log.getEffectiveLevel() == logging.INFO
 
     def test_proper_level_adjust_level(self):
         adjust_log(logging.CRITICAL)
