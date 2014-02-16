@@ -60,7 +60,7 @@ import imp
 
 from plumbum import cli, cmd, local
 from plumbum.commands import ProcessExecutionError
-import plumbum.utils as plumbum_utils
+import plumbum.path.utils as plumbum_utils
 
 from devserver import serve_with_reloader
 from utils import *
