@@ -1,4 +1,4 @@
-|TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_
+|TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
@@ -8,6 +8,9 @@
 
 .. |PyPiBadge| image:: https://pypip.in/v/loslassa/badge.png
 .. _PyPiBadge: https://crate.io/packages/loslassa/
+
+.. |CommitMood| image:: http://b.repl.ca/v1/Olivers_Commit_Mood-ExitedAboutBadges%21-green.png
+
 
 Loslassa
 ========
