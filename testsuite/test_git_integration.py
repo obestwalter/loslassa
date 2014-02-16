@@ -1,4 +1,5 @@
 import pytest
+
 from loslassa.loslassa import LoslassaProject, GitPorcelainPorcelain
 
 

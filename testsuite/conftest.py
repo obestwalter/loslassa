@@ -1,7 +1,7 @@
 from __future__ import print_function
 from contextlib import contextmanager
-from plumbum.machines.local import local
 
+from plumbum.machines.local import local
 import pytest
 
 from loslassa.loslassa import LoslassaProject
