@@ -1,3 +1,6 @@
 sphinx
 sphinx-bootstrap-theme
 plumbum
+pytest
+pytest-cov
+

@@ -5,6 +5,8 @@ before_install:
   - "git config --global user.email 'nobody@loslassa.com'"
   - "git config --global user.name 'Loslassa Tester'"
 install:
+  - "pip install coveralls"
   - "pip install -r requirements.txt"
-script: pytest
-script: "py.test testsuite"
+script: "py.test --cov=loslassa testsuite"
+after_success:
+  coveralls
