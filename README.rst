@@ -1,4 +1,7 @@
-.. image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master   :target: https://travis-ci.org/obestwalter/loslassa
+|TravisBuild|_
+
+.. |TravisBuild| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
+.. _TravisBuild: https://travis-ci.org/obestwalter/loslassa
 
 Loslassa
 ========
