@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master   :target: https://travis-ci.org/obestwalter/loslassa
+
 Loslassa
 ========
 
