@@ -3,8 +3,8 @@
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
 
-.. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png
-.. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa
+.. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png?branch=master
+.. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa?branch=master
 
 Loslassa
 ========
