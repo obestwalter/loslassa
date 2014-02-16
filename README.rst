@@ -13,6 +13,7 @@
 .. _PyPiBadgeOwn: https://pypi.python.org/pypi/Loslassa
 
 .. |CommitMood| image:: http://b.repl.ca/v1/Olivers_Commit_Mood-ExitedAboutBadges%21-green.png
+.. _CommitMood: http://www.youtube.com/watch?v=5NzPd-xW4YY
 
 
 Loslassa
