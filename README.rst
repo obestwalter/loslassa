@@ -1,10 +1,13 @@
-|TravisBadge|_  |CoverallBadge|_
+|TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
 
 .. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png?branch=master
 .. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa?branch=master
+
+.. |PyPiBadge| image:: https://pypip.in/v/loslassa/badge.png
+.. _PyPiBadge: https://crate.io/packages/loslassa/
 
 Loslassa
 ========
