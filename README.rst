@@ -1,4 +1,4 @@
-|TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|
+|TravisBadge|_  |CoverallBadge|_  |CrateIoPyPiBadge|_ |PyPiBadge|_ |CommitMood|
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
@@ -6,8 +6,11 @@
 .. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png?branch=master
 .. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa?branch=master
 
-.. |PyPiBadge| image:: https://pypip.in/v/loslassa/badge.png
-.. _PyPiBadge: https://crate.io/packages/loslassa/
+.. |CrateIoPyPiBadge| image:: https://pypip.in/v/Loslassa/badge.png
+.. _CrateIoPyPiBadge: https://pypi.python.org/pypi/Loslassa
+
+.. |PyPiBadge| image:: http://b.repl.ca/v1/get_it-on_pypi%21-green.png
+.. _PyPiBadge: https://pypi.python.org/pypi/Loslassa
 
 .. |CommitMood| image:: http://b.repl.ca/v1/Olivers_Commit_Mood-ExitedAboutBadges%21-green.png
 
