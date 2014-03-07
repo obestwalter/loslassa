@@ -123,6 +123,3 @@ Layering of functionality - git:
 Deployment with git:
     * http://joemaller.com/990/a-web-focused-git-workflow/
 
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
-
