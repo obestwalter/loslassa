@@ -16,6 +16,8 @@
 .. _CommitMood: http://www.youtube.com/watch?v=5NzPd-xW4YY
 
 
+`Huboard issues <https://huboard.com/obestwalter/loslassa>`_
+
 Loslassa
 ========
 
