@@ -3,7 +3,7 @@
 # Replace the text between the quotes with your settings
 _my_website_name = "Loslassa Documentation"
 _my_short_title = "Loslassa Docs"
-_my_copyright_message = "2013, Loslassa Project"
+_my_copyright_message = "2013-2014, Loslassa Project"
 
 # Replace the theme name between the quotes with one of the themes from below
 _my_theme = "bootstrap"
