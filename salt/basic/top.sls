@@ -1,9 +1,13 @@
-basic-packages:
+apt-packages:
   pkg.installed:
     - names:
-      - python2.7-dev
+      #- python2.7-dev
       - python-pip
-      - acpid
-      #- libssl-dev  # todo still needed ... by who?
-      - build-essential
+      #- build-essential
     - refresh: False
+
+pip-requirements:
+  pip.installed:
+    - requirements: /vagrant/requirements.txt
+    - require:
+      - pkg: apt-packages
