@@ -72,7 +72,7 @@ Playing with the source and create your page. Add content and see the changes ri
     cd */path/to/project*
     loslassa play
 
-Starts a local development server. All files in project folder are being watched and if something changes the project is rebuild.
+Starts a local development server (see script output for a link to the page). All files in project folder are being watched and if something changes the project is rebuild.
 
 Publish
 =======
