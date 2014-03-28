@@ -157,20 +157,19 @@ from <a class="reference external" href="http://joemaller.com/990/a-web-focused-
 to start a new loslassa project called gugga (swabian word for bag). This
 is what happens under the hood:</p>
 <p><strong>LOCAL: create prime</strong></p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>mkdir gugga
+<div class="highlight-bash"><div class="highlight"><pre>mkdir gugga
 cp -r /path/to/loslassa/projects/skeleton/* gugga
-cd gugga
+<span class="nb">cd </span>gugga
 git init
 git add .
-git commit -m &#8220;initialized gugga&#8221;</dd>
-</dl>
+git commit -m <span class="s2">&quot;initialized gugga&quot;</span>
+</pre></div>
+</div>
 <p>Now the remote comes into play:</p>
 <p>As example we&#8217;ll say your host is called maedle.net ...</p>
 <p><strong>REMOTE: create bare git repo to hold the hub</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>ssh user@maedle.net mkdir /path/to/hub/repos/gugga.git
-cd gugga.git
+<div class="highlight-bash"><div class="highlight"><pre>ssh user@maedle.net mkdir /path/to/hub/repos/gugga.git
+<span class="nb">cd </span>gugga.git
 git --bare init
 </pre></div>
 </div>
@@ -180,12 +179,12 @@ $ git remote add hub ~/site_hub.git
 $ git remote show hub
 * remote hub</p>
 <div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 71)</p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 72)</p>
 Unexpected indentation.</div>
 <blockquote>
 <div>URL: /home/joe/site_hub.git</div></blockquote>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 72)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 73)</p>
 Block quote ends without a blank line; unexpected unindent.</div>
 <p>$ git push hub master</p>
 <p>Creates a new project with a basic structure and configuration
@@ -226,13 +225,13 @@ do more involved stuff via sphinx extensions.</p>
 <p>Hello this is some random content to have something to work with and to
 test the workflow and functionality of <a class="reference external" href="https://github.com/obestwalter/loslassa">Loslassa</a></p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 117)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
 toctree contains reference to nonexisting document &#8216;news&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 117)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
 toctree contains reference to nonexisting document &#8216;about&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 117)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
 toctree contains reference to nonexisting document &#8216;inner_folder/file_in_inner_folder&#8217;</div>
 <div class="toctree-wrapper compound">
 <ul class="simple">
@@ -244,7 +243,7 @@ toctree contains reference to nonexisting document &#8216;inner_folder/file_in_i
 <h2>Second level heading<a class="headerlink" href="#second-level-heading" title="Permalink to this headline">¶</a></h2>
 <p>Second level here</p>
 <div class="system-message">
-<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 130)</p>
+<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 131)</p>
 <p>Title level inconsistent:</p>
 <pre class="literal-block">
 Third level heading
@@ -253,7 +252,7 @@ Third level heading
 </div>
 <p>Third level here.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 135)</p>
+<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 136)</p>
 <p>Title level inconsistent:</p>
 <pre class="literal-block">
 Fourth level heading

@@ -43,7 +43,8 @@ is what happens under the hood:
 
 **LOCAL: create prime**
 
-::
+.. code-block:: bash
+
     mkdir gugga
     cp -r /path/to/loslassa/projects/skeleton/* gugga
     cd gugga
@@ -57,7 +58,7 @@ As example we'll say your host is called maedle.net ...
 
 **REMOTE: create bare git repo to hold the hub**
 
-::
+.. code-block:: bash
 
     ssh user@maedle.net mkdir /path/to/hub/repos/gugga.git
     cd gugga.git
