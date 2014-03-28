@@ -91,12 +91,11 @@ set it to be origin from then on
     loslassa loslassa
 
 Customize
-'''''''''
+=========
+
 This is not thought out yet, but I imagine that additional customization
 can be done easily by expanding the settings in the sphinx conf.py and
 do more involved stuff via sphinx extensions.
-
-
 
 
 Hello this is some random content to have something to work with and to
