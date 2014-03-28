@@ -9,7 +9,7 @@ Workflow
 Start
 '''''
 
-..code-block: bash
+.. code-block: bash
 
     loslassa start <relative or absolute path to>project
 
