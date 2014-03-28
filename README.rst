@@ -19,40 +19,27 @@
 Loslassa
 ========
 
-This project started with a problem, bad solutions and a question.
+This is a little project to help my family create web pages.
 
-**Problem** Several members of my family who know how to use a computer but don't speak HTML, CSS and such needed "a website".
-
-**Bad solutions** (in my opinion) are the gazillions of WebSiteCreatorThingies (TM) that are trying to abstract away the actual generation of the web pages in ways that it gives you the illusion of power and freedom long enough to be too committed to switch to something better when you find out that it simply not does what you want it to do ... especially because your data is hidden away or has a format that makes it hard to use something else.
-
-**Question** If i create something that is based on the way I create the documentation for my Python projects and add a friendly command line interface for all essential operations: is it possible to make the non-Nerds in my family actually like creating their websites like that?
+Besides from that it serves mainly as a playground for me to explore new concepts and technologies.
 
 
-.. note::
-
-    This is early days: creation and publishing functionality
-    does not actually exist yet ... but you can play with it already:
-
-    #. ``pip install loslassa``
-    #. Manually copy the example_project folder from dist-packages to your home
-    #. Change into example_project/source
-    #. ``loslassa play``
-    #. Point your browser to http://localhost:8080
-
-    Now you can edit the rst files or conf.py in the example project
-    and check the changes in the browser.
-
-
-What is needed?
+Characteristics
 ---------------
 
-* Easy to install
-* Works on Windows and Linux
-* Good examples to get started
-* Easy to administrate
-* Offers a short feedback loop
-* Gives helpful error messages
-* publishing content is easy
+**Works everywhere** (where VirtualBox works)
+
+**Easy to install** - just download the vagrant box and vagrant up it
+
+**Easy to administrate** Completely self contained in a vagrant box
+
+**Contains examples to get started** have a look in ``projects/examples``
+
+**Offers a short feedback loop** Page will be rebuild on every save
+
+**Gives helpful error messages** courtesy of Sphinx
+
+**Easy publishing** git push to a online repository with automatic deploy via githook (needs some setup on the remote end)
 
 Basic ingredients
 =================
