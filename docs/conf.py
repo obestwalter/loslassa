@@ -72,5 +72,5 @@ elif _my_theme in bootstrap_themes:
         # Options are nothing with "" (default) or the name of a valid theme
         # such as "amelia" or "cosmo".
         # Note that this is served off CDN, so won't be available offline.
-        'bootswatch_theme': _my_theme,
+        'bootswatch_theme': '',
     }
