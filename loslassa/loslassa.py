@@ -335,7 +335,8 @@ def main():
         log.info("no args ... using test config instead")
         name = "/home/obestwalter/projects/linda/bilderwerkstatt_ravensburg.de"
         name = "/home/obestwalter/projects/loslassa/docs"
-        args = ["play", "--verbosity", "DEBUG", "--project-name", name]
+        args = ["play", "--no-autocommit",
+                "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)
     Loslassa.run()
 
