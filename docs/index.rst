@@ -93,9 +93,7 @@ set it to be origin from then on
 Customize
 =========
 
-This is not thought out yet, but I imagine that additional customization
-can be done easily by expanding the settings in the sphinx conf.py and
-do more involved stuff via sphinx extensions.
+Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.
 
 
 Hello this is some random content to have something to work with and to
