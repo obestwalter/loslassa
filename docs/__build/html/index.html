@@ -82,16 +82,24 @@
 <li><a class="reference internal" href="#">Loslassa Documentation</a><ul>
 <li><a class="reference internal" href="#workflow">Workflow</a><ul>
 <li><a class="reference internal" href="#start">Start</a><ul>
-<li><a class="reference internal" href="#how-it-works">How it works</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#how-it-works">How it works</a><ul>
 <li><a class="reference internal" href="#play">Play</a></li>
 <li><a class="reference internal" href="#publish">Publish</a></li>
 <li><a class="reference internal" href="#customize">Customize</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#second-level-heading">Second level heading</a><ul>
+<li><a class="reference internal" href="#third-level-heading">Third level heading</a><ul>
+<li><a class="reference internal" href="#fourth-level-heading">Fourth level heading</a><ul>
 <li><a class="reference internal" href="#fifth-level-heading">Fifth level heading</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -147,10 +155,7 @@ to start a project there:</p>
 <h4>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h4>
 <p>Following a slightly adapted hub-prime-clones pattern
 from <a class="reference external" href="http://joemaller.com/990/a-web-focused-git-workflow/">http://joemaller.com/990/a-web-focused-git-workflow/</a> and <a class="reference external" href="http://danbarber.me/using-git-for-deployment/">http://danbarber.me/using-git-for-deployment/</a></p>
-<p>Have a look at this: <a class="reference external" href="https://github.com/gerhard/deliver">https://github.com/gerhard/deliver</a></p>
-<p>or: <a class="reference external" href="http://mikeeverhart.net/git/using-git-to-deploy-code/">http://mikeeverhart.net/git/using-git-to-deploy-code/</a></p>
-<p>or: <a class="reference external" href="http://toroid.org/ams/git-website-howto">http://toroid.org/ams/git-website-howto</a></p>
-<p>or: <a class="reference external" href="http://danielmiessler.com/study/git/#website">http://danielmiessler.com/study/git/#website</a></p>
+<p>Have a look at this: <a class="reference external" href="https://github.com/gerhard/deliver">https://github.com/gerhard/deliver</a> or: <a class="reference external" href="http://mikeeverhart.net/git/using-git-to-deploy-code/">http://mikeeverhart.net/git/using-git-to-deploy-code/</a> or: <a class="reference external" href="http://toroid.org/ams/git-website-howto">http://toroid.org/ams/git-website-howto</a> or: <a class="reference external" href="http://danielmiessler.com/study/git/#website">http://danielmiessler.com/study/git/#website</a></p>
 <p>The pattern described there is only working for pure HTML/Javascript projects - a loslassa project though consists of the sources and a build. As the project as a whole should be under source control ans movable, the deployment has to be adjusted in so far as the web root has to point to the HTML part of the build, but the rest of the project has to be uploaded as well. Beside from that the clones-prime-hub scheme fits nicely for this use case.</p>
 <p>Lets say you are on the commandline in ~/projects
 (where &#8220;~&#8221; is your home directory - wherever that might be) and you want
@@ -181,10 +186,8 @@ git push hub master
 </div>
 <p>Creates a new project with a basic structure and configuration
 similar to sphinx-quickstart only simpler and tailored to only HTML output.</p>
-</div>
-</div>
 <div class="section" id="play">
-<h3>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
+<h5>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h5>
 <p>Playing with the source and create your page. Add content and see the
 changes right away thanks to local server with automatic
 rebuild of the web pages:</p>
@@ -197,7 +200,7 @@ All files in project folder are being watched and if something changes
 the project is rebuild.</p>
 </div>
 <div class="section" id="publish">
-<h3>Publish<a class="headerlink" href="#publish" title="Permalink to this headline">¶</a></h3>
+<h5>Publish<a class="headerlink" href="#publish" title="Permalink to this headline">¶</a></h5>
 <p><strong>not implemented yet</strong></p>
 <p>This part is a bit vague still but basically it should simply push the
 generated pages to the server, by maintaining them in a git repository</p>
@@ -210,20 +213,20 @@ loslassa loslassa
 </div>
 </div>
 <div class="section" id="customize">
-<h3>Customize<a class="headerlink" href="#customize" title="Permalink to this headline">¶</a></h3>
+<h5>Customize<a class="headerlink" href="#customize" title="Permalink to this headline">¶</a></h5>
 <p>This is not thought out yet, but I imagine that additional customization
 can be done easily by expanding the settings in the sphinx conf.py and
 do more involved stuff via sphinx extensions.</p>
 <p>Hello this is some random content to have something to work with and to
 test the workflow and functionality of <a class="reference external" href="https://github.com/obestwalter/loslassa">Loslassa</a></p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 113)</p>
 toctree contains reference to nonexisting document &#8216;news&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 113)</p>
 toctree contains reference to nonexisting document &#8216;about&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 118)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 113)</p>
 toctree contains reference to nonexisting document &#8216;inner_folder/file_in_inner_folder&#8217;</div>
 <div class="toctree-wrapper compound">
 <ul class="simple">
@@ -231,30 +234,22 @@ toctree contains reference to nonexisting document &#8216;inner_folder/file_in_i
 </div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="second-level-heading">
 <h2>Second level heading<a class="headerlink" href="#second-level-heading" title="Permalink to this headline">¶</a></h2>
 <p>Second level here</p>
-<div class="system-message">
-<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 131)</p>
-<p>Title level inconsistent:</p>
-<pre class="literal-block">
-Third level heading
-===================
-</pre>
-</div>
+<div class="section" id="third-level-heading">
+<h3>Third level heading<a class="headerlink" href="#third-level-heading" title="Permalink to this headline">¶</a></h3>
 <p>Third level here.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: SEVERE/4 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 136)</p>
-<p>Title level inconsistent:</p>
-<pre class="literal-block">
-Fourth level heading
---------------------
-</pre>
-</div>
+<div class="section" id="fourth-level-heading">
+<h4>Fourth level heading<a class="headerlink" href="#fourth-level-heading" title="Permalink to this headline">¶</a></h4>
 <p>quite deep ...</p>
 <div class="section" id="fifth-level-heading">
-<h3>Fifth level heading<a class="headerlink" href="#fifth-level-heading" title="Permalink to this headline">¶</a></h3>
+<h5>Fifth level heading<a class="headerlink" href="#fifth-level-heading" title="Permalink to this headline">¶</a></h5>
 <p>Even deeper</p>
+</div>
+</div>
 </div>
 </div>
 </div>

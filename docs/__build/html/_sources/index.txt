@@ -7,7 +7,7 @@ Workflow
 ========
 
 Start
-'''''
+=====
 
 .. code-block:: bash
 
@@ -20,18 +20,12 @@ to start a project there::
 
 
 How it works
-~~~~~~~~~~~~
+------------
+
 Following a slightly adapted hub-prime-clones pattern
 from http://joemaller.com/990/a-web-focused-git-workflow/ and http://danbarber.me/using-git-for-deployment/
 
-Have a look at this: https://github.com/gerhard/deliver
-
-or: http://mikeeverhart.net/git/using-git-to-deploy-code/
-
-or: http://toroid.org/ams/git-website-howto
-
-or: http://danielmiessler.com/study/git/#website
-
+Have a look at this: https://github.com/gerhard/deliver or: http://mikeeverhart.net/git/using-git-to-deploy-code/ or: http://toroid.org/ams/git-website-howto or: http://danielmiessler.com/study/git/#website
 
 
 The pattern described there is only working for pure HTML/Javascript projects - a loslassa project though consists of the sources and a build. As the project as a whole should be under source control ans movable, the deployment has to be adjusted in so far as the web root has to point to the HTML part of the build, but the rest of the project has to be uploaded as well. Beside from that the clones-prime-hub scheme fits nicely for this use case.
@@ -78,6 +72,7 @@ similar to sphinx-quickstart only simpler and tailored to only HTML output.
 
 Play
 ''''
+
 Playing with the source and create your page. Add content and see the
 changes right away thanks to local server with automatic
 rebuild of the web pages::
