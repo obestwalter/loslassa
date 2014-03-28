@@ -282,7 +282,7 @@ class LoslassaStart(LoslassaCliApplication):
 @Loslassa.subcommand("play")
 class LoslassaPlay(LoslassaCliApplication):
     """Start playing with the source and create your page"""
-    serverPort = 8081
+    serverPort = 8080
     autocommit = True
 
     @cli.autoswitch()
@@ -332,9 +332,12 @@ class LoslassaLoslassa(LoslassaCliApplication):
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     if len(sys.argv) == 1:
+        import os
+
         log.info("no args ... using test config instead")
         name = "/home/obestwalter/projects/linda/bilderwerkstatt_ravensburg.de"
-        name = "/home/obestwalter/projects/loslassa/docs"
+        name = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                            "..", "docs")
         args = ["play", "--no-autocommit",
                 "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)
