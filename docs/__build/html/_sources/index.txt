@@ -64,7 +64,7 @@ similar to sphinx-quickstart only simpler and tailored to only HTML output.
 
 
 Play
-''''
+====
 
 Playing with the source and create your page. Add content and see the
 changes right away thanks to local server with automatic
@@ -78,7 +78,8 @@ All files in project folder are being watched and if something changes
 the project is rebuild.
 
 Publish
-'''''''
+=======
+
 **not implemented yet**
 
 This part is a bit vague still but basically it should simply push the
