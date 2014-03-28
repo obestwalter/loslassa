@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,11 +8,8 @@
     
     <title>Loslassa Documentation &mdash; Loslassa Documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -25,104 +23,23 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="Loslassa Documentation" href="#" />
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-<meta name="apple-mobile-web-app-capable" content="yes">
-
+    <link rel="top" title="Loslassa Documentation" href="#" /> 
   </head>
   <body>
-
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><img src="_static/logo.png">
-          Loslassa Documentation</a>
-        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      <div class="header"><h1 class="heading"><a href="#">
+          <span>Loslassa Docs</span></a></h1>
+        <h2 class="heading"><span>Loslassa Documentation</span></h2>
       </div>
-
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
-            
-            
-              <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Site <b class="caret"></b></a>
-  <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"></ul>
-</li>
-              
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Loslassa Documentation</a><ul>
-<li><a class="reference internal" href="#workflow">Workflow</a><ul>
-<li><a class="reference internal" href="#start">Start</a><ul>
-<li><a class="reference internal" href="#how-it-works">How it works</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#play">Play</a></li>
-<li><a class="reference internal" href="#publish">Publish</a></li>
-<li><a class="reference internal" href="#customize">Customize</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</ul>
-</li>
-              
-            
-            
-              
-                
-              
-            
-            
-            
-            
-          </ul>
-
-          
-            
-<form class="navbar-form navbar-right" action="search/" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          
-        </div>
-    </div>
-  </div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+      <div class="topnav">
       
+        <p>
+        <a class="uplink" href="#">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
   <div class="section" id="loslassa-documentation">
 <h1>Loslassa Documentation<a class="headerlink" href="#loslassa-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="workflow">
@@ -136,8 +53,35 @@
 <div class="highlight-python"><div class="highlight"><pre>loslassa gugga
 </pre></div>
 </div>
+</div>
+<div class="section" id="play">
+<h3>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
+<p>Playing with the source and create your page. Add content and see the changes right away thanks to local server with automatic rebuild of the web pages</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> */path/to/project*
+loslassa play
+</pre></div>
+</div>
+<p>Starts a local development server (see script output for a link to the page). All files in the project folder are being watched and if something changes the project is rebuilt.</p>
+</div>
+<div class="section" id="publish">
+<h3>Publish<a class="headerlink" href="#publish" title="Permalink to this headline">¶</a></h3>
+<p><strong>not implemented yet</strong></p>
+<p>This part is a bit vague still but basically it should simply push the generated pages to the server, by maintaining them in a git repository</p>
+<p>First time publishing would clone the repository bare to the web space and
+set it to be origin from then on
+... or summin like that, didn&#8217;t think that through yet</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> */path/to/project*
+loslassa loslassa
+</pre></div>
+</div>
+</div>
+<div class="section" id="customize">
+<h3>Customize<a class="headerlink" href="#customize" title="Permalink to this headline">¶</a></h3>
+<p>Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.</p>
+</div>
+</div>
 <div class="section" id="how-it-works">
-<h4>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h4>
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
 <p>Following a slightly adapted hub-prime-clones pattern
 from <a class="reference external" href="http://joemaller.com/990/a-web-focused-git-workflow/">http://joemaller.com/990/a-web-focused-git-workflow/</a> and <a class="reference external" href="http://danbarber.me/using-git-for-deployment/">http://danbarber.me/using-git-for-deployment/</a></p>
 <p>Have a look at this: <a class="reference external" href="https://github.com/gerhard/deliver">https://github.com/gerhard/deliver</a> or: <a class="reference external" href="http://mikeeverhart.net/git/using-git-to-deploy-code/">http://mikeeverhart.net/git/using-git-to-deploy-code/</a> or: <a class="reference external" href="http://toroid.org/ams/git-website-howto">http://toroid.org/ams/git-website-howto</a> or: <a class="reference external" href="http://danielmiessler.com/study/git/#website">http://danielmiessler.com/study/git/#website</a></p>
@@ -168,64 +112,20 @@ git push hub master
 <p>Creates a new project with a basic structure and configuration similar to sphinx-quickstart only simpler and tailored to only HTML output.</p>
 </div>
 </div>
-<div class="section" id="play">
-<h3>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
-<p>Playing with the source and create your page. Add content and see the changes right away thanks to local server with automatic rebuild of the web pages</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> */path/to/project*
-loslassa play
-</pre></div>
-</div>
-<p>Starts a local development server (see script output for a link to the page). All files in the project folder are being watched and if something changes the project is rebuilt.</p>
-</div>
-<div class="section" id="publish">
-<h3>Publish<a class="headerlink" href="#publish" title="Permalink to this headline">¶</a></h3>
-<p><strong>not implemented yet</strong></p>
-<p>This part is a bit vague still but basically it should simply push the generated pages to the server, by maintaining them in a git repository</p>
-<p>First time publishing would clone the repository bare to the web space and
-set it to be origin from then on
-... or summin like that, didn&#8217;t think that through yet</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 88)</p>
-<p>Error in &#8220;code-block&#8221; directive:
-1 argument(s) required, 0 supplied.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. code-block::
-
-    cd */path/to/project*
-    loslassa loslassa
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="customize">
-<h3>Customize<a class="headerlink" href="#customize" title="Permalink to this headline">¶</a></h3>
-<p>Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.</p>
-</div>
-</div>
-</div>
 
 
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="#">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright Loslassa Documentation.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
     </div>
-      
-  </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-        <br/>
-        
-<div id="sourcelink">
-  <a href="_sources/index.txt"
-     rel="nofollow">Source</a>
-</div>
-      
-    </p>
-    <p>
-        &copy; Copyright Loslassa Documentation.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
-    </p>
-  </div>
-</footer>
   </body>
 </html>

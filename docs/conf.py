@@ -6,7 +6,7 @@ _my_short_title = "Loslassa Docs"
 _my_copyright_message = "2013-2014, Loslassa Project"
 
 # Replace the theme name between the quotes with one of the themes from below
-_my_theme = "cosmo"
+_my_theme = "haiku"
 # possible values for _my_theme
 bootstrap_themes = [
     "bootstrap", "amelia", "cerulean", "cosmo", "cyborg",
@@ -54,7 +54,7 @@ elif _my_theme in bootstrap_themes:
     # (Optional) Logo. Should be exactly 24x24 px to fit the nav. bar.
     # Path should be relative to the static files directory.
     html_logo = "logo.png"
-    html_theme = 'bootstrap'  # 'haiku'
+    html_theme = _my_theme
     html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
     html_theme_options = {
         'navbar_title': _my_website_name,
@@ -72,5 +72,5 @@ elif _my_theme in bootstrap_themes:
         # Options are nothing with "" (default) or the name of a valid theme
         # such as "amelia" or "cosmo".
         # Note that this is served off CDN, so won't be available offline.
-        'bootswatch_theme': '',
+        'bootswatch_theme': _my_theme,
     }

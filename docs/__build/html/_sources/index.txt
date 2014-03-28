@@ -17,9 +17,43 @@ e.g. if you are in your home folder at C:\Users\maedle and you want to start a p
 
     loslassa gugga
 
+Play
+====
 
+Playing with the source and create your page. Add content and see the changes right away thanks to local server with automatic rebuild of the web pages
+
+.. code-block:: bash
+
+    cd */path/to/project*
+    loslassa play
+
+Starts a local development server (see script output for a link to the page). All files in the project folder are being watched and if something changes the project is rebuilt.
+
+Publish
+=======
+
+**not implemented yet**
+
+This part is a bit vague still but basically it should simply push the generated pages to the server, by maintaining them in a git repository
+
+First time publishing would clone the repository bare to the web space and
+set it to be origin from then on
+... or summin like that, didn't think that through yet
+
+.. code-block:: bash
+
+    cd */path/to/project*
+    loslassa loslassa
+
+Customize
+=========
+
+Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.
+
+
+============
 How it works
-------------
+============
 
 Following a slightly adapted hub-prime-clones pattern
 from http://joemaller.com/990/a-web-focused-git-workflow/ and http://danbarber.me/using-git-for-deployment/
@@ -60,37 +94,3 @@ Now the remote comes into play ... as example we'll say your host is called maed
     git push hub master
 
 Creates a new project with a basic structure and configuration similar to sphinx-quickstart only simpler and tailored to only HTML output.
-
-
-Play
-====
-
-Playing with the source and create your page. Add content and see the changes right away thanks to local server with automatic rebuild of the web pages
-
-.. code-block:: bash
-
-    cd */path/to/project*
-    loslassa play
-
-Starts a local development server (see script output for a link to the page). All files in the project folder are being watched and if something changes the project is rebuilt.
-
-Publish
-=======
-
-**not implemented yet**
-
-This part is a bit vague still but basically it should simply push the generated pages to the server, by maintaining them in a git repository
-
-First time publishing would clone the repository bare to the web space and
-set it to be origin from then on
-... or summin like that, didn't think that through yet
-
-.. code-block::
-
-    cd */path/to/project*
-    loslassa loslassa
-
-Customize
-=========
-
-Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.
