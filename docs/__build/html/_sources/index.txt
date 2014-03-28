@@ -66,12 +66,11 @@ As example we'll say your host is called maedle.net ...
 
 **LOCAL: push prime to hub**
 
-$ cd ~/www
-$ git remote add hub ~/site_hub.git
-$ git remote show hub
-* remote hub
-  URL: /home/joe/site_hub.git
-$ git push hub master
+.. code-block:: bash
+
+    cd ~/www
+    git remote add hub ~/site_hub.git
+    git push hub master
 
 Creates a new project with a basic structure and configuration
 similar to sphinx-quickstart only simpler and tailored to only HTML output.
