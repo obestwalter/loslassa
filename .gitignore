@@ -34,7 +34,9 @@ nosetests.xml
 .project
 .pydevproject
 .idea
+.vagrant/*
 __scratchpad.py
 
 # Generated from __doc__
 README.rst
+
