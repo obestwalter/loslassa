@@ -9,7 +9,7 @@ Workflow
 Start
 '''''
 
-::
+:: bash
 
     loslassa start <relative or absolute path to>project
 
