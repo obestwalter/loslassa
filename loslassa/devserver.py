@@ -81,7 +81,7 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
     pathTimeMap = {}
     while True:
         paths = [p for p in pathToWatch.walk(
-            filter=lambda _: "\\." not in p._path and "/." not in p._path)
+            filter=lambda p: "\\." not in p._path and "/." not in p._path)
             if not p._path.startswith(pathToIgnore._path) and
             "\\." not in p._path and "/." not in p._path and not
             p.isdir()]
