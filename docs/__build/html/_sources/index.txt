@@ -65,6 +65,7 @@ As example we'll say your host is called maedle.net ...
     git --bare init
 
 **LOCAL: push prime to hub**
+
 $ cd ~/www
 $ git remote add hub ~/site_hub.git
 $ git remote show hub
