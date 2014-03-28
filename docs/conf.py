@@ -6,7 +6,7 @@ _my_short_title = "Loslassa Docs"
 _my_copyright_message = "2013-2014, Loslassa Project"
 
 # Replace the theme name between the quotes with one of the themes from below
-_my_theme = "bootstrap"
+_my_theme = "amelia"
 # possible values for _my_theme
 bootstrap_themes = [
     "bootstrap", "amelia", "cerulean", "cosmo", "cyborg",
