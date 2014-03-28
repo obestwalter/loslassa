@@ -146,8 +146,7 @@
 <div class="highlight-bash"><div class="highlight"><pre>loslassa start &lt;relative or absolute path to&gt;project
 </pre></div>
 </div>
-<p>e.g. if you are in your home folder at C:Usersmaedle and you want
-to start a project there:</p>
+<p>e.g. if you are in your home folder at C:Usersmaedle and you want to start a project there:</p>
 <div class="highlight-python"><div class="highlight"><pre>loslassa gugga
 </pre></div>
 </div>
@@ -157,10 +156,7 @@ to start a project there:</p>
 from <a class="reference external" href="http://joemaller.com/990/a-web-focused-git-workflow/">http://joemaller.com/990/a-web-focused-git-workflow/</a> and <a class="reference external" href="http://danbarber.me/using-git-for-deployment/">http://danbarber.me/using-git-for-deployment/</a></p>
 <p>Have a look at this: <a class="reference external" href="https://github.com/gerhard/deliver">https://github.com/gerhard/deliver</a> or: <a class="reference external" href="http://mikeeverhart.net/git/using-git-to-deploy-code/">http://mikeeverhart.net/git/using-git-to-deploy-code/</a> or: <a class="reference external" href="http://toroid.org/ams/git-website-howto">http://toroid.org/ams/git-website-howto</a> or: <a class="reference external" href="http://danielmiessler.com/study/git/#website">http://danielmiessler.com/study/git/#website</a></p>
 <p>The pattern described there is only working for pure HTML/Javascript projects - a loslassa project though consists of the sources and a build. As the project as a whole should be under source control ans movable, the deployment has to be adjusted in so far as the web root has to point to the HTML part of the build, but the rest of the project has to be uploaded as well. Beside from that the clones-prime-hub scheme fits nicely for this use case.</p>
-<p>Lets say you are on the commandline in ~/projects
-(where &#8220;~&#8221; is your home directory - wherever that might be) and you want
-to start a new loslassa project called gugga (swabian word for bag). This
-is what happens under the hood:</p>
+<p>Lets say you are on the commandline in ~/projects (where &#8220;~&#8221; is your home directory - wherever that might be) and you want to start a new loslassa project called gugga (swabian word for bag). This is what happens under the hood:</p>
 <p><strong>LOCAL: create prime</strong></p>
 <div class="highlight-bash"><div class="highlight"><pre>mkdir gugga
 cp -r /path/to/loslassa/projects/skeleton/* gugga
@@ -170,8 +166,7 @@ git add .
 git commit -m <span class="s2">&quot;initialized gugga&quot;</span>
 </pre></div>
 </div>
-<p>Now the remote comes into play:</p>
-<p>As example we&#8217;ll say your host is called maedle.net ...</p>
+<p>Now the remote comes into play ... as example we&#8217;ll say your host is called maedle.net ...</p>
 <p><strong>REMOTE: create bare git repo to hold the hub</strong></p>
 <div class="highlight-bash"><div class="highlight"><pre>ssh user@maedle.net mkdir /path/to/hub/repos/gugga.git
 <span class="nb">cd </span>gugga.git
@@ -220,13 +215,13 @@ do more involved stuff via sphinx extensions.</p>
 <p>Hello this is some random content to have something to work with and to
 test the workflow and functionality of <a class="reference external" href="https://github.com/obestwalter/loslassa">Loslassa</a></p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 112)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 106)</p>
 toctree contains reference to nonexisting document &#8216;news&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 112)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 106)</p>
 toctree contains reference to nonexisting document &#8216;about&#8217;</div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 112)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/obestwalter/projects/loslassa/docs/index.rst</tt>, line 106)</p>
 toctree contains reference to nonexisting document &#8216;inner_folder/file_in_inner_folder&#8217;</div>
 <div class="toctree-wrapper compound">
 <ul class="simple">

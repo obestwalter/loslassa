@@ -13,8 +13,7 @@ Start
 
     loslassa start <relative or absolute path to>project
 
-e.g. if you are in your home folder at C:\Users\maedle and you want
-to start a project there::
+e.g. if you are in your home folder at C:\Users\maedle and you want to start a project there::
 
     loslassa gugga
 
@@ -29,10 +28,7 @@ Have a look at this: https://github.com/gerhard/deliver or: http://mikeeverhart.
 
 The pattern described there is only working for pure HTML/Javascript projects - a loslassa project though consists of the sources and a build. As the project as a whole should be under source control ans movable, the deployment has to be adjusted in so far as the web root has to point to the HTML part of the build, but the rest of the project has to be uploaded as well. Beside from that the clones-prime-hub scheme fits nicely for this use case.
 
-Lets say you are on the commandline in ~/projects
-(where "~" is your home directory - wherever that might be) and you want
-to start a new loslassa project called gugga (swabian word for bag). This
-is what happens under the hood:
+Lets say you are on the commandline in ~/projects (where "~" is your home directory - wherever that might be) and you want to start a new loslassa project called gugga (swabian word for bag). This is what happens under the hood:
 
 **LOCAL: create prime**
 
@@ -45,9 +41,7 @@ is what happens under the hood:
     git add .
     git commit -m "initialized gugga"
 
-Now the remote comes into play:
-
-As example we'll say your host is called maedle.net ...
+Now the remote comes into play ... as example we'll say your host is called maedle.net ...
 
 **REMOTE: create bare git repo to hold the hub**
 
