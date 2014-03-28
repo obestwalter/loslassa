@@ -1,57 +1,4 @@
 #!/usr/bin/env python
-"""
-Loslassa
-========
-
-Workflow
---------
-
-Start
-'''''
-**not implemented yet**
-
-::
-
-    loslassa start */path/to/project*
-
-Creates a new project with a basic structure and configuration
-similar to sphinx-quickstart only simpler and tailored to only HTML output.
-
-Play
-''''
-Playing with the source and create your page. Add content and see the
-changes right away thanks to local server with automatic
-rebuild of the web pages::
-
-::
-
-    cd */path/to/project*
-    loslassa play
-
-Starts a local development server reachable on http://localhost:8080.
-All files in project folder are being watched and if something changes
-the project is rebuild.
-
-Publish
-'''''''
-**not implemented yet**
-
-This part is a bit vague still but basically it should simply push the
-generated pages to the server, by maintaining them in a git repository
-
-First time publishing would clone the repository bare to the web space and
-set it to be origin from then on
-... or summin like that, didn't think that through yet::
-
-    cd */path/to/project*
-    loslassa loslassa
-
-Customize
-'''''''''
-This is not thought out yet, but I imagine that additional customization
-can be done easily by expanding the settings in the sphinx conf.py and
-do more involved stuff via sphinx extensions.
-"""
 from __future__ import print_function
 
 import logging
@@ -335,7 +282,7 @@ class LoslassaStart(LoslassaCliApplication):
 @Loslassa.subcommand("play")
 class LoslassaPlay(LoslassaCliApplication):
     """Start playing with the source and create your page"""
-    serverPort = 8080
+    serverPort = 8081
     autocommit = True
 
     @cli.autoswitch()
@@ -386,7 +333,8 @@ def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     if len(sys.argv) == 1:
         log.info("no args ... using test config instead")
-        name = "/home/obestwalter/projects/bilderwerkstatt_ravensburg.de"
+        name = "/home/obestwalter/projects/linda/bilderwerkstatt_ravensburg.de"
+        name = "/home/obestwalter/projects/loslassa/docs"
         args = ["play", "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)
     Loslassa.run()
