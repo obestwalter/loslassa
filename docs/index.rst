@@ -83,7 +83,9 @@ This part is a bit vague still but basically it should simply push the generated
 
 First time publishing would clone the repository bare to the web space and
 set it to be origin from then on
-... or summin like that, didn't think that through yet::
+... or summin like that, didn't think that through yet
+
+.. code-block::
 
     cd */path/to/project*
     loslassa loslassa
