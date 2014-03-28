@@ -94,37 +94,3 @@ Customize
 =========
 
 Additional customization can be done easily by expanding the settings in the sphinx conf.py and more involved stuff can be realized via sphinx extensions.
-
-
-Hello this is some random content to have something to work with and to
-test the workflow and functionality of `Loslassa <https://github.com/obestwalter/loslassa>`_
-
-.. toctree::
-    :maxdepth: 2
-
-    news
-    about
-    inner_folder/file_in_inner_folder
-
-====================
-Second level heading
-====================
-
-Second level here
-
-Third level heading
-===================
-
-Third level here.
-
-Fourth level heading
---------------------
-
-quite deep ...
-
-Fifth level heading
-'''''''''''''''''''
-
-Even deeper
-
-
