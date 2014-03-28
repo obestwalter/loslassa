@@ -3,6 +3,3 @@ file_client: local
 file_roots:
   base:
     - /vagrant/salt
-
-log_file: /vagrant/salt
-log_level: debug
