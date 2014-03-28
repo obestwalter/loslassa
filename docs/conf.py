@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Replace the text between the quotes with your settings
-_my_website_name = "Loslassa Skeleton Page"
+_my_website_name = "Loslassa Documentation"
 _my_short_title = "Loslassa Skeleton"
 _my_copyright_message = "2013, Loslassa Project"
 
