@@ -94,3 +94,4 @@ Now the remote comes into play ... as example we'll say your host is called maed
     git push hub master
 
 Creates a new project with a basic structure and configuration similar to sphinx-quickstart only simpler and tailored to only HTML output.
+
