@@ -27,7 +27,6 @@ from http://joemaller.com/990/a-web-focused-git-workflow/ and http://danbarber.m
 
 Have a look at this: https://github.com/gerhard/deliver or: http://mikeeverhart.net/git/using-git-to-deploy-code/ or: http://toroid.org/ams/git-website-howto or: http://danielmiessler.com/study/git/#website
 
-
 The pattern described there is only working for pure HTML/Javascript projects - a loslassa project though consists of the sources and a build. As the project as a whole should be under source control ans movable, the deployment has to be adjusted in so far as the web root has to point to the HTML part of the build, but the rest of the project has to be uploaded as well. Beside from that the clones-prime-hub scheme fits nicely for this use case.
 
 Lets say you are on the commandline in ~/projects
