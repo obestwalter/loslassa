@@ -59,31 +59,27 @@ Now the remote comes into play ... as example we'll say your host is called maed
     git remote add hub ~/site_hub.git
     git push hub master
 
-Creates a new project with a basic structure and configuration
-similar to sphinx-quickstart only simpler and tailored to only HTML output.
+Creates a new project with a basic structure and configuration similar to sphinx-quickstart only simpler and tailored to only HTML output.
 
 
 Play
 ====
 
-Playing with the source and create your page. Add content and see the
-changes right away thanks to local server with automatic
-rebuild of the web pages::
+Playing with the source and create your page. Add content and see the changes right away thanks to local server with automatic rebuild of the web pages
+
+.. code-block:: bash
 
     cd */path/to/project*
     loslassa play
 
-Starts a local development server reachable on http://localhost:8080.
-All files in project folder are being watched and if something changes
-the project is rebuild.
+Starts a local development server. All files in project folder are being watched and if something changes the project is rebuild.
 
 Publish
 =======
 
 **not implemented yet**
 
-This part is a bit vague still but basically it should simply push the
-generated pages to the server, by maintaining them in a git repository
+This part is a bit vague still but basically it should simply push the generated pages to the server, by maintaining them in a git repository
 
 First time publishing would clone the repository bare to the web space and
 set it to be origin from then on
