@@ -29,19 +29,19 @@ Besides from that it serves mainly as a playground for me to explore new concept
 Characteristics
 ---------------
 
-**Works everywhere** (where VirtualBox works)
+**Works everywhere** (where Vagrant with VirtualBox works)
 
-**Easy to install** - just download the vagrant box and vagrant up it
+**Easy to administrate** - Completely self contained in a vagrant box
 
-**Easy to administrate** Completely self contained in a vagrant box
+**Easy to install** - Just run vagrant up in project folder (with vagrant and VirtualBox installed)
 
-**Contains examples to get started** have a look in ``projects/examples``
+**Contains examples to get started** - Have a look in ``projects/examples``
 
-**Offers a short feedback loop** Page will be rebuild on every save
+**Offers a short feedback loop** - Page will be committed and rebuild on every save
 
-**Gives helpful error messages** courtesy of Sphinx
+**Gives helpful error messages** - Courtesy of Sphinx
 
-**Easy publishing** git push to a online repository with automatic deploy via githook (needs some setup on the remote end)
+**Easy publishing** - Run git push and it will be deployed via githook (needs some setup on the remote end)
 
 Basic ingredients
 =================
