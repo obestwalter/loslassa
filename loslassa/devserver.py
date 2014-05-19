@@ -73,6 +73,11 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
     """
     pathTimeMap = {}
     while True:
+        # for p in cleanPaths:
+        #     if not p.exists():
+        #         log.info("%s does not exist: trigger build..." % (p))
+        #         sys.exit(3)
+
         paths = [p for p in pathToWatch.walk(
             filter=lambda p: "\\." not in p._path and "/." not in p._path)
             if not p._path.startswith(pathToIgnore._path) and
@@ -106,7 +111,7 @@ def reloader_loop(pathToWatch, pathToIgnore, cleanFileNames, cleanPaths,
                 for path in cleanPaths:
                     log.info("cleaning %s" % (path))
                     path.delete()
-            log.info("reloading ...")
+            log.info("trigger build ...")
             sys.exit(3)
 
         time.sleep(interval)
