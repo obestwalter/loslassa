@@ -1,0 +1,4 @@
+#!/bin/bash
+
+loslassa.py &
+echo "loslassa is running now"
