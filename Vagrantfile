@@ -1,12 +1,8 @@
 Vagrant.configure("2") do |cnf|
-  cnf.vm.box = "base"
-  cnf.vm.box_url = "http://files.vagrantup.com/precise64.box"
-
+  cnf.vm.box = "ubuntu/trusty64"
   cnf.vm.network :forwarded_port, guest: 8080, host: 8080
   cnf.vm.network :private_network, ip: "192.168.33.10"
-
   cnf.vm.synced_folder "./loslassa/projects/example", "/site"
-
   cnf.vm.provision :salt do |saltCnf|
       saltCnf.verbose = true
       saltCnf.minion_config = './salt/minion'
