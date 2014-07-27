@@ -1,6 +1,7 @@
 language: python
 python:
   - "2.7"
+  - "3.4"
 before_install:
   - "git config --global user.email 'nobody@loslassa.com'"
   - "git config --global user.name 'Loslassa Tester'"
