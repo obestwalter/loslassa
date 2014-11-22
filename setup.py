@@ -12,29 +12,25 @@ Release process:
 """
 from setuptools import setup
 
-from loslassa._loslassa import __doc__, __version__
+__version__ = "0.3.4"
 
+with open("requirements.txt") as f:
+    requirements = f.readlines()
 
 setup(
     name='Loslassa',
-    description=('A simple way to interactively develop web pages with '
-                 'reStructuredText and love :)'),
+    description='Just another toy staic website generator',
     version=__version__,
     license='BSD',
     url='http://github.com/obestwalter/loslassa/',
     author='Oliver Bestwalter',
     author_email='oliver@bestwalter.de',
-    long_description=__doc__,
+    long_description='',
     packages=['loslassa'],
     include_package_data=True,
     zip_safe=False,
     platforms='Unix',
-    install_requires=[
-        'Sphinx>=1.1.3',
-        'plumbum>=1.0',
-        'sphinx_bootstrap_theme',
-        'pytest>=2.3'
-    ],
+    install_requires=requirements,
     entry_points=dict(console_scripts=['loslassa=loslassa._loslassa:main']),
     classifiers=[
         'Development Status :: 3 - Alpha',

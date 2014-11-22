@@ -8,6 +8,7 @@ before_install:
 install:
   - "pip install coveralls"
   - "pip install -r requirements.txt"
+  - "pip install -r requirements-dev.txt"
 script: "py.test --cov=loslassa tests"
 after_success:
   coveralls

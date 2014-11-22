@@ -9,9 +9,6 @@ from plumbum import cli, cmd, local
 from plumbum.commands import ProcessExecutionError
 import plumbum.path.utils as plumbum_utils
 
-
-print(sys.path)
-
 from loslassa.devserver import serve_with_reloader
 from loslassa.utils import (
     simple_dbg, find_file, adjust_log,
@@ -19,7 +16,6 @@ from loslassa.utils import (
 
 
 LOSLASSA = "loslassa"
-__version__ = '0.3.3'
 
 
 log = logging.getLogger()
@@ -210,7 +206,7 @@ class GitPorcelainPorcelain(object):
 
 class LoslassaCliApplication(cli.Application):
     PROGNAME = LOSLASSA
-    VERSION = __version__
+    VERSION = "0.3.4"
     USAGE = LOSLASSA + " [start|play|loslassa] [OPTIONS]"
     projectPath = None
     logLevel = logging.DEBUG

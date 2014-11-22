@@ -21,27 +21,10 @@
 Loslassa
 ========
 
-This is a little project to help my family create web pages.
+Static website generator using established OSS tools to do the job.
 
-Besides from that it serves mainly as a playground for me to explore new concepts and technologies.
+Mainly a lab for me play with fancy libraries and OSS workflows
 
-
-Characteristics
----------------
-
-**Works everywhere** (where Vagrant with VirtualBox works)
-
-**Easy to administrate** - Completely self contained in a vagrant box
-
-**Easy to install** - Just run vagrant up in project folder (with vagrant and VirtualBox installed)
-
-**Contains examples to get started** - Have a look in ``projects/examples``
-
-**Offers a short feedback loop** - Page will be committed and rebuild on every save
-
-**Gives helpful error messages** - Courtesy of Sphinx
-
-**Easy publishing** - Run git push and it will be deployed via githook (needs some setup on the remote end)
 
 Basic ingredients
 =================
@@ -70,18 +53,14 @@ a simple example project to get them going.
 
 Git porcelain porcelain
 -----------------------
+**TODO** but first find out which git library to use
+
 `Git <http://git-scm.com>`_ is a fantastic `DVCS-System <https://en.wikipedia.org/wiki/Distributed_revision_control>`_ that can be abused in many ways. I plan to abuse it as an automatic backup system and publishing tool for the web pages.
 
 Problem is, that even the git porcelain isn't anything I can let members of my family let loose on, so the aim here is to abstract git away completely and use it under the hood for rollback functionality and publishing content.
 
-Love
-----
-I `love <https://en.wikipedia.org/wiki/Category:Love>`_ my family and open source software, so this is the perfect excuse for me to combine both and create an orgy of love that gives something back to the OSS-community, helps my family to do their thing and helps me not having to figure out whatever terrible tools they might be using to create their websites with, when they run into problems - I rather help them **loslassing** :)
-
-My expressions of love might differ from other people, but in relation to Loslassa they are as described below ...
-
 Development Server
-''''''''''''''''''
+------------------
 I understand the attraction of all these colorful `WYSIWYG <https://en.wikipedia.org/wiki/WYSIWYG>`_ interfaces that make you feel that creating a nice web page is really easy and just a few clicks away. But you might as well be left with something that is not really what you wanted, hard to maintain and hard to get away from.
 
 So I hope I can get my folks to adopt the Loslassa way - only problem is: Loslassa is definitely **not** WYSIWYG but rather WYGIWYWIYWTLSN (What You Get Is What You Want If You're Willing To Learn Something New) so I need something to lure them into believing that this might be usable.
@@ -91,14 +70,11 @@ As seeing **is** believing an integral part of Loslassa is a simple reloading de
 The server simply watches the **Loslassa Project Directory (TM)** for file changes, rebuilds the pages and reloads itself. In a later version this server will also be taking care of the version control side of things, by keeping the git repo up to date. Publishing the page will then be a simple git push to the web space.
 
 Friendly command line interface
-'''''''''''''''''''''''''''''''
+-------------------------------
+
 My current experience with programming lies mainly in the backend. In my day job I develop an in-house distributed system for a german Antivirus company and we don't bother with fancy GUIs - we have extensive APIs and simple web interfaces (thanks to `Flask <http://www.pocoo.org/projects/flask/#flask>`_) where sensible - Desktop GUI is just not on my map at the moment. But everybody loves the command line, don't they ;)
 
 Anyway ... a way to write CLIs in a pythonic way is `Plumbum <http://plumbum.readthedocs.org/en/latest/>`_ which I just started playing with and I don't think I will ever go back to argparse. Another aspect of the plumbum approach is the handling of paths, which features an overloaeded ``/`` operator for path concatenation and methods directly on the path object. I started using this in the code and it's quite nice ...
-
-Extension of Love
-'''''''''''''''''
-My life would be much poorer without open source software, so even if you're not a member of my family: if you want to use this or parts of it, go ahead - it's `BSD Licensed <https://en.wikipedia.org/wiki/BSD_licenses>`_. If you have an idea how to make it better or want to contribute something (code, examples, whatever), feel free to `contact me <https://github.com/obestwalter>`_, `open an issue <https://github.com/obestwalter/loslassa/issues/new>`_ or send me a pull request.
 
 About the name
 ==============
@@ -108,20 +84,3 @@ About the name
 Anyway, when I came up with the idea to this project I went to my Yoga class and my Swabian Yoga teacher always says "loslassa, loslassa, loslassa" whenever she wants us to relax after some contortion she made us go through - so this is my favorite part of the lessons (fun fact: the path to the main file in the loslassa sourcecode is ``loslassa/loslassa/loslassa.py``).
 
 So in the true spirit of **Loslassa** I hope this little project helps you let go of your preconceptions how web pages have to be created and you try the Loslassa way ;).
-
-Inspiration
-===========
-
-README driven development:
-    * http://tom.preston-werner.com/2010/08/23/readme-driven-development.html
-
-Nice command line usage - heroku:
-    * https://devcenter.heroku.com/articles/python
-    * https://devcenter.heroku.com/articles/quickstart
-
-Layering of functionality - git:
-    * plumbing/porcelain paradigm
-
-Deployment with git:
-    * http://joemaller.com/990/a-web-focused-git-workflow/
-
