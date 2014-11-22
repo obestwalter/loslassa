@@ -48,16 +48,17 @@ def assert_exc_contains(exc, content):
 
     :param exc: Exception type
     :param content: content that should be part of the exception message
-    :type content: basestring or list of basestring
+    :type content: str or list
     """
     try:
         yield
     except Exception as e:
         assert type(e) == exc
-        if isinstance(content, basestring):
-            assert content in e.message
+        message = e.args[0]  # warning might not always work
+        if isinstance(content, str):
+            assert content in message
         else:
-            assert all(m in e.message for m in content)
+            assert all(m in message for m in content)
     else:
         raise Exception("Did not raise %s with %s" % (exc, content))
 

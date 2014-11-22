@@ -12,7 +12,7 @@ import os
 import subprocess
 import sys
 import time
-import thread
+import threading
 from wsgiref import simple_server, util
 
 
@@ -47,7 +47,8 @@ def run_with_reloader(main_func, pathToWatch, pathToIgnore,
 
     signal.signal(signal.SIGTERM, lambda *args: sys.exit(0))
     if os.environ.get(RUN_MAIN_ENV_KEY) == 'true':
-        thread.start_new_thread(main_func, ())
+        t = threading.Thread(target=main_func)
+        t.start()
         try:
             reloader_loop(pathToWatch, pathToIgnore,
                           cleanFileNames, cleanPaths)

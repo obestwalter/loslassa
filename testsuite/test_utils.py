@@ -4,7 +4,7 @@ import logging
 from plumbum import LocalPath
 
 from loslassa.utils import *
-from conftest import *
+from .conftest import *
 
 
 class TestFindFile(object):
@@ -32,9 +32,8 @@ class TestFindFile(object):
 
 class TestAdjustLog(object):
     def test_bogus_level_raises(self):
-        log = logging.getLogger(__name__)
-        adjust_log("bogus_level")
-        assert log.getEffectiveLevel() == logging.INFO
+        with assert_exc_contains(ValueError, "Unknown level"):
+            adjust_log("bogus_level")
 
     def test_proper_level_adjust_level(self):
         adjust_log(logging.CRITICAL)

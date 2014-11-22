@@ -9,8 +9,10 @@ from plumbum import cli, cmd, local
 from plumbum.commands import ProcessExecutionError
 import plumbum.path.utils as plumbum_utils
 
-from devserver import serve_with_reloader
-from utils import *
+from loslassa.devserver import serve_with_reloader
+from loslassa.utils import (
+    simple_dbg, find_file, adjust_log,
+    friendly_exception_handler, LoslassaError)
 
 
 LOSLASSA = "loslassa"
@@ -54,7 +56,7 @@ class LoslassaProject(object):
         return self.sphinxConfig.exists()
 
     def generate_html(self):
-        args = ["-b", "dirhtml", "-d", self.doctreesPath._path,
+        args = ["-v", "-b", "dirhtml", "-d", self.doctreesPath._path,
                 self.inputContainer._path, self.outputPath._path]
         log.debug("sphinx-build %s" % (" ".join(args)))
         output = cmd.sphinx_build(*args)
@@ -326,18 +328,14 @@ class LoslassaLoslassa(LoslassaCliApplication):
         self._init(create=True)
         # todo make a progress bar consisting of loslassa :)
         log.info("loslassa loslassa loslassa ...")
-        #raise LoslassaError("coming soon...")
+        # raise LoslassaError("coming soon...")
 
 
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     if len(sys.argv) == 1:
-        import os
-
         log.info("no args ... using test config instead")
-        name = "/home/obestwalter/projects/linda/bilderwerkstatt_ravensburg.de"
-        name = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                            "..", "docs")
+        name = "/home/obestwalter/work/linda/bilderwerkstatt_ravensburg.de"
         args = ["play", "--no-autocommit",
                 "--verbosity", "DEBUG", "--project-name", name]
         sys.argv.extend(args)

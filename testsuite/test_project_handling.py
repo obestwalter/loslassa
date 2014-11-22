@@ -5,7 +5,7 @@ import pytest
 
 from loslassa.loslassa import LoslassaProject, LoslassaStart, LoslassaPlay
 from loslassa.utils import *
-from conftest import assert_exc_contains
+from .conftest import assert_exc_contains
 
 
 class TestLoslassaProject(object):
