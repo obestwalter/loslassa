@@ -19,7 +19,7 @@ from loslassa.utils import (
 
 
 LOSLASSA = "loslassa"
-__version__ = '0.3.2-dev'
+__version__ = '0.3.3'
 
 
 log = logging.getLogger()
