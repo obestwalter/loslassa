@@ -1,4 +1,15 @@
-"""See README.rst for description"""
+"""
+
+.pypirc should look like this::
+
+    [server-login]
+    username:oliver.bestwalter
+    password:<wont tell ya>
+
+Release process:
+ * update __version__
+ * python ./setup.py sdist upload
+"""
 from setuptools import setup
 
 from loslassa._loslassa import __doc__, __version__
@@ -17,7 +28,7 @@ setup(
     packages=['loslassa'],
     include_package_data=True,
     zip_safe=False,
-    platforms='Unix',  # todo add windows and Mac Os X
+    platforms='Unix',
     install_requires=[
         'Sphinx>=1.1.3',
         'plumbum>=1.0',
@@ -26,7 +37,7 @@ setup(
     ],
     entry_points=dict(console_scripts=['loslassa=loslassa._loslassa:main']),
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Other Audience',
         'License :: OSI Approved :: BSD License',
