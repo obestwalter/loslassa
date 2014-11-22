@@ -10,10 +10,14 @@ Release process:
  * update __version__
  * python ./setup.py sdist upload
 """
+
 from setuptools import setup
 
 from loslassa import __version__
 
+#HERE = os.path.dirname(__file__)
+
+# with open(os.path.join(HERE, "requirements.txt")) as f:
 with open("requirements.txt") as f:
     requirements = f.readlines()
 

@@ -1,5 +1,6 @@
 include CHANGES
 include LICENSE
 include README.rst
+include requirements.txt
 recursive-include loslassa/example_project *.rst *.jpg *.png conf.py
 prune loslassa/example_project/build
