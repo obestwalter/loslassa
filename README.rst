@@ -6,8 +6,8 @@
 .. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png?branch=master
 .. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa?branch=master
 
-.. |PyPiBadge| image:: https://badge.fury.io/py/Loslassa.png
-.. _PyPiBadge: http://badge.fury.io/py/Loslassa
+.. |PyPiBadge| image:: https://badge.fury.io/py/loslassa.svg
+.. _PyPiBadge: http://badge.fury.io/py/loslassa
 
 .. |PyPiBadgeOwn| image:: http://b.repl.ca/v1/get_it-on_pypi%21-green.png
 .. _PyPiBadgeOwn: https://pypi.python.org/pypi/Loslassa
