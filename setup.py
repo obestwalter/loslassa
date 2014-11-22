@@ -1,7 +1,7 @@
 """See README.rst for description"""
 from setuptools import setup
 
-from loslassa.loslassa import __doc__, __version__
+from loslassa._loslassa import __doc__, __version__
 
 
 setup(
@@ -24,7 +24,7 @@ setup(
         'sphinx_bootstrap_theme',
         'pytest>=2.3'
     ],
-    entry_points=dict(console_scripts=['loslassa=loslassa.loslassa:main']),
+    entry_points=dict(console_scripts=['loslassa=loslassa._loslassa:main']),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

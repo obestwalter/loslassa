@@ -1,6 +1,6 @@
 import pytest
 
-from loslassa.loslassa import LoslassaProject, GitPorcelainPorcelain
+from loslassa._loslassa import LoslassaProject, GitPorcelainPorcelain
 
 
 class TestGitIntegration(object):

@@ -9,6 +9,9 @@ from plumbum import cli, cmd, local
 from plumbum.commands import ProcessExecutionError
 import plumbum.path.utils as plumbum_utils
 
+
+print(sys.path)
+
 from loslassa.devserver import serve_with_reloader
 from loslassa.utils import (
     simple_dbg, find_file, adjust_log,

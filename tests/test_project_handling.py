@@ -3,7 +3,7 @@ from __future__ import print_function
 from plumbum import local
 import pytest
 
-from loslassa.loslassa import LoslassaProject, LoslassaStart, LoslassaPlay
+from loslassa._loslassa import LoslassaProject, LoslassaStart, LoslassaPlay
 from loslassa.utils import *
 from .conftest import assert_exc_contains
 

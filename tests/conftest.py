@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from plumbum.machines.local import local
 import pytest
 
-from loslassa.loslassa import LoslassaProject
+from loslassa._loslassa import LoslassaProject
 
 
 @pytest.fixture
