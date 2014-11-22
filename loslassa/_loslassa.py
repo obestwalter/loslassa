@@ -206,7 +206,7 @@ class GitPorcelainPorcelain(object):
 
 class LoslassaCliApplication(cli.Application):
     PROGNAME = LOSLASSA
-    VERSION = "0.3.5"
+    VERSION = "0.3.6"
     USAGE = LOSLASSA + " [start|play|loslassa] [OPTIONS]"
     projectPath = None
     logLevel = logging.DEBUG

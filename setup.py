@@ -12,7 +12,7 @@ Release process:
 """
 from setuptools import setup
 
-__version__ = "0.3.5"
+__version__ = "0.3.6"
 
 with open("requirements.txt") as f:
     requirements = f.readlines()
