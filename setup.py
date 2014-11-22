@@ -12,7 +12,7 @@ Release process:
 """
 from setuptools import setup
 
-__version__ = "0.3.6"
+from loslassa import __version__
 
 with open("requirements.txt") as f:
     requirements = f.readlines()
