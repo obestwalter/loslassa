@@ -12,14 +12,14 @@ Release process:
 """
 from setuptools import setup
 
-__version__ = "0.3.4"
+__version__ = "0.3.5"
 
 with open("requirements.txt") as f:
     requirements = f.readlines()
 
 setup(
     name='Loslassa',
-    description='Just another toy staic website generator',
+    description='Just another toy static website generator',
     version=__version__,
     license='BSD',
     url='http://github.com/obestwalter/loslassa/',
