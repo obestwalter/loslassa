@@ -200,7 +200,7 @@ class GitPorcelainPorcelain(object):
             cmd.ssh(self.sshOptions + ["id"])
             return True
 
-        except:
+        except Exception:
             log.warning("ssh connection failed", exc_info=True)
             return False
 
