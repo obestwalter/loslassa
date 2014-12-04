@@ -10,7 +10,6 @@ from plumbum.commands import ProcessExecutionError
 import plumbum.path.utils as plumbum_utils
 
 from loslassa import __version__
-
 from loslassa.devserver import serve_with_reloader
 from loslassa.utils import (
     simple_dbg, find_file, adjust_log,
@@ -26,19 +25,19 @@ log = logging.getLogger()
 class LoslassaProject(object):
     SPHINX_CONFIG = "conf.py"
     HERE = local.path(__file__).dirname
-    PROJECTS = HERE/"projects"
-    EXAMPLE_PROJECT = PROJECTS/"example"
-    SKELETON_PROJECT = PROJECTS/"skeleton"
+    PROJECTS = HERE / "projects"
+    EXAMPLE_PROJECT = PROJECTS / "example"
+    SKELETON_PROJECT = PROJECTS / "skeleton"
 
     def __init__(self, projectPath):
         assert projectPath, "No project path set"
         self.projectPath = projectPath
-        self.inputContainer = local.path(local.cwd/projectPath)
+        self.inputContainer = local.path(local.cwd / projectPath)
         self.projectName = self.inputContainer.basename
-        self.sphinxConfig = self.inputContainer/self.SPHINX_CONFIG
-        self.buildPath = local.path(self.inputContainer/"__build")
-        self.doctreesPath = self.buildPath/"doctrees"
-        self.outputPath = self.buildPath/"html"
+        self.sphinxConfig = self.inputContainer / self.SPHINX_CONFIG
+        self.buildPath = local.path(self.inputContainer / "__build")
+        self.doctreesPath = self.buildPath / "doctrees"
+        self.outputPath = self.buildPath / "html"
         log.info("[PROJECT INFO]: input from %s - html generated in %s" %
                  (self.inputContainer, self.outputPath))
 
@@ -113,7 +112,7 @@ class GitPorcelainPorcelain(object):
         self.projectPath = projectPath
         self.projectName = projectPath.basename
         self.settings = LoslassaConfig(projectPath)
-        self.gitPath = self.projectPath/".git"
+        self.gitPath = self.projectPath / ".git"
 
     def create_repo(self):
         with local.cwd(self.projectPath):
@@ -334,12 +333,6 @@ class LoslassaLoslassa(LoslassaCliApplication):
 
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
-    if len(sys.argv) == 1:
-        log.info("no args ... using test config instead")
-        name = "/home/obestwalter/work/linda/bilderwerkstatt_ravensburg.de"
-        args = ["play", "--no-autocommit",
-                "--verbosity", "DEBUG", "--project-name", name]
-        sys.argv.extend(args)
     Loslassa.run()
 
 

@@ -38,7 +38,7 @@ class TestLoslassaStart(object):
     @pytest.mark.usefixtures("work_in_empty_tmpdir")
     def test_start_with_good_name_creates_project(self):
         ls = LoslassaStart("dummy_executable")
-        ls.projectPath = local.cwd/"new_project"
+        ls.projectPath = local.cwd / "new_project"
         ls.main()
         assert ls.project.projectName == "new_project"
 
