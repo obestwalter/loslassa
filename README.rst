@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/obestwalter/loslassa.png?label=ready&title=Ready 
+ :target: https://waffle.io/obestwalter/loslassa
+ :alt: 'Stories in Ready'
 |TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|_
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
