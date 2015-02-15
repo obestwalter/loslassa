@@ -7,8 +7,9 @@
     password:<wont tell ya>
 
 Release process:
- * update __version__
+ * update __version__ to release version
  * python ./setup.py sdist upload
+ * update __version__ to dev version
 """
 
 from setuptools import setup
