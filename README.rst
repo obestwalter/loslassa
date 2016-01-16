@@ -1,7 +1,12 @@
+|NoMaintenanceBadge|_
+
 .. image:: https://badge.waffle.io/obestwalter/loslassa.png?label=ready&title=Ready 
  :target: https://waffle.io/obestwalter/loslassa
  :alt: 'Stories in Ready'
 |TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|_
+
+.. |NoMaintenanceBadge| image:: http://unmaintained.tech/badge.svg
+.. _NoMaintenanceBadge: http://unmaintained.tech/
 
 .. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
 .. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
