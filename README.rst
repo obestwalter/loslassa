@@ -1,9 +1,12 @@
-|NoMaintenanceBadge|_
+|NoMaintenanceBadge|_ |AbandonedBadge|_
 
 .. image:: https://badge.waffle.io/obestwalter/loslassa.png?label=ready&title=Ready 
  :target: https://waffle.io/obestwalter/loslassa
  :alt: 'Stories in Ready'
 |TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|_
+
+.. |AbandonedBadge| image:: http://www.repostatus.org/badges/latest/abandoned.svg
+.. _AbandonedBadge: http://www.repostatus.org/#abandoned
 
 .. |NoMaintenanceBadge| image:: http://unmaintained.tech/badge.svg
 .. _NoMaintenanceBadge: http://unmaintained.tech/
