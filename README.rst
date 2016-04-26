@@ -1,41 +1,21 @@
 |NoMaintenanceBadge|_ |AbandonedBadge|_
 
-.. image:: https://badge.waffle.io/obestwalter/loslassa.png?label=ready&title=Ready 
- :target: https://waffle.io/obestwalter/loslassa
- :alt: 'Stories in Ready'
-|TravisBadge|_  |CoverallBadge|_  |PyPiBadge|_ |CommitMood|_
-
 .. |AbandonedBadge| image:: http://www.repostatus.org/badges/latest/abandoned.svg
 .. _AbandonedBadge: http://www.repostatus.org/#abandoned
 
 .. |NoMaintenanceBadge| image:: http://unmaintained.tech/badge.svg
 .. _NoMaintenanceBadge: http://unmaintained.tech/
 
-.. |TravisBadge| image:: https://travis-ci.org/obestwalter/loslassa.png?branch=master
-.. _TravisBadge: https://travis-ci.org/obestwalter/loslassa
+This ... is an ex parrot!
+=========================
 
-.. |CoverallBadge| image:: https://coveralls.io/repos/obestwalter/loslassa/badge.png?branch=master
-.. _CoverallBadge: https://coveralls.io/r/obestwalter/loslassa?branch=master
+There are many static website generators around now, so **please do not use this one**. Have a look here: https://staticsitegenerators.net/
 
-.. |PyPiBadge| image:: https://badge.fury.io/py/loslassa.svg
-.. _PyPiBadge: http://badge.fury.io/py/loslassa
-
-.. |PyPiBadgeOwn| image:: http://b.repl.ca/v1/get_it-on_pypi%21-green.png
-.. _PyPiBadgeOwn: https://pypi.python.org/pypi/Loslassa
-
-.. |CommitMood| image:: http://b.repl.ca/v1/Olivers_Commit_Mood-ExitedAboutBadges%21-green.png
-.. _CommitMood: http://www.youtube.com/watch?v=5NzPd-xW4YY
-
-
-`Huboard issues <https://huboard.com/obestwalter/loslassa>`_
 
 Loslassa
 ========
 
 Static website generator using established OSS tools to do the job.
-
-Mainly a lab for me play with fancy libraries and OSS workflows
-
 
 Basic ingredients
 =================
